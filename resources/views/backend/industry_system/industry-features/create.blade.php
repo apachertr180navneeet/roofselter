@@ -1,4 +1,5 @@
 @extends('backend.layout.app')
+@section('title', 'Create Industry Feature')
 @section('content')
         <div class="container">
           <div class="page-inner">

@@ -1,4 +1,5 @@
 @extends('backend.layout.app')
+@section('title', 'Edit Service FAQ')
 @section('content')
         <div class="container">
           <div class="page-inner">

@@ -6,13 +6,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@yield('meta_title', (get_setting('website_name') ?: 'rooftopper') . ' | ' . (get_setting('site_motto') ?: 'Home'))</title>
+    <title>@yield('meta_title', (get_setting('website_name') ?: 'RoofShelter') . ' | ' . (get_setting('site_motto') ?: 'Home'))</title>
     <meta name="description" content="@yield('meta_description', get_setting('site_motto', 'Professional Roofing Services'))">
     <meta name="keywords" content="@yield('meta_keywords', 'roofing, roof repair, roof installation, Sydney roofing')">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('img/'.get_setting('site_logo'))}}" />
-    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('img/'.get_setting('site_logo'))}}" />
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('img/'.get_setting('site_logo'))}}" />
-    <link rel="manifest" href="{{asset('img/'.get_setting('site_logo'))}}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset(get_setting('site_logo') ? 'img/'.get_setting('site_logo') : 'webtheme/assets/images/resources/RoofShelter-Logo1.jpg') }}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset(get_setting('site_logo') ? 'img/'.get_setting('site_logo') : 'webtheme/assets/images/resources/RoofShelter-Logo1.jpg') }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset(get_setting('site_logo') ? 'img/'.get_setting('site_logo') : 'webtheme/assets/images/resources/RoofShelter-Logo1.jpg') }}" />
+    <link rel="manifest" href="{{ asset(get_setting('site_logo') ? 'img/'.get_setting('site_logo') : 'webtheme/assets/images/resources/RoofShelter-Logo1.jpg') }}" />
     <meta property="og:title" content="@yield('meta_title', get_setting('website_name') . ' | ' . get_setting('site_motto'))">
     <meta property="og:description" content="@yield('meta_description', get_setting('site_motto', 'Professional Roofing Services'))">
     <meta property="og:type" content="website">
@@ -22,7 +22,7 @@
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "{{ get_setting('website_name', 'Sydney Crown Roofing and Gutters') }}",
-        "image": "{{ asset('img/'.get_setting('site_logo')) }}",
+        "image": "{{ asset(get_setting('site_logo') ? 'img/'.get_setting('site_logo') : 'webtheme/assets/images/resources/RoofShelter-Logo1.jpg') }}",
         "description": "{{ get_setting('site_motto', 'Professional Roofing Services') }}",
         "telephone": "{{ get_setting('contact_phone', '+61 451873035') }}",
         "email": "{{ get_setting('contact_email', 'sydneycrownroofingandgutters@gmail.com') }}",

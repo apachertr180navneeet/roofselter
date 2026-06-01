@@ -1,4 +1,5 @@
 @extends('backend.layout.app')
+@section('title', 'Create Team Member')
 @section('content')
         <div class="container">
           <div class="page-inner">

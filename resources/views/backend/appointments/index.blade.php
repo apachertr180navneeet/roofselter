@@ -1,4 +1,5 @@
 @extends('backend.layout.app')
+@section('title', 'Appointments')
 @section('content')
 <div class="container">
     <div class="page-inner">

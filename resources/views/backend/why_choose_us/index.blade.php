@@ -1,4 +1,5 @@
 @extends('backend.layout.app')
+@section('title', 'Why Choose Us')
 @section('content')
 <div class="container">
     <div class="page-inner">

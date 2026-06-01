@@ -5,7 +5,7 @@
             <div class="logo-header" data-background-color="dark">
               <a href="{{route('admin')}}" class="logo">
                 <img
-                  src="{{asset('img/'.get_setting('system_logo_white'))}}"
+                  src="{{ asset(get_setting('system_logo_white') ? 'img/'.get_setting('system_logo_white') : 'webtheme/assets/images/resources/RoofShelter-Logo1.jpg') }}"
                   alt="navbar brand"
                   class="navbar-brand"
                   height="20"

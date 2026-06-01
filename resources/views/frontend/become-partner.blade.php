@@ -1,5 +1,5 @@
 @extends('frontend.layout.app')
-@section('meta_title', 'Become a Partner | ' . get_setting('website_name'))
+@section('meta_title', 'Become a Partner | ' . (get_setting('website_name') ?: 'RoofShelter'))
 @section('meta_description', 'Partner with us to grow your roofing business.')
 @section('content')
 <section class="page-header">

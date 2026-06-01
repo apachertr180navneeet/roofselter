@@ -385,6 +385,7 @@
         <!--End Why Choose Us-->
 
         <!--Start Team One-->
+        @if($team_members->count() > 0)
         <section class="team-one" id="team">
             <div class="container">
                 <div class="section-title text-center sec-title-animation animation-style2">
@@ -396,12 +397,11 @@
                 </div>
 
                 <div class="row">
-                    <!--Start Team One Single-->
                     @foreach($team_members as $key => $team)
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
+                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="{{ $loop->index * 100 }}ms">
                         <div class="team-one__single">
                             <div class="team-one__single-img">
-                                <img src="{{ $team->image ? asset('img/'.$team->image) : asset('assets/img/placeholder-image-3.jpg') }}" alt="#">
+                                <img src="{{ $team->image ? asset('img/'.$team->image) : asset('assets/img/placeholder-image-3.jpg') }}" alt="{{ $team->name }}">
                             </div>
 
                             <div class="team-one__single-content">
@@ -426,54 +426,10 @@
                         </div>
                     </div>
                     @endforeach
-                    <!--End Team One Single-->
-
-                    <!--Start Team One Single-->
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp d-none" data-wow-delay="200ms">
-                        <div class="team-one__single">
-                            <div class="team-one__single-img">
-                                <img src="{{asset('webtheme/assets/images/team/team-v1-img2.jpg')}}" alt="#">
-                            </div>
-
-                            <div class="team-one__single-content">
-                                <h2><a href="#">Cameron Williamson</a></h2>
-                                <p>Project Manager</p>
-
-                                <ul class="social-links">
-                                    <li><a href="#"><span class="icon-instagram"></span></a></li>
-                                    <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                                    <li><a href="#"><span class="icon-twitter"></span></a></li>
-                                    <li><a href="#"><span class="icon-facebook-app-symbol"></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End Team One Single-->
-
-                    <!--Start Team One Single-->
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp d-none" data-wow-delay="300ms">
-                        <div class="team-one__single">
-                            <div class="team-one__single-img">
-                                <img src="{{asset('webtheme/assets/images/team/team-v1-img3.jpg')}}" alt="#">
-                            </div>
-
-                            <div class="team-one__single-content">
-                                <h2><a href="#">Arlene McCoy</a></h2>
-                                <p>Project Manager</p>
-
-                                <ul class="social-links">
-                                    <li><a href="#"><span class="icon-instagram"></span></a></li>
-                                    <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                                    <li><a href="#"><span class="icon-twitter"></span></a></li>
-                                    <li><a href="#"><span class="icon-facebook-app-symbol"></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End Team One Single-->
                 </div>
             </div>
         </section>
+        @endif
         <!--End Team One-->
 
         <!--Start Before After One-->
@@ -871,7 +827,7 @@
                             <div class="contact-page__contact-info-box">
                                 <div class="row">
                                     <div class="col-xl-6 col-lg-6 col-md-6">
-                            <div class="contact-page__contact-info-single">
+                                        <div class="contact-page__contact-info-single">
                                             <div class="icon-box">
                                                 <span class="icon-phone"></span>
                                             </div>
@@ -880,6 +836,7 @@
                                                 <p><a href="tel:{{ get_setting('contact_phone', '+61 451873035') }}">{{ get_setting('contact_phone', '+61 451873035') }}</a></p>
                                             </div>
                                         </div>
+                                    </div>
 
                                     <div class="col-xl-6 col-lg-6 col-md-6">
                                         <div class="contact-page__contact-info-single">
@@ -913,54 +870,6 @@
                                             <div class="content-box">
                                                 <h3>Working Hours</h3>
                                                 <p>{{ get_setting('contact_hours', 'Monday - Saturday : 9:00 AM - 6:00 PM') }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                            <div class="content-box">
-                                                <h3>Phone Number :</h3>
-                                                <p><a href="tel:+61 451873035">+61 451873035</a></p>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-6 col-lg-6 col-md-6">
-                                        <div class="contact-page__contact-info-single">
-                                            <div class="icon-box">
-                                                <span class="icon-email"></span>
-                                            </div>
-
-                                            <div class="content-box">
-                                                <h3>Email Address</h3>
-                                                <p><a href="mailto:sydneycrownroofingandgutters@gmail.com">sydneycrownroofingandgutters@gmail.com</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-6 col-lg-6 col-md-6">
-                                        <div class="contact-page__contact-info-single">
-                                            <div class="icon-box">
-                                                <span class="icon-gps"></span>
-                                            </div>
-
-                                            <div class="content-box">
-                                                <h3>Our Address</h3>
-                                                <p>79 Governors Way, Macquarie Links NSW 2565, Australia</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-6 col-lg-6 col-md-6">
-                                        <div class="contact-page__contact-info-single">
-                                            <div class="icon-box">
-                                                <span class="fa fa-regular fa-clock"></span>
-                                            </div>
-
-                                            <div class="content-box">
-                                                <h3>Working Time</h3>
-                                                <p>Monday - Saturday : <br>
-                                                    9:00 AM - 6:00 PM</p>
                                             </div>
                                         </div>
                                     </div>

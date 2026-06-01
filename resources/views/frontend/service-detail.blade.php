@@ -1,5 +1,5 @@
 @extends('frontend.layout.app')
-@section('meta_title', $service->meta_title ?: ($service->title . ' | ' . get_setting('website_name')))
+@section('meta_title', $service->meta_title ?: ($service->title . ' | ' . (get_setting('website_name') ?: 'RoofShelter')))
 @section('meta_description', $service->meta_description ?: $service->short_description)
 @section('meta_keywords', $service->meta_keywords)
 @section('content')

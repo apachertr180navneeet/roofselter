@@ -9,7 +9,7 @@
                         <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0ms">
                             <div class="footer-widget__about">
                                 <div class="footer-widget__about-logo">
-                                    <a href="{{route('home')}}"><img src="{{asset('img/'.get_setting('system_logo_black'))}}" alt=""></a>
+                                    <a href="{{route('home')}}"><img src="{{ asset(get_setting('system_logo_black') ? 'img/'.get_setting('system_logo_black') : 'webtheme/assets/images/resources/RoofShelter-Logo1.jpg') }}" alt=""></a>
                                 </div>
                             </div>
                         </div>

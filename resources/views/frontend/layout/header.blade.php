@@ -5,7 +5,7 @@
                         <div class="main-menu__wrapper-inner">
                             <div class="main-menu__left">
                                 <div class="main-menu__logo">
-                                    <a href="{{route('home')}}"><img src="{{asset('img/'.get_setting('system_logo_white'))}}" alt=""></a>
+                                    <a href="{{route('home')}}"><img src="{{ asset(get_setting('system_logo_white') ? 'img/'.get_setting('system_logo_white') : 'webtheme/assets/images/resources/RoofShelter-Logo1.jpg') }}" alt=""></a>
                                 </div>
                             </div>
 
@@ -60,7 +60,7 @@
                                 </div>
 
                                 <div class="main-menu__btn">
-                                    <a href="#contact" class="thm-btn">Get a quote <span
+                                    <a href="{{ route('home.contact-us') }}" class="thm-btn">Get a quote <span
                                             class="icon-next1"></span></a>
                                 </div>
                             </div>

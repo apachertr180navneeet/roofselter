@@ -1,10 +1,11 @@
 @extends('backend.layout.app')
+@section('title', 'Industry FAQs')
 @section('content')
 
 <div class="container">
     <div class="page-inner">
         <div class="page-header">
-            <h3 class="fw-bold mb-3">DataTables.Net</h3>
+            <h3 class="fw-bold mb-3">Industry FAQs</h3>
             <ul class="breadcrumbs mb-3">
                 <li class="nav-home">
                     <a href="#">
