@@ -18,11 +18,11 @@
                             <div class="footer-widget__links">
                                 <h4 class="footer-widget__title">Quick Links</h4>
                                 <ul class="footer-widget__links-list">
-                                    <li><a href="#about">About Us</a></li>
-                                    <li><a href="#faq">FAQ</a></li>
-                                    <li><a href="#testimonial">Testimonial</a></li>
-                                    <li><a href="#services">Service</a></li>
-                                    <li><a href="#projects">Projects</a></li>
+                                    <li><a href="{{ route('home') }}#about">About Us</a></li>
+                                    <li><a href="{{ route('home.faq') }}">FAQ</a></li>
+                                    <li><a href="{{ route('home.pricing') }}">Pricing</a></li>
+                                    <li><a href="{{ route('home.gallery') }}">Gallery</a></li>
+                                    <li><a href="{{ route('home.blog') }}">Projects</a></li>
                                 </ul>
                             </div>
                         </div>

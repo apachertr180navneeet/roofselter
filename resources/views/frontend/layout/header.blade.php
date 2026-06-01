@@ -13,26 +13,43 @@
                                 <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
 
                                 <ul class="main-menu__list one-page-scroll-menu">
-                                    <li class="scrollToLink">
-                                        <a href="#home">Home </a>
+                                    <li>
+                                        <a href="{{ route('home') }}">Home</a>
                                     </li>
-                                    <li class="scrollToLink">
-                                        <a href="#services">Services</a>
+                                    <li class="dropdown">
+                                        <a href="{{ route('home.services') }}">Services</a>
+                                        <ul>
+                                            <li><a href="{{ route('home.services') }}">All Services</a></li>
+                                            <li><a href="{{ route('home.service-detail', 'roof-repairs') }}">Roof Repairs</a></li>
+                                            <li><a href="{{ route('home.service-detail', 'roof-restorations') }}">Roof Restorations</a></li>
+                                            <li><a href="{{ route('home.service-detail', 'new-roof-installation') }}">New Roof Installation</a></li>
+                                            <li><a href="{{ route('home.pricing') }}">Pricing</a></li>
+                                        </ul>
                                     </li>
-                                    <li class="scrollToLink">
-                                        <a href="#about">About</a>
+                                    <li>
+                                        <a href="{{ route('home.about') }}">About</a>
                                     </li>
-                                    
-                                    <li class="scrollToLink">
-                                        <a href="#projects">Projects</a>
+                                    <li class="dropdown">
+                                        <a href="{{ route('home.projects') }}">Projects</a>
+                                        <ul>
+                                            <li><a href="{{ route('home.projects') }}">Our Projects</a></li>
+                                            <li><a href="{{ route('home.gallery') }}">Gallery</a></li>
+                                        </ul>
                                     </li>
-                                    <li class="scrollToLink">
-                                        <a href="#team">Team</a>
+                                    <li>
+                                        <a href="{{ route('home.team') }}">Team</a>
                                     </li>
-                                    <li class="scrollToLink">
-                                        <a href="#testimonial">Testimonial</a>
+                                    <li>
+                                        <a href="{{ route('home.testimonials') }}">Testimonials</a>
                                     </li>
-                                    
+                                    <li class="dropdown">
+                                        <a href="#">More</a>
+                                        <ul>
+                                            <li><a href="{{ route('home.faq') }}">FAQ</a></li>
+                                            <li><a href="{{ route('home.contact-us') }}">Contact</a></li>
+                                            <li><a href="{{ route('home.become-a-partner') }}">Become a Partner</a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </div>
 

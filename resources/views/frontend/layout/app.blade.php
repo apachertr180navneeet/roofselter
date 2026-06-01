@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@yield('meta_title', get_setting('website_name') . ' | ' . get_setting('site_motto'))</title>
+    <title>@yield('meta_title', (get_setting('website_name') ?: 'rooftopper') . ' | ' . (get_setting('site_motto') ?: 'Home'))</title>
     <meta name="description" content="@yield('meta_description', get_setting('site_motto', 'Professional Roofing Services'))">
     <meta name="keywords" content="@yield('meta_keywords', 'roofing, roof repair, roof installation, Sydney roofing')">
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('img/'.get_setting('site_logo'))}}" />

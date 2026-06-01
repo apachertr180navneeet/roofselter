@@ -1,4 +1,6 @@
 @extends('frontend.layout.app')
+@section('meta_title', (get_setting('website_name') ?: 'rooftopper') . ' | ' . (get_setting('site_motto') ?: 'Home'))
+@section('meta_description', get_setting('site_motto', 'Professional Roofing Services in Sydney'))
 @section('content')
 
        <!--Start Main Slider One-->

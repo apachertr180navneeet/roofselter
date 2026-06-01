@@ -7,13 +7,16 @@ use App\Models\AboutCategory;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Industry;
+use App\Models\IndustryFaq;
 use App\Models\Service;
+use App\Models\ServiceFaq;
 use App\Models\Slider;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
 use App\Models\WhyChooseUs;
 use App\Models\BeforeAfterImage;
 use App\Models\Certification;
+use App\Models\ProjectImage;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -85,5 +88,66 @@ class HomeController extends Controller
             ->limit(4)
             ->get();
         return view('frontend.service-detail', compact('service', 'relatedServices'));
+    }
+
+    public function faq()
+    {
+        $serviceFaqs = ServiceFaq::with('service')
+            ->where('status', 1)
+            ->get()
+            ->groupBy(function($faq) {
+                return $faq->service ? $faq->service->title : 'General';
+            });
+        $industryFaqs = IndustryFaq::with('industry')
+            ->where('status', 1)
+            ->get()
+            ->groupBy(function($faq) {
+                return $faq->industry ? $faq->industry->title : 'General';
+            });
+        return view('frontend.faq', compact('serviceFaqs', 'industryFaqs'));
+    }
+
+    public function pricing()
+    {
+        $services = Service::with('category')
+            ->where('status', 1)
+            ->latest()
+            ->get();
+        $testimonials = Testimonial::where('status', 1)->get();
+        return view('frontend.pricing', compact('services', 'testimonials'));
+    }
+
+    public function gallery()
+    {
+        $galleryImages = ProjectImage::with('blog')
+            ->orderBy('sort_order')
+            ->get();
+        $projects = Blog::with('galleryImages')
+            ->where('status', 1)
+            ->whereHas('galleryImages')
+            ->get();
+        return view('frontend.gallery', compact('galleryImages', 'projects'));
+    }
+
+    public function services()
+    {
+        $services = Service::with('category')
+            ->where('status', 1)
+            ->latest()
+            ->get();
+        $categories = $services->pluck('category.title')->filter()->unique();
+        return view('frontend.services', compact('services', 'categories'));
+    }
+
+    public function team()
+    {
+        $team_members = TeamMember::where('status', 1)->get();
+        return view('frontend.team', compact('team_members'));
+    }
+
+    public function testimonials()
+    {
+        $testimonials = Testimonial::where('status', 1)->get();
+        return view('frontend.testimonials', compact('testimonials'));
     }
 }

@@ -51,10 +51,18 @@ Route::post('/become-partner/store',[BecomePartnerController::class,'store'])->n
 
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('about-us',[HomeController::class,'about'])->name('home.about-us');
+Route::get('about',[HomeController::class,'about'])->name('home.about');
 Route::get('contact-us',[HomeController::class,'contact'])->name('home.contact-us');
 Route::get('blog',[HomeController::class,'blog'])->name('home.blog');
 Route::get('blog/{slug}',[HomeController::class,'blog_details'])->name('home.blog-details');
+Route::get('projects',[HomeController::class,'blog'])->name('home.projects');
+Route::get('services', [HomeController::class, 'services'])->name('home.services');
 Route::get('services/{slug}', [HomeController::class, 'serviceDetail'])->name('home.service-detail');
+Route::get('faq',[HomeController::class,'faq'])->name('home.faq');
+Route::get('pricing',[HomeController::class,'pricing'])->name('home.pricing');
+Route::get('gallery',[HomeController::class,'gallery'])->name('home.gallery');
+Route::get('team', [HomeController::class, 'team'])->name('home.team');
+Route::get('testimonials', [HomeController::class, 'testimonials'])->name('home.testimonials');
 
 Route::post('/contact-store', [ContactController::class, 'store'])->name('contact.store');
 Route::post('/appointment/store', [AppointmentController::class, 'store'])->name('appointment.store');
