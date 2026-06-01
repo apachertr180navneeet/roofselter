@@ -3,17 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\BecomePartner;
+use App\Traits\SpamProtection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class BecomePartnerController extends Controller
 {
+    use SpamProtection;
+
     public function index(){
         return view('frontend.become-partner');
     }
 
     public function store(Request $request)
-{
+    {
+        $spam = $this->checkSpam($request);
+        if ($spam) {
+            return response()->json(['status' => 'error', 'message' => $spam], 422);
+        }
+
+
     $validator = Validator::make($request->all(), [
         'fullname' => 'required|string|max:100',
         'email' => 'required|email|unique:become_partners,email', // 👈 fix table name

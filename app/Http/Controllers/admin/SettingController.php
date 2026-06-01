@@ -24,54 +24,50 @@ class SettingController extends Controller
             'system_logo_black',
             'login_page_image',
             'login_bg_image',
+            'contact_phone',
+            'contact_email',
+            'contact_address',
+            'contact_hours',
+            'social_facebook',
+            'social_instagram',
+            'social_twitter',
+            'social_linkedin',
+            'google_maps_embed',
         ];
-    
+
         foreach ($fields as $field) {
-            // === Remove image handle (x-file-upload ke cross button se) ===
             if ($request->input('remove_' . $field) == "1") {
                 $old = Setting::where('key', $field)->first();
-            
                 if ($old && $old->value && file_exists(public_path($old->value))) {
                     unlink(public_path($old->value));
                 }
-            
                 Setting::updateOrCreate(
                     ['key' => $field],
                     ['value' => null]
                 );
-            
-                continue; // agle field pe chale jao
+                continue;
             }
-        
-            // === Upload new image handle ===
+
             if ($request->hasFile($field)) {
                 $old = Setting::where('key', $field)->first();
-            
                 if ($old && $old->value && file_exists(public_path($old->value))) {
                     unlink(public_path($old->value));
                 }
-            
                 $file = $request->file($field);
                 $filename = time() . '_' . $field . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('img/'), $filename);
-            
                 Setting::updateOrCreate(
                     ['key' => $field],
                     ['value' =>  $filename]
                 );
-            
             } elseif ($request->filled($field)) {
-                // === Normal text fields handle ===
                 Setting::updateOrCreate(
                     ['key' => $field],
                     ['value' => $request->$field]
                 );
             }
         }
-    
+
         return redirect()->back()->with('success', 'Settings updated successfully!');
     }
-
-
 }
-

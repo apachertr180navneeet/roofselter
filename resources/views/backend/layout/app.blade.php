@@ -766,6 +766,18 @@ function fetchEnquiryCount() {
 
         lastCount = data.count;
     });
+
+    // Fetch Appointment count
+    $.get("{{ route('admin.appointments.count') }}", function (data) {
+        $('#appointment-count').text(data.count);
+    });
+
+    // Fetch Quote count
+    $.get("{{ route('admin.quotes.count') }}", function (data) {
+        if(data && typeof data.count !== 'undefined') {
+            $('#quote-count').text(data.count);
+        }
+    });
 }
 
 // 🔹 First load + repeat every 15 sec

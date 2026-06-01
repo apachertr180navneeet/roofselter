@@ -22,7 +22,10 @@ class Service extends Model
         'essentials_headings',
         'essentials_short_description',
         'image',
-        'status'
+        'status',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
     ];
 
     public function category()

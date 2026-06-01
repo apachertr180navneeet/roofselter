@@ -116,10 +116,33 @@
               </li> --}}
 
               <li class="nav-item">
-                <a href="{{route('admin.about')}}">
-                  <i class="fas fa-bars"></i>
-                  <p>About Us</p>
-                  <!-- <span class="badge badge-success">1</span> -->
+                <a href="{{route('admin.team_members')}}">
+                  <i class="fas fa-user-friends"></i>
+                  <p>Team Members</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('admin.become-partner')}}">
+                  <i class="fas fa-handshake"></i>
+                  <p>Partners</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('admin.before-after')}}">
+                  <i class="fas fa-images"></i>
+                  <p>Before & After</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('admin.certifications')}}">
+                  <i class="fas fa-certificate"></i>
+                  <p>Certifications</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('admin.why-choose-us')}}">
+                  <i class="fas fa-star"></i>
+                  <p>Why Choose Us</p>
                 </a>
               </li>
               
@@ -223,6 +246,20 @@
                   <i class="fas fa-bullhorn"></i>
                   <p>Enquiries</p>
                   <span id="enquiry-count" class="badge bg-danger">0</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('admin.appointments') }}" id="appointment-link">
+                  <i class="fas fa-calendar-check"></i>
+                  <p>Appointments</p>
+                  <span id="appointment-count" class="badge bg-warning text-dark">0</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('admin.quotes') }}" id="quote-link">
+                  <i class="fas fa-file-invoice-dollar"></i>
+                  <p>Quote Requests</p>
+                  <span id="quote-count" class="badge bg-success">0</span>
                 </a>
               </li>
               <li class="nav-item">

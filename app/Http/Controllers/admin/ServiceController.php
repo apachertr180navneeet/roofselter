@@ -48,6 +48,19 @@ class ServiceController extends Controller
             $create->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->slug));
             $create->short_description = $request->short_description;
             $create->description = $request->description;
+            $create->category_id = $request->category_id;
+            $create->subcategory_id = $request->subcategory_id;
+            $create->subtitle = $request->subtitle;
+            $create->subtitle2 = $request->subtitle2;
+            $create->features_headings = $request->features_headings;
+            $create->features_short_description = $request->features_short_description;
+            $create->benefits_headings = $request->benefits_headings;
+            $create->benefits_short_description = $request->benefits_short_description;
+            $create->essentials_headings = $request->essentials_headings;
+            $create->essentials_short_description = $request->essentials_short_description;
+            $create->meta_title = $request->meta_title;
+            $create->meta_description = $request->meta_description;
+            $create->meta_keywords = $request->meta_keywords;
 
             if ($request->hasFile('image')) {
                 $filename = time().'.'.$request->image->extension();
@@ -85,6 +98,19 @@ class ServiceController extends Controller
             $update->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->slug));
             $update->short_description = $request->short_description;
             $update->description = $request->description;
+            $update->category_id = $request->category_id;
+            $update->subcategory_id = $request->subcategory_id;
+            $update->subtitle = $request->subtitle;
+            $update->subtitle2 = $request->subtitle2;
+            $update->features_headings = $request->features_headings;
+            $update->features_short_description = $request->features_short_description;
+            $update->benefits_headings = $request->benefits_headings;
+            $update->benefits_short_description = $request->benefits_short_description;
+            $update->essentials_headings = $request->essentials_headings;
+            $update->essentials_short_description = $request->essentials_short_description;
+            $update->meta_title = $request->meta_title;
+            $update->meta_description = $request->meta_description;
+            $update->meta_keywords = $request->meta_keywords;
 
             if ($request->input('remove_image') == "1") {
                 if ($update->image && file_exists(public_path('img/' . $update->image))) {
@@ -103,7 +129,6 @@ class ServiceController extends Controller
                 $update->image = $filename;
             }
   
-
             $update->save();
 
             return redirect()->route('admin.service')->with('success','Service Data Updated Successfully');

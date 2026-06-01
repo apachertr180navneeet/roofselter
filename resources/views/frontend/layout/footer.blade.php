@@ -60,19 +60,19 @@
                                 <ul class="footer-widget__contact-list">
                                     <li>
                                         <div class="text">
-                                            <p>79 Governors Way, Macquarie Links NSW 2565, Australia</p>
+                                            <p>{{ get_setting('contact_address', '79 Governors Way, Macquarie Links NSW 2565, Australia') }}</p>
                                         </div>
                                     </li>
 
                                     <li>
                                         <div class="text">
-                                            <p><a href="tel:+61 451873035">+61 451873035</a></p>
+                                            <p><a href="tel:{{ get_setting('contact_phone', '+61 451873035') }}">{{ get_setting('contact_phone', '+61 451873035') }}</a></p>
                                         </div>
                                     </li>
 
                                     <li>
                                         <div class="text">
-                                            <p><a href="mailto:sydneycrownroofingandgutters@gmail.com">sydneycrownroofingandgutters@gmail.com</a></p>
+                                            <p><a href="mailto:{{ get_setting('contact_email', 'sydneycrownroofingandgutters@gmail.com') }}">{{ get_setting('contact_email', 'sydneycrownroofingandgutters@gmail.com') }}</a></p>
                                         </div>
                                     </li>
                                     

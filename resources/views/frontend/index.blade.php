@@ -50,6 +50,8 @@
                 <!-- Contact Form -->
                 <form id="contactForm" action="{{ route('contact.store') }}" method="POST" novalidate>
                     @csrf
+                    <div style="position:absolute;left:-9999px;"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+                    <input type="hidden" name="_form_token" value="{{ encrypt(time()) }}">
 
                     <div class="form-group">
                         <input type="text" id="username" name="username" placeholder="Your Name" required>
@@ -111,10 +113,10 @@
                             </div>
 
                             <div class="features-one__single-inner">
-                                <h2><a href="#">{{ $service->title }}</a></h2>
+                                <h2><a href="{{ route('home.service-detail', $service->slug) }}">{{ $service->title }}</a></h2>
                                 <p>{{ $service->short_description }}</p>
-                                <div class="btn-box d-none">
-                                    <a href="#">Read More <span class="icon-right-arrow1"></span></a>
+                                <div class="btn-box">
+                                    <a href="{{ route('home.service-detail', $service->slug) }}">Read More <span class="icon-right-arrow1"></span></a>
                                 </div>
                             </div>
                         </div>
@@ -346,328 +348,39 @@
         </section>
         <!--End Projects One-->
 
-        <!--Start Work Process One-->
-        <section class="work-process-one">
+        <!--Start Why Choose Us-->
+        @if($why_choose_us->count() > 0)
+        <section class="work-process-one" id="why-choose-us">
             <div class="container">
-                <div class="work-process-one__tab tab-box">
-                    <ul class="tabs-button-box clearfix">
-                        <li data-tab="#flawless" class="tab-btn-item active-btn">
-                            <div class="icon-box">
-                                <span class="icon-roof-7"></span>
-                            </div>
-                            <h3>Flawless Finish <br> Proofing</h3>
-                        </li>
-                        <li data-tab="#eagle" class="tab-btn-item">
-                            <div class="icon-box">
-                                <span class="icon-roof-8"></span>
-                            </div>
-                            <h3>Eagle Eye <br> Proof reading</h3>
-                        </li>
-                        <li data-tab="#clear" class="tab-btn-item">
-                            <div class="icon-box">
-                                <span class="icon-roof-3"></span>
-                            </div>
-                            <h3>Clear Text <br>Proof reading</h3>
-                        </li>
-                        <li data-tab="#pinnacle" class="tab-btn-item">
-                            <div class="icon-box">
-                                <span class="icon-roofing"></span>
-                            </div>
-                            <h3>Pinnacle Proof <br> readers</h3>
-                        </li>
-                    </ul>
-
-                    <div class="tabs-content tabs-content-box">
-
-                        <!--Start Single Tab Content-->
-                        <div class="tab tab-active" id="flawless">
-                            <div class="work-process-one__single-tab">
-                                <div class="work-process-one__single-tab-inner">
-                                    <div class="work-process-one__single-img">
-                                        <img src="{{asset('webtheme/assets/images/resources/work-process-v1-img1.jpg')}}" alt="">
-                                    </div>
-
-                                    <div class="work-process-one__single-content">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-xl-6 col-lg-6">
-                                                    <div class="work-process-one__single-content-left">
-                                                        <div class="section-title sec-title-animation animation-style2">
-                                                            <div class="section-title__tagline title-animation">
-                                                                <h4>// Work Process //</h4>
-                                                            </div>
-                                                            <h2 class="section-title__title title-animation">Get a Free
-                                                                Roof <br>
-                                                                Inspection Today!</h2>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-xl-6 col-lg-6">
-                                                    <div class="work-process-one__single-content-right">
-                                                        <div class="work-process-one__single-content-right-text">
-                                                            <p>Schedule a complimentary roof inspection with our
-                                                                experts. We provide detailed assessments and
-                                                                recommendations to keep your roof in top condition.</p>
-                                                        </div>
-                                                        
-                                                        <ul class="work-process-one__single-content-list">
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Roof Flashing
-                                                                    Repairs</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Chimney Flashing
-                                                                    and Repairs</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Roof Insulation
-                                                                    Services</p>
-                                                            </li>
-                                                        </ul>
-
-                                                        {{--<ul class="work-process-one__single-content-list">
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Apex Roofing
-                                                                    Services</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Peak Performance
-                                                                    Roofing</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Skyline Roof
-                                                                    Solutions</p>
-                                                            </li>
-                                                        </ul>--}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--End Single Tab Content-->
-
-                        <!--Start Single Tab Content-->
-                        <div class="tab" id="eagle">
-                            <div class="work-process-one__single-tab">
-                                <div class="work-process-one__single-tab-inner">
-                                    <div class="work-process-one__single-img">
-                                        <img src="{{asset('webtheme/assets/images/resources/work-process-v1-img2.jpg')}}" alt="">
-                                    </div>
-
-                                    <div class="work-process-one__single-content">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-xl-6 col-lg-6">
-                                                    <div class="work-process-one__single-content-left">
-                                                        <div class="section-title sec-title-animation animation-style2">
-                                                            <div class="section-title__tagline title-animation">
-                                                                <h4>// Work Process //</h4>
-                                                            </div>
-                                                            <h2 class="section-title__title title-animation">Get a Free
-                                                                Roof <br>
-                                                                Inspection Today!</h2>
-                                                        </div>
-
-                                                        <ul class="work-process-one__single-content-list">
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Roof Flashing
-                                                                    Repairs</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Chimney Flashing
-                                                                    and Repairs</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Roof Insulation
-                                                                    Services</p>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-xl-6 col-lg-6">
-                                                    <div class="work-process-one__single-content-right">
-                                                        <div class="work-process-one__single-content-right-text">
-                                                            <p>Schedule a complimentary roof inspection with our
-                                                                experts. We provide detailed assessments and
-                                                                recommendations to keep your roof in top condition.</p>
-                                                        </div>
-
-                                                        <ul class="work-process-one__single-content-list">
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Apex Roofing
-                                                                    Services</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Peak Performance
-                                                                    Roofing</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Skyline Roof
-                                                                    Solutions</p>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--End Single Tab Content-->
-
-                        <!--Start Single Tab Content-->
-                        <div class="tab" id="clear">
-                            <div class="work-process-one__single-tab">
-                                <div class="work-process-one__single-tab-inner">
-                                    <div class="work-process-one__single-img">
-                                        <img src="{{asset('webtheme/assets/images/resources/work-process-v1-img3.jpg')}}" alt="">
-                                    </div>
-
-                                    <div class="work-process-one__single-content">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-xl-6 col-lg-6">
-                                                    <div class="work-process-one__single-content-left">
-                                                        <div class="section-title sec-title-animation animation-style2">
-                                                            <div class="section-title__tagline title-animation">
-                                                                <h4>// Work Process //</h4>
-                                                            </div>
-                                                            <h2 class="section-title__title title-animation">Get a Free
-                                                                Roof <br>
-                                                                Inspection Today!</h2>
-                                                        </div>
-
-                                                        <ul class="work-process-one__single-content-list">
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Roof Flashing
-                                                                    Repairs</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Chimney Flashing
-                                                                    and Repairs</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Roof Insulation
-                                                                    Services</p>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-xl-6 col-lg-6">
-                                                    <div class="work-process-one__single-content-right">
-                                                        <div class="work-process-one__single-content-right-text">
-                                                            <p>Schedule a complimentary roof inspection with our
-                                                                experts. We provide detailed assessments and
-                                                                recommendations to keep your roof in top condition.</p>
-                                                        </div>
-
-                                                        <ul class="work-process-one__single-content-list">
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Apex Roofing
-                                                                    Services</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Peak Performance
-                                                                    Roofing</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Skyline Roof
-                                                                    Solutions</p>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--End Single Tab Content-->
-
-                        <!--Start Single Tab Content-->
-                        <div class="tab" id="pinnacle">
-                            <div class="work-process-one__single-tab">
-                                <div class="work-process-one__single-tab-inner">
-                                    <div class="work-process-one__single-img">
-                                        <img src="{{asset('webtheme/assets/images/resources/work-process-v1-img4.jpg')}}" alt="">
-                                    </div>
-
-                                    <div class="work-process-one__single-content">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-xl-6 col-lg-6">
-                                                    <div class="work-process-one__single-content-left">
-                                                        <div class="section-title sec-title-animation animation-style2">
-                                                            <div class="section-title__tagline title-animation">
-                                                                <h4>// Work Process //</h4>
-                                                            </div>
-                                                            <h2 class="section-title__title title-animation">Get a Free
-                                                                Roof <br>
-                                                                Inspection Today!</h2>
-                                                        </div>
-
-                                                        <ul class="work-process-one__single-content-list">
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Roof Flashing
-                                                                    Repairs</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Chimney Flashing
-                                                                    and Repairs</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Roof Insulation
-                                                                    Services</p>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-xl-6 col-lg-6">
-                                                    <div class="work-process-one__single-content-right">
-                                                        <div class="work-process-one__single-content-right-text">
-                                                            <p>Schedule a complimentary roof inspection with our
-                                                                experts. We provide detailed assessments and
-                                                                recommendations to keep your roof in top condition.</p>
-                                                        </div>
-
-                                                        <ul class="work-process-one__single-content-list">
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Apex Roofing
-                                                                    Services</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Peak Performance
-                                                                    Roofing</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="icon-verified"></span> Skyline Roof
-                                                                    Solutions</p>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--End Single Tab Content-->
+                <div class="section-title text-center sec-title-animation animation-style2">
+                    <div class="section-title__tagline title-animation">
+                        <h4>// Why Choose Us //</h4>
                     </div>
+                    <h2 class="section-title__title title-animation">Why Choose Sydney Crown Roofing?</h2>
+                </div>
+                <div class="row mt-4">
+                    @foreach($why_choose_us as $item)
+                    <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="{{ $loop->index * 100 }}ms">
+                        <div class="work-process-one__single-tab">
+                            <div class="work-process-one__single-tab-inner text-center p-4">
+                                @if($item->icon)
+                                <div class="icon-box mb-3">
+                                    <span class="{{ $item->icon }}" style="font-size: 3rem;"></span>
+                                </div>
+                                @endif
+                                <h3>{{ $item->title }}</h3>
+                                @if($item->description)
+                                <p class="mt-2">{{ $item->description }}</p>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
-        <!--End Work Process One-->
+        @endif
+        <!--End Why Choose Us-->
 
         <!--Start Team One-->
         <section class="team-one" id="team">
@@ -760,6 +473,49 @@
             </div>
         </section>
         <!--End Team One-->
+
+        <!--Start Before After One-->
+        @if($before_after_images->count() > 0)
+        <section class="before-after-one" id="before-after">
+            <div class="container">
+                <div class="section-title text-center sec-title-animation animation-style2">
+                    <div class="section-title__tagline title-animation">
+                        <h4>// Before & After //</h4>
+                    </div>
+                    <h2 class="section-title__title title-animation">See Our Transformation <br> Results</h2>
+                </div>
+                <div class="row">
+                    @foreach($before_after_images as $b4)
+                    <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="100ms">
+                        <div class="card border-0 shadow-sm mb-4">
+                            <div class="row g-0">
+                                <div class="col-6">
+                                    <div class="position-relative">
+                                        <img src="{{ asset('img/'.$b4->before_image) }}" class="img-fluid" style="height:200px;width:100%;object-fit:cover;" alt="Before">
+                                        <span class="position-absolute bottom-0 start-0 bg-danger text-white px-2 py-1 small">Before</span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="position-relative">
+                                        <img src="{{ asset('img/'.$b4->after_image) }}" class="img-fluid" style="height:200px;width:100%;object-fit:cover;" alt="After">
+                                        <span class="position-absolute bottom-0 end-0 bg-success text-white px-2 py-1 small">After</span>
+                                    </div>
+                                </div>
+                            </div>
+                            @if($b4->title || $b4->description)
+                            <div class="card-body text-center">
+                                <h5 class="card-title">{{ $b4->title }}</h5>
+                                @if($b4->description)<p class="card-text small text-muted">{{ $b4->description }}</p>@endif
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+        @endif
+        <!--End Before After One-->
 
         <!--Start Testimonials One-->
         <section class="testimonials-one clearfix" id="testimonial">
@@ -1076,7 +832,30 @@
         </section>
         <!--End Blog One-->
 
-                <!-- Start Contact Page -->
+                <!--Start Certifications One-->
+        @if(isset($certifications) && $certifications->count() > 0)
+        <section class="certifications-one py-5" id="certifications">
+            <div class="container">
+                <div class="section-title text-center sec-title-animation animation-style2">
+                    <div class="section-title__tagline title-animation"><h4>// Certifications //</h4></div>
+                    <h2 class="section-title__title title-animation">Our Certifications & Licenses</h2>
+                </div>
+                <div class="row justify-content-center">
+                    @foreach($certifications as $cert)
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-6 text-center mb-4">
+                        <div class="cert-item p-3 bg-white shadow-sm rounded">
+                            <img src="{{ asset('img/'.$cert->image) }}" alt="{{ $cert->title }}" class="img-fluid" style="max-height:80px;">
+                            @if($cert->title)<p class="small mt-2 mb-0 fw-bold">{{ $cert->title }}</p>@endif
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+        @endif
+        <!--End Certifications One-->
+
+        <!-- Start Contact Page -->
         <section class="contact-page" id="contact">
             <div class="container">
                 <div class="row">
@@ -1090,10 +869,51 @@
                             <div class="contact-page__contact-info-box">
                                 <div class="row">
                                     <div class="col-xl-6 col-lg-6 col-md-6">
-                                        <div class="contact-page__contact-info-single">
+                            <div class="contact-page__contact-info-single">
                                             <div class="icon-box">
                                                 <span class="icon-phone"></span>
                                             </div>
+                                            <div class="content-box">
+                                                <h3>Phone Number :</h3>
+                                                <p><a href="tel:{{ get_setting('contact_phone', '+61 451873035') }}">{{ get_setting('contact_phone', '+61 451873035') }}</a></p>
+                                            </div>
+                                        </div>
+
+                                    <div class="col-xl-6 col-lg-6 col-md-6">
+                                        <div class="contact-page__contact-info-single">
+                                            <div class="icon-box">
+                                                <span class="icon-email"></span>
+                                            </div>
+                                            <div class="content-box">
+                                                <h3>Email Address</h3>
+                                                <p><a href="mailto:{{ get_setting('contact_email', 'sydneycrownroofingandgutters@gmail.com') }}">{{ get_setting('contact_email', 'sydneycrownroofingandgutters@gmail.com') }}</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-6 col-lg-6 col-md-6">
+                                        <div class="contact-page__contact-info-single">
+                                            <div class="icon-box">
+                                                <span class="icon-gps"></span>
+                                            </div>
+                                            <div class="content-box">
+                                                <h3>Our Address</h3>
+                                                <p>{{ get_setting('contact_address', '79 Governors Way, Macquarie Links NSW 2565, Australia') }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-6 col-lg-6 col-md-6">
+                                        <div class="contact-page__contact-info-single">
+                                            <div class="icon-box">
+                                                <span class="fa fa-regular fa-clock"></span>
+                                            </div>
+                                            <div class="content-box">
+                                                <h3>Working Hours</h3>
+                                                <p>{{ get_setting('contact_hours', 'Monday - Saturday : 9:00 AM - 6:00 PM') }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                             <div class="content-box">
                                                 <h3>Phone Number :</h3>
@@ -1154,11 +974,10 @@
 
                                 <div class="social-links">
                                     <ul>
-                                        <li><a href="https://www.facebook.com/profile.php?id=61588821460338"><span class="icon-facebook-app-symbol"></span></a></li>
-                                        <li><a href="#"><span class="icon-twitter"></span></a></li>
-                                        <li><a href="https://www.instagram.com/sydneycrownroofingandgutters">
-                                            <span class="icon-instagram"></span></a></li>
-                                        <li><a href="#"><span class="icon-linkedin"></span></a></li>
+                                        @if(get_setting('social_facebook'))<li><a href="{{ get_setting('social_facebook') }}" target="_blank"><span class="icon-facebook-app-symbol"></span></a></li>@endif
+                                        @if(get_setting('social_twitter'))<li><a href="{{ get_setting('social_twitter') }}" target="_blank"><span class="icon-twitter"></span></a></li>@endif
+                                        @if(get_setting('social_instagram'))<li><a href="{{ get_setting('social_instagram') }}" target="_blank"><span class="icon-instagram"></span></a></li>@endif
+                                        @if(get_setting('social_linkedin'))<li><a href="{{ get_setting('social_linkedin') }}" target="_blank"><span class="icon-linkedin"></span></a></li>@endif
                                     </ul>
                                 </div>
                             </div>

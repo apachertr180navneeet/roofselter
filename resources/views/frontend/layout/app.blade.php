@@ -6,14 +6,49 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> {{ get_setting('website_name') }} | {{ get_setting('site_motto') }} </title>
-    <!-- favicons Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{get_setting('site_logo')}}" />
+    <title>@yield('meta_title', get_setting('website_name') . ' | ' . get_setting('site_motto'))</title>
+    <meta name="description" content="@yield('meta_description', get_setting('site_motto', 'Professional Roofing Services'))">
+    <meta name="keywords" content="@yield('meta_keywords', 'roofing, roof repair, roof installation, Sydney roofing')">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('img/'.get_setting('site_logo'))}}" />
     <link rel="icon" type="image/png" sizes="32x32" href="{{asset('img/'.get_setting('site_logo'))}}" />
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('img/'.get_setting('site_logo'))}}" />
     <link rel="manifest" href="{{asset('img/'.get_setting('site_logo'))}}" />
-    <meta name="description" content="RoofShelter - Build Home with Trust " />
-
+    <meta property="og:title" content="@yield('meta_title', get_setting('website_name') . ' | ' . get_setting('site_motto'))">
+    <meta property="og:description" content="@yield('meta_description', get_setting('site_motto', 'Professional Roofing Services'))">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "{{ get_setting('website_name', 'Sydney Crown Roofing and Gutters') }}",
+        "image": "{{ asset('img/'.get_setting('site_logo')) }}",
+        "description": "{{ get_setting('site_motto', 'Professional Roofing Services') }}",
+        "telephone": "{{ get_setting('contact_phone', '+61 451873035') }}",
+        "email": "{{ get_setting('contact_email', 'sydneycrownroofingandgutters@gmail.com') }}",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "{{ get_setting('contact_address', '79 Governors Way, Macquarie Links NSW 2565') }}",
+            "addressLocality": "Sydney",
+            "addressRegion": "NSW",
+            "addressCountry": "AU"
+        },
+        "url": "{{ url('/') }}",
+        "priceRange": "$$",
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+            "opens": "09:00",
+            "closes": "18:00"
+        },
+        "sameAs": [
+            @if(get_setting('social_facebook'))"{{ get_setting('social_facebook') }}",@endif
+            @if(get_setting('social_instagram'))"{{ get_setting('social_instagram') }}",@endif
+            @if(get_setting('social_twitter'))"{{ get_setting('social_twitter') }}",@endif
+            @if(get_setting('social_linkedin'))"{{ get_setting('social_linkedin') }}"@endif
+        ]
+    }
+    </script>
 
     <!-- Fonts -->
     <link
@@ -291,6 +326,65 @@ $(document).ready(function () {
 });
 </script>
 
-</body>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/61451873035" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp whatsapp-icon"></i>
+    </a>
 
+    <style>
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            color: #FFF;
+            transform: scale(1.1);
+        }
+        .whatsapp-icon {
+            font-size: 35px;
+        }
+        /* Pulse Animation */
+        .whatsapp-float::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #25d366;
+            opacity: 0.7;
+            z-index: -1;
+            animation: whatsapp-pulse 1.5s infinite;
+        }
+        @keyframes whatsapp-pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.4);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
+</body>
 </html>

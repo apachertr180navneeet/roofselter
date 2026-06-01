@@ -38,6 +38,9 @@ class AboutController extends Controller
             $create->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->slug));
             $create->description = $request->description;
             $create->description2 = $request->description2;
+            $create->meta_title = $request->meta_title;
+            $create->meta_description = $request->meta_description;
+            $create->meta_keywords = $request->meta_keywords;
 
             if ($request->hasFile('image')) {
                 $filename = time().'.'.$request->image->extension();
@@ -76,6 +79,9 @@ class AboutController extends Controller
             $update->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->slug));
             $update->description = $request->description;
             $update->description2 = $request->description2;
+            $update->meta_title = $request->meta_title;
+            $update->meta_description = $request->meta_description;
+            $update->meta_keywords = $request->meta_keywords;
 
             if ($request->input('remove_image') == "1") {
                 if ($update->image && file_exists(public_path('img/' . $update->image))) {
@@ -94,7 +100,6 @@ class AboutController extends Controller
                 $update->image = $filename;
             }
   
-
             $update->save();
 
             return redirect()->route('admin.about')->with('success','About Us Data Updated Successfully');
