@@ -13,24 +13,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Bootstrap 5 CDN -->
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    @vite(['resources/css/app.css'])
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         :root {
-            --primary-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            --accent-color: #3b82f6;
-            --accent-glow: rgba(59, 130, 246, 0.25);
-            --panel-bg: rgba(15, 23, 42, 0.95);
+            --primary-gradient: linear-gradient(135deg, #0a1e56 0%, #0f2a6e 100%);
+            --accent-color: #f97316;
+            --accent-glow: rgba(249, 115, 22, 0.25);
+            --panel-bg: rgba(10, 30, 86, 0.95);
             --text-light: #f8fafc;
             --text-muted: #94a3b8;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0b0f19;
+            background-color: #0a1e56;
             min-height: 100vh;
             color: var(--text-light);
             overflow-x: hidden;
@@ -39,7 +37,6 @@
             justify-content: center;
         }
 
-        /* Split Screen Container */
         .login-wrapper {
             width: 100%;
             min-height: 100vh;
@@ -47,10 +44,9 @@
             grid-template-columns: 1.1fr 0.9fr;
         }
 
-        /* Left Panel - Visual Branding (hides on mobile) */
         .visual-panel {
             position: relative;
-            background-image: linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.8)), url('{{ asset('img/'.get_setting('login_bg_image')) }}');
+            background-image: linear-gradient(rgba(10, 30, 86, 0.4), rgba(10, 30, 86, 0.8)), url('{{ asset('img/'.get_setting('login_bg_image')) }}');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -67,209 +63,67 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle at 20% 30%, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
             z-index: 1;
         }
 
-        .visual-content {
-            position: relative;
-            z-index: 2;
-            margin-top: auto;
-            max-width: 520px;
-        }
-
-        .visual-tagline {
-            font-size: 2.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            letter-spacing: -0.03em;
-            margin-bottom: 1rem;
-            color: #ffffff;
-            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .visual-desc {
-            color: #cbd5e1;
-            font-size: 1.05rem;
-            line-height: 1.6;
-        }
+        .visual-content { position: relative; z-index: 2; margin-top: auto; max-width: 520px; }
+        .visual-tagline { font-size: 2.5rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 1rem; color: #ffffff; text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
+        .visual-desc { color: #cbd5e1; font-size: 1.05rem; line-height: 1.6; }
 
         .featured-image-container {
-            position: relative;
-            z-index: 2;
-            margin-bottom: 2rem;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            max-height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            position: relative; z-index: 2; margin-bottom: 2rem; border-radius: 16px; overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); max-height: 300px; display: flex; align-items: center;
+            justify-content: center; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        .featured-image-container img { width: 100%; height: 100%; object-fit: cover; }
 
-        .featured-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Right Panel - Form (always visible) */
         .form-panel {
-            background: var(--panel-bg);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 3rem 4rem;
-            position: relative;
-            border-left: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--panel-bg); display: flex; flex-direction: column; justify-content: center;
+            padding: 3rem 4rem; position: relative; border-left: 1px solid rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
         }
+        .form-container { width: 100%; max-width: 420px; margin: 0 auto; }
+        .logo-box { margin-bottom: 2.5rem; }
+        .logo-box img { max-height: 48px; object-fit: contain; }
+        .welcome-header { margin-bottom: 2.5rem; }
+        .welcome-title { font-size: 1.75rem; font-weight: 700; color: #ffffff; letter-spacing: -0.02em; }
+        .welcome-subtitle { color: var(--text-muted); font-size: 0.95rem; margin-top: 0.25rem; }
 
-        .form-container {
-            width: 100%;
-            max-width: 420px;
-            margin: 0 auto;
-        }
-
-        .logo-box {
-            margin-bottom: 2.5rem;
-        }
-
-        .logo-box img {
-            max-height: 48px;
-            object-fit: contain;
-        }
-
-        .welcome-header {
-            margin-bottom: 2.5rem;
-        }
-
-        .welcome-title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: -0.02em;
-        }
-
-        .welcome-subtitle {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-top: 0.25rem;
-        }
-
-        /* Floating style inputs for dark UI */
-        .form-group-custom {
-            position: relative;
-            margin-bottom: 1.75rem;
-        }
-
+        .form-group-custom { position: relative; margin-bottom: 1.75rem; }
         .form-input-custom {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1.5px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 1.1rem 1rem 1.1rem 2.8rem;
-            color: #ffffff;
-            font-weight: 500;
+            width: 100%; background: rgba(255, 255, 255, 0.03); border: 1.5px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px; padding: 1.1rem 1rem 1.1rem 2.8rem; color: #ffffff; font-weight: 500;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         .form-input-custom:focus {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: var(--accent-color);
-            outline: none;
-            box-shadow: 0 0 0 4px var(--accent-glow);
+            background: rgba(255, 255, 255, 0.07); border-color: var(--accent-color);
+            outline: none; box-shadow: 0 0 0 4px var(--accent-glow);
         }
-
         .input-icon-custom {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            transition: color 0.25s;
-            pointer-events: none;
+            position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+            color: var(--text-muted); font-size: 1.2rem; transition: color 0.25s; pointer-events: none;
         }
-
-        .form-input-custom:focus ~ .input-icon-custom {
-            color: var(--accent-color);
-        }
-
+        .form-input-custom:focus ~ .input-icon-custom { color: var(--accent-color); }
         .eye-toggle-custom {
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 1.1rem;
-            transition: color 0.2s;
+            position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);
+            color: var(--text-muted); cursor: pointer; font-size: 1.1rem; transition: color 0.2s;
         }
-
-        .eye-toggle-custom:hover {
-            color: #ffffff;
-        }
-
+        .eye-toggle-custom:hover { color: #ffffff; }
         .custom-alert-box {
-            border-radius: 12px;
-            background: rgba(239, 68, 68, 0.15);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            color: #fca5a5;
-            padding: 0.75rem 1rem;
-            font-size: 0.875rem;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
+            border-radius: 12px; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #fca5a5; padding: 0.75rem 1rem; font-size: 0.875rem; margin-bottom: 1.5rem; font-weight: 500;
         }
-
         .btn-admin-submit {
-            background: var(--accent-color);
-            color: #ffffff;
-            border: none;
-            border-radius: 12px;
-            padding: 1rem;
-            font-weight: 600;
-            font-size: 1rem;
-            width: 100%;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            background: var(--accent-color); color: #ffffff; border: none; border-radius: 12px;
+            padding: 1rem; font-weight: 600; font-size: 1rem; width: 100%; transition: all 0.3s ease;
+            margin-top: 1rem; box-shadow: 0 4px 12px var(--accent-glow);
         }
-
-        .btn-admin-submit:hover {
-            background: #2563eb;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
-        }
-
-        .btn-admin-submit:active {
-            transform: translateY(1px);
-        }
-
-        .bottom-decoration {
-            text-align: center;
-            margin-top: 2rem;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            letter-spacing: 0.05em;
-        }
-
-        /* Responsive Breakpoints */
-        @media (max-width: 991px) {
-            .login-wrapper {
-                grid-template-columns: 1fr;
-            }
-            .visual-panel {
-                display: none;
-            }
-            .form-panel {
-                padding: 3rem 2rem;
-                border-left: none;
-            }
-        }
+        .btn-admin-submit:hover { background: #ea580c; transform: translateY(-1px); box-shadow: 0 6px 20px var(--accent-glow); }
+        .btn-admin-submit:active { transform: translateY(1px); }
+        .bottom-decoration { text-align: center; margin-top: 2rem; color: var(--text-muted); font-size: 0.85rem; letter-spacing: 0.05em; }
+        @media (max-width: 991px) { .login-wrapper { grid-template-columns: 1fr; } .visual-panel { display: none; } .form-panel { padding: 3rem 2rem; border-left: none; } }
     </style>
 </head>
 <body>
@@ -295,7 +149,7 @@
                     <!-- Branding Logo -->
                     <div class="logo-box">
                         @if(get_setting('system_logo_white'))
-                            <img src="{{ asset(get_setting('system_logo_white') ? 'img/'.get_setting('system_logo_white') : 'webtheme/assets/images/resources/RoofShelter-Logo1.jpg') }}" alt="RoofShelter Logo">
+                            <img src="{{ asset(get_setting('system_logo_white') ? 'img/'.get_setting('system_logo_white') : 'webtheme/assets/images/resources/RoofShelter-Logo1.jpg') }}" alt="RoofShelter Logo" style="max-height:42px; width:auto;">
                         @else
                             <span class="fs-4 fw-bold text-white">{{ get_setting('website_name') }}</span>
                         @endif
@@ -371,9 +225,6 @@
 
         </div>
     </div>
-
-    <!-- Bootstrap Bundle JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Toggle Password Script -->
     <script>

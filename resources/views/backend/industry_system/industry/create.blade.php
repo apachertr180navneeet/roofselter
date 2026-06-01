@@ -1,141 +1,116 @@
 @extends('backend.layout.app')
 @section('title', 'Create Industry')
 @section('content')
-<div class="container">
-  <div class="page-inner">
-    <div class="page-header">
-      <h3 class="fw-bold mb-3">Forms</h3>
-      <ul class="breadcrumbs mb-3">
-        <li class="nav-home">
-          <a href="#">
-            <i class="icon-home"></i>
-          </a>
-        </li>
-        <li class="separator">
-          <i class="icon-arrow-right"></i>
-        </li>
-        <li class="nav-item">
-          <a href="#">Forms</a>
-        </li>
-        <li class="separator">
-          <i class="icon-arrow-right"></i>
-        </li>
-        <li class="nav-item">
-          <a href="#">Basic Form</a>
-        </li>
-      </ul>
-    </div>
+<div class="space-y-6">
     <form action="{{route('admin.industry-store')}}" method="post" enctype="multipart/form-data">
       @csrf
-      <div class="row">
-        <div class="col-md-7">
-          <div class="card">
-            <div class="card-header">
-              <div class="card-title">Add Industry Record</div>
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+        <div class="md:col-span-7">
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3 class="text-base font-semibold text-gray-900">Add Industry Record</h3>
             </div>
 
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-12 col-lg-12">
-                  <div class="form-group row">
-                    <div class="col-md-3">
+            <div class="admin-card-body">
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <div class="md:col-span-12">
+                  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
                       <label for="title2">Title</label>
-                      <span class="text-danger">*</span>
+                      <span class="text-red-500">*</span>
                     </div>
-                    <div class="col-md-9">
+                    <div class="md:col-span-3">
                       <input
                         type="text"
                         name="title"
                         onkeyup="makeSlug(this.value)"
-                        class="form-control @error('title') is-invalid @enderror"
+                        class="admin-input @error('title') border-red-500 @enderror"
                         id="title2"
                         placeholder="Enter Title" />
                       @error('title')
-                      <p class="invalid-feedback">{{$message}}</p>
+                      <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                       @enderror
-                      <small id="titleHelp2" class="form-text text-muted">This title your industry heading.
+                      <small id="titleHelp2" class="text-xs text-gray-500">This title your industry heading.
                       </small>
 
                     </div>
                   </div>
-                  <div class="form-group row">
-                    <div class="col-md-3">
+                  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
                       <label for="subtitle">Sub Title</label>
-                      <!-- <span class="text-danger">*</span> -->
                     </div>
-                    <div class="col-md-9">
+                    <div class="md:col-span-3">
                       <input
                         type="text"
                         name="subtitle"
-                        class="form-control"
+                        class="admin-input"
                         id="subtitle"
                         placeholder="Enter Sub Title" />
 
-                      <small id="subtitle" class="form-text text-muted">This sub title for your industry details page heading.
+                      <small id="subtitle" class="text-xs text-gray-500">This sub title for your industry details page heading.
                       </small>
 
                     </div>
                   </div>
-                  <div class="form-group row">
-                    <div class="col-md-3">
+                  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
                       <label for="subtitle2">Sub Title II</label>
-                      <!-- <span class="text-danger">*</span> -->
                     </div>
-                    <div class="col-md-9">
+                    <div class="md:col-span-3">
                       <input
                         type="text"
                         name="subtitle2"
-                        class="form-control"
+                        class="admin-input"
                         id="subtitle2"
                         placeholder="Enter Sub Title II" />
 
-                      <small id="subtitle2" class="form-text text-muted">This sub title II for your industry details page heading.
+                      <small id="subtitle2" class="text-xs text-gray-500">This sub title II for your industry details page heading.
                       </small>
 
                     </div>
                   </div>
-                  <div class="form-group row">
-                    <div class="col-md-3">
+                  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
                       <label for="slug">Slug</label>
-                      <span class="text-danger">*</span>
+                      <span class="text-red-500">*</span>
                     </div>
-                    <div class="col-md-9">
+                    <div class="md:col-span-3">
                       <input
                         type="text"
-                        class="form-control"
+                        class="admin-input"
                         name="slug"
                         id="slug"
                         placeholder="slug" />
-                      <small id="slug" class="form-text text-muted">creating a slug from your title.
+                      <small id="slug" class="text-xs text-gray-500">creating a slug from your title.
                       </small>
                     </div>
                   </div>
 
-                  <div class="form-group row">
-                    <div class="col-md-3">
+                  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
                       <label for="image">Image</label>
                     </div>
-                    <div class="col-md-9">
+                    <div class="md:col-span-3">
 
                       <x-file-upload name="image" label="Upload Image" />
 
-                      <small id="image" class="form-text text-muted">This Image show in your industry Image section.
+                      <small id="image" class="text-xs text-gray-500">This Image show in your industry Image section.
                       </small>
                     </div>
                   </div>
-                  <div class="form-group row">
-                    <div class="col-md-3">
+                  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
                       <label for="short_descripition">Short Description</label>
                     </div>
-                    <div class="col-md-9">
-                      <textarea id="short_description" class="form-control" row="4" name="short_description"></textarea>
+                    <div class="md:col-span-3">
+                      <textarea id="short_description" class="admin-textarea" row="4" name="short_description"></textarea>
                     </div>
                   </div>
-                  <div class="form-group row">
-                    <div class="col-md-3">
+                  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
                       <label for="descripition">Description</label>
                     </div>
-                    <div class="col-md-9">
+                    <div class="md:col-span-3">
                       <textarea id="myeditor" name="description"></textarea>
                     </div>
                   </div>
@@ -146,29 +121,28 @@
 
           </div>
         </div>
-        <div class="col-md-5">
-          <div class="card">
-            <div class="card-header">
-              <div class="card-title">Add Industry Features Headings and Short Description for Your Industry Details Page</div>
+        <div class="md:col-span-5">
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3 class="text-base font-semibold text-gray-900">Add Industry Features Headings and Short Description for Your Industry Details Page</h3>
             </div>
 
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-12 col-lg-12">
+            <div class="admin-card-body">
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <div class="md:col-span-12">
 
-                  <div class="form-group row">
-                    <div class="col-md-12">
+                  <div class="grid grid-cols-1 gap-4">
+                    <div>
                       <label for="features_headings">Industry Features Headings</label>
-                      <!-- <span class="text-danger">*</span> -->
 
                       <input
                         type="text"
                         name="features_headings"
-                        class="form-control"
+                        class="admin-input"
                         id="features_headings"
                         placeholder="Enter Industry Features Headings" />
 
-                      <small id="features_headings" class="form-text text-muted">This features headings for your industry details page heading.
+                      <small id="features_headings" class="text-xs text-gray-500">This features headings for your industry details page heading.
                       </small>
 
                     </div>
@@ -177,11 +151,11 @@
 
 
 
-                  <div class="form-group row">
-                    <div class="col-md-12">
+                  <div class="grid grid-cols-1 gap-4">
+                    <div>
                       <label for="features_short_descripition">Industry Features Short Description</label>
 
-                      <textarea id="features_short_description" class="form-control" row="4" name="features_short_description"></textarea>
+                      <textarea id="features_short_description" class="admin-textarea" row="4" name="features_short_description"></textarea>
                     </div>
                   </div>
 
@@ -192,28 +166,27 @@
 
           </div>
 
-          <div class="card">
-            <div class="card-header">
-              <div class="card-title">Add Industry Service Headings and Short Description for Your Industry Details Page</div>
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3 class="text-base font-semibold text-gray-900">Add Industry Service Headings and Short Description for Your Industry Details Page</h3>
             </div>
 
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-12 col-lg-12">
+            <div class="admin-card-body">
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <div class="md:col-span-12">
 
-                  <div class="form-group row">
-                    <div class="col-md-12">
+                  <div class="grid grid-cols-1 gap-4">
+                    <div>
                       <label for="service_headings">Industry Service Headings</label>
-                      <!-- <span class="text-danger">*</span> -->
 
                       <input
                         type="text"
                         name="service_headings"
-                        class="form-control"
+                        class="admin-input"
                         id="service_headings"
                         placeholder="Enter Industry Service Headings" />
 
-                      <small id="service_headings" class="form-text text-muted">This service headings for your industry details page heading.
+                      <small id="service_headings" class="text-xs text-gray-500">This service headings for your industry details page heading.
                       </small>
 
                     </div>
@@ -222,11 +195,11 @@
 
 
 
-                  <div class="form-group row">
-                    <div class="col-md-12">
+                  <div class="grid grid-cols-1 gap-4">
+                    <div>
                       <label for="service_short_descripition">Industry Service Short Description</label>
 
-                      <textarea id="service_short_description" class="form-control" row="4" name="service_short_description"></textarea>
+                      <textarea id="service_short_description" class="admin-textarea" row="4" name="service_short_description"></textarea>
                     </div>
                   </div>
 
@@ -238,15 +211,14 @@
           </div>
         </div>
       </div>
-      <div class="card">
-        <div class="card-action text-center">
-          <button class="btn btn-success" type="submit">Submit</button>
-          <a href="{{route('admin.industry')}}" class="btn btn-danger">Cancel</a>
+      <div class="admin-card">
+        <div class="px-6 py-4 border-t border-gray-100 text-center">
+          <button class="admin-btn-primary" type="submit">Submit</button>
+          <a href="{{route('admin.industry')}}" class="admin-btn-danger">Cancel</a>
         </div>
       </div>
     </form>
 
-  </div>
 </div>
 
 @endsection

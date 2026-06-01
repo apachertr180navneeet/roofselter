@@ -2,123 +2,50 @@
 @section('meta_title', 'Testimonials | ' . (get_setting('website_name') ?: 'RoofShelter'))
 @section('meta_description', 'Hear from our satisfied customers about our roofing services.')
 @section('content')
-<section class="page-header">
-    <div class="container">
-        <div class="page-header__inner">
-            <h2>Testimonials</h2>
-            <ul class="thm-breadcrumb">
-                <li><a href="{{ route('home') }}">Home</a></li>
-                <li><span class="icon-chevron-right"></span></li>
-                <li>Testimonials</li>
-            </ul>
+<section class="relative py-20 md:py-28 bg-navy-800 overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 50% 50%, rgba(249,115,22,.3) 0%, transparent 50%);"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white">Testimonials</h1>
+        <div class="flex items-center justify-center gap-2 mt-4 text-sm">
+            <a href="{{ route('home') }}" class="text-gray-300 hover:text-brand-400 transition-colors">Home</a>
+            <span class="text-gray-500">/</span>
+            <span class="text-brand-400">Testimonials</span>
         </div>
     </div>
 </section>
 
-<section class="testimonials-two" style="padding-bottom: 120px;">
-    <div class="container">
-        <div class="section-title text-center sec-title-animation animation-style2">
-            <div class="section-title__tagline title-animation"><h4>// Testimonials //</h4></div>
-            <h2 class="section-title__title title-animation">What Our Clients Say</h2>
+<section class="section-padding bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-14 animate-on-scroll">
+            <span class="text-brand-500 font-bold text-sm uppercase tracking-widest">// Testimonials //</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-navy-800 mt-3">What Our Clients Say</h2>
         </div>
-        <div class="row">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse($testimonials as $testimonial)
-            <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="{{ $loop->index * 100 }}ms">
-                <div class="testimonial-card">
-                    <div class="testimonial-card__quote">
-                        <span class="icon-quote1"></span>
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-xl hover:border-brand-200 transition-all duration-300 animate-on-scroll">
+                <div class="flex gap-1 mb-4">
+                    @for($i = 1; $i <= 5; $i++)
+                        <svg class="w-4 h-4 {{ $i <= ($testimonial->rating ?? 5) ? 'text-accent-400' : 'text-gray-300' }}" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    @endfor
+                </div>
+                <p class="text-gray-500 text-sm leading-relaxed italic mb-5">"{{ $testimonial->message }}"</p>
+                <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+                    <div class="w-11 h-11 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 font-bold text-sm shrink-0">
+                        {{ substr($testimonial->name, 0, 1) }}
                     </div>
-                    <div class="testimonial-card__stars">
-                        <i class="star-display p-0" data-rating="{{ $testimonial->rating }}"></i>
-                    </div>
-                    <div class="testimonial-card__text">
-                        <p>{!! $testimonial->message !!}</p>
-                    </div>
-                    <div class="testimonial-card__author">
-                        <div class="testimonial-card__author-img">
-                            <img src="{{ $testimonial->image ? asset('img/'.$testimonial->image) : asset('webtheme/assets/images/resources/testimonial-1-1.jpg') }}" alt="{{ $testimonial->name }}">
-                        </div>
-                        <div class="testimonial-card__author-info">
-                            <h4>{{ $testimonial->name }}</h4>
-                            <p>{{ $testimonial->designation }}</p>
-                        </div>
+                    <div>
+                        <h4 class="font-bold text-navy-800 text-sm">{{ $testimonial->name }}</h4>
+                        <p class="text-gray-400 text-xs">{{ $testimonial->designation }}</p>
                     </div>
                 </div>
             </div>
             @empty
-            <div class="col-12 text-center py-5">
-                <h4>No testimonials available yet.</h4>
-                <p>Check back soon.</p>
+            <div class="col-span-full text-center py-12">
+                <h4 class="text-xl font-bold text-navy-800">No testimonials available yet.</h4>
+                <p class="text-gray-500 mt-2">Check back soon.</p>
             </div>
             @endforelse
         </div>
     </div>
 </section>
-
-@push('style')
-<style>
-.testimonial-card {
-    position: relative;
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 16px;
-    padding: 35px 30px 30px;
-    margin-bottom: 30px;
-    transition: all 0.3s ease;
-}
-.testimonial-card:hover {
-    border-color: var(--reroof-base, #ffb324);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-    transform: translateY(-4px);
-}
-.testimonial-card__quote {
-    position: absolute;
-    top: 18px;
-    right: 25px;
-    font-size: 28px;
-    color: var(--reroof-base, #ffb324);
-    opacity: 0.3;
-}
-.testimonial-card__stars {
-    margin-bottom: 14px;
-}
-.testimonial-card__text p {
-    color: #555;
-    line-height: 1.7;
-    font-size: 15px;
-    margin-bottom: 20px;
-}
-.testimonial-card__author {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    border-top: 1px solid #f0f0f0;
-    padding-top: 18px;
-}
-.testimonial-card__author-img {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
-    border: 2px solid var(--reroof-base, #ffb324);
-}
-.testimonial-card__author-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.testimonial-card__author-info h4 {
-    font-size: 16px;
-    font-weight: 600;
-    margin: 0;
-    color: #222;
-}
-.testimonial-card__author-info p {
-    font-size: 13px;
-    color: #888;
-    margin: 2px 0 0;
-}
-</style>
-@endpush
 @endsection

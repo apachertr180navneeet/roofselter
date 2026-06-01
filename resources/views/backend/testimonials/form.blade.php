@@ -13,11 +13,11 @@
   <form action="" method="POST">
     @csrf
 
-    <label for="rating">Rating</label>
-    <div id="rateYo"></div>
+    <label for="rating" class="font-medium text-gray-700">Rating</label>
+    <div id="rateYo" class="mb-3"></div>
     <input type="hidden" name="rating" id="rating" value="">
 
-    <button type="submit">Save</button>
+    <button type="submit" class="admin-btn-success">Save</button>
   </form>
 
   <!-- jQuery + RateYo -->

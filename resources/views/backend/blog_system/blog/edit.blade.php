@@ -1,129 +1,124 @@
 @extends('backend.layout.app')
 @section('title', 'Edit Project')
 @section('content')
-<div class="container">
-    <div class="page-inner">
-        <div class="row">
-            <div class="col-md-10 mx-auto">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Update Project Post</div>
-                    </div>
-                    <form action="{{route('admin.blog-update',$blog->id)}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $blog->id }}">
-                        <div class="card-body">
-                            <ul class="nav nav-tabs" id="projectTabs" role="tablist">
-                                <li class="nav-item"><a class="nav-link active" id="details-tab" data-bs-toggle="tab" href="#details">Details</a></li>
-                                <li class="nav-item"><a class="nav-link" id="gallery-tab" data-bs-toggle="tab" href="#gallery">Gallery</a></li>
-                                <li class="nav-item"><a class="nav-link" id="seo-tab" data-bs-toggle="tab" href="#seo">SEO</a></li>
-                            </ul>
-                            <div class="tab-content mt-3">
-                                <div class="tab-pane fade show active" id="details">
-                                    <div class="form-group row">
-                                        <div class="col-md-3"><label>Title <span class="text-danger">*</span></label></div>
-                                        <div class="col-md-9">
-                                            <input type="text" name="title" onkeyup="makeSlug(this.value)" class="form-control @error('title') is-invalid @enderror" value="{{old('title',$blog->title)}}">
-                                            @error('title')<p class="invalid-feedback">{{$message}}</p>@enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row mt-3">
-                                        <div class="col-md-3"><label>Slug <span class="text-danger">*</span></label></div>
-                                        <div class="col-md-9"><input type="text" class="form-control" name="slug" id="slug" value="{{$blog->slug}}"></div>
-                                    </div>
-                                    <div class="form-group row mt-3">
-                                        <div class="col-md-3"><label>Category</label></div>
-                                        <div class="col-md-9">
-                                            <select name="category_id" class="form-select select2" style="width: 100%;">
-                                                <option value="">-- Select Category --</option>
-                                                @foreach($blog_categories as $category)
-                                                    <option value="{{ $category->id }}" {{ $blog->category_id == $category->id ? 'selected' : '' }}>{{ $category->category_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row mt-3">
-                                        <div class="col-md-3"><label>Service Type</label></div>
-                                        <div class="col-md-9">
-                                            <select name="service_type" class="form-select">
-                                                <option value="">-- Select Type --</option>
-                                                <option value="residential" {{ $blog->service_type == 'residential' ? 'selected' : '' }}>Residential</option>
-                                                <option value="commercial" {{ $blog->service_type == 'commercial' ? 'selected' : '' }}>Commercial</option>
-                                                <option value="industrial" {{ $blog->service_type == 'industrial' ? 'selected' : '' }}>Industrial</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row mt-3">
-                                        <div class="col-md-3"><label>Location</label></div>
-                                        <div class="col-md-9"><input type="text" name="location" class="form-control" value="{{ $blog->location }}" placeholder="e.g. Sydney, NSW"></div>
-                                    </div>
-                                    <div class="form-group row mt-3">
-                                        <div class="col-md-3"><label>Completion Date</label></div>
-                                        <div class="col-md-9"><input type="date" name="completion_date" class="form-control" value="{{ $blog->completion_date ? \Carbon\Carbon::parse($blog->completion_date)->format('Y-m-d') : '' }}"></div>
-                                    </div>
-                                    <div class="form-group row mt-3">
-                                        <div class="col-md-3"><label>Featured Image</label></div>
-                                        <div class="col-md-9"><x-file-upload name="image" label="Upload Image" :current="$blog->image" /></div>
-                                    </div>
-                                    <div class="form-group row mt-3">
-                                        <div class="col-md-3"><label>Short Description</label></div>
-                                        <div class="col-md-9"><textarea class="form-control" rows="3" name="short_description">{{ $blog->short_description }}</textarea></div>
-                                    </div>
-                                    <div class="form-group row mt-3">
-                                        <div class="col-md-3"><label>Full Description</label></div>
-                                        <div class="col-md-9"><textarea id="myeditor" name="description">{{ $blog->description }}</textarea></div>
-                                    </div>
+<div class="space-y-6">
+    <div class="max-w-4xl mx-auto">
+        <div class="admin-card">
+            <div class="admin-card-header">
+                <h3 class="text-base font-semibold text-gray-900">Update Project Post</h3>
+            </div>
+            <form action="{{route('admin.blog-update',$blog->id)}}" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="id" value="{{ $blog->id }}">
+                <div class="admin-card-body">
+                    <ul class="nav nav-tabs" id="projectTabs" role="tablist">
+                        <li class="nav-item"><a class="nav-link active" id="details-tab" data-bs-toggle="tab" href="#details">Details</a></li>
+                        <li class="nav-item"><a class="nav-link" id="gallery-tab" data-bs-toggle="tab" href="#gallery">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link" id="seo-tab" data-bs-toggle="tab" href="#seo">SEO</a></li>
+                    </ul>
+                    <div class="tab-content mt-3">
+                        <div class="tab-pane fade show active" id="details">
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                <div class="md:col-span-1"><label class="font-medium text-gray-700">Title <span class="text-danger">*</span></label></div>
+                                <div class="md:col-span-3">
+                                    <input type="text" name="title" onkeyup="makeSlug(this.value)" class="admin-input @error('title') border-red-500 @enderror" value="{{old('title',$blog->title)}}">
+                                    @error('title')<p class="text-red-500 text-xs mt-1">{{$message}}</p>@enderror
                                 </div>
-                                <div class="tab-pane fade" id="gallery">
-                                    @if($blog->galleryImages->count() > 0)
-                                    <div class="row mb-3">
-                                        @foreach($blog->galleryImages as $img)
-                                        <div class="col-md-3 mb-3" id="gallery-img-{{ $img->id }}">
-                                            <div class="card">
-                                                <img src="{{ asset('img/'.$img->image) }}" class="card-img-top" style="height:150px;object-fit:cover;" alt="">
-                                                <div class="card-body p-2 text-center">
-                                                    <button type="button" class="btn btn-sm btn-danger delete-gallery-image" data-id="{{ $img->id }}"><i class="fa fa-trash"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
+                                <div class="md:col-span-1"><label class="font-medium text-gray-700">Slug <span class="text-danger">*</span></label></div>
+                                <div class="md:col-span-3"><input type="text" class="admin-input" name="slug" id="slug" value="{{$blog->slug}}"></div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
+                                <div class="md:col-span-1"><label class="font-medium text-gray-700">Category</label></div>
+                                <div class="md:col-span-3">
+                                    <select name="category_id" class="admin-select select2" style="width: 100%;">
+                                        <option value="">-- Select Category --</option>
+                                        @foreach($blog_categories as $category)
+                                            <option value="{{ $category->id }}" {{ $blog->category_id == $category->id ? 'selected' : '' }}>{{ $category->category_name }}</option>
                                         @endforeach
-                                    </div>
-                                    <hr>
-                                    @endif
-                                    <div class="form-group row">
-                                        <div class="col-md-12">
-                                            <label>Add More Images</label>
-                                            <input type="file" name="gallery_images[]" class="form-control" multiple accept="image/*">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
+                                <div class="md:col-span-1"><label class="font-medium text-gray-700">Service Type</label></div>
+                                <div class="md:col-span-3">
+                                    <select name="service_type" class="admin-select">
+                                        <option value="">-- Select Type --</option>
+                                        <option value="residential" {{ $blog->service_type == 'residential' ? 'selected' : '' }}>Residential</option>
+                                        <option value="commercial" {{ $blog->service_type == 'commercial' ? 'selected' : '' }}>Commercial</option>
+                                        <option value="industrial" {{ $blog->service_type == 'industrial' ? 'selected' : '' }}>Industrial</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
+                                <div class="md:col-span-1"><label class="font-medium text-gray-700">Location</label></div>
+                                <div class="md:col-span-3"><input type="text" name="location" class="admin-input" value="{{ $blog->location }}" placeholder="e.g. Sydney, NSW"></div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
+                                <div class="md:col-span-1"><label class="font-medium text-gray-700">Completion Date</label></div>
+                                <div class="md:col-span-3"><input type="date" name="completion_date" class="admin-input" value="{{ $blog->completion_date ? \Carbon\Carbon::parse($blog->completion_date)->format('Y-m-d') : '' }}"></div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
+                                <div class="md:col-span-1"><label class="font-medium text-gray-700">Featured Image</label></div>
+                                <div class="md:col-span-3"><x-file-upload name="image" label="Upload Image" :current="$blog->image" /></div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
+                                <div class="md:col-span-1"><label class="font-medium text-gray-700">Short Description</label></div>
+                                <div class="md:col-span-3"><textarea class="admin-textarea" rows="3" name="short_description">{{ $blog->short_description }}</textarea></div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
+                                <div class="md:col-span-1"><label class="font-medium text-gray-700">Full Description</label></div>
+                                <div class="md:col-span-3"><textarea id="myeditor" name="description">{{ $blog->description }}</textarea></div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="gallery">
+                            @if($blog->galleryImages->count() > 0)
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-3">
+                                @foreach($blog->galleryImages as $img)
+                                <div class="mb-3" id="gallery-img-{{ $img->id }}">
+                                    <div class="admin-card">
+                                        <img src="{{ asset('img/'.$img->image) }}" class="w-full" style="height:150px;object-fit:cover;" alt="">
+                                        <div class="p-2 text-center">
+                                            <button type="button" class="admin-btn-danger admin-btn-sm delete-gallery-image" data-id="{{ $img->id }}"><i class="fa fa-trash"></i></button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="seo">
-                                    <div class="form-group row">
-                                        <div class="col-md-3"><label>Meta Title</label></div>
-                                        <div class="col-md-9"><input type="text" name="meta_title" class="form-control" value="{{ $blog->meta_title }}"></div>
-                                    </div>
-                                    <div class="form-group row mt-3">
-                                        <div class="col-md-3"><label>Meta Description</label></div>
-                                        <div class="col-md-9"><textarea name="meta_description" class="form-control" rows="3">{{ $blog->meta_description }}</textarea></div>
-                                    </div>
-                                    <div class="form-group row mt-3">
-                                        <div class="col-md-3"><label>Meta Keywords</label></div>
-                                        <div class="col-md-9"><input type="text" name="meta_keywords" class="form-control" value="{{ $blog->meta_keywords }}"></div>
-                                    </div>
+                                @endforeach
+                            </div>
+                            <hr>
+                            @endif
+                            <div class="grid grid-cols-1 gap-4">
+                                <div>
+                                    <label class="font-medium text-gray-700">Add More Images</label>
+                                    <input type="file" name="gallery_images[]" class="admin-input mt-1" multiple accept="image/*">
                                 </div>
                             </div>
                         </div>
-                        <div class="card-action text-center">
-                            <button class="btn btn-success" type="submit">Update</button>
-                            <a href="{{route('admin.blog')}}" class="btn btn-danger">Cancel</a>
+                        <div class="tab-pane fade" id="seo">
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                <div class="md:col-span-1"><label class="font-medium text-gray-700">Meta Title</label></div>
+                                <div class="md:col-span-3"><input type="text" name="meta_title" class="admin-input" value="{{ $blog->meta_title }}"></div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
+                                <div class="md:col-span-1"><label class="font-medium text-gray-700">Meta Description</label></div>
+                                <div class="md:col-span-3"><textarea name="meta_description" class="admin-textarea" rows="3">{{ $blog->meta_description }}</textarea></div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
+                                <div class="md:col-span-1"><label class="font-medium text-gray-700">Meta Keywords</label></div>
+                                <div class="md:col-span-3"><input type="text" name="meta_keywords" class="admin-input" value="{{ $blog->meta_keywords }}"></div>
+                            </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+                <div class="px-6 py-4 border-t border-gray-100 text-center">
+                    <button class="admin-btn-success" type="submit">Update</button>
+                    <a href="{{route('admin.blog')}}" class="admin-btn-danger">Cancel</a>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-
 
 @endsection
 @section('script')

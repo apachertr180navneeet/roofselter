@@ -1,28 +1,6 @@
-        <footer class="footer">
-          <div class="container-fluid d-flex justify-content-between">
-            <nav class="pull-left">
-              <ul class="nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="https://digigrowinfotech.com/">
-                    Digi Grow Infotech
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#"> Help </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#"> Licenses </a>
-                </li>
-              </ul>
-            </nav>
-            <div class="copyright">
-              2025, made with <i class="fa fa-heart heart text-danger"></i> by
-              <a href="https://digigrowinfotech.com/">Digi Grow Infotech</a>
-            </div>
-            <div>
-              Distributed by
-              <a target="_blank" href="https://digigrowinfotech.com/">Digi Grow Infotech</a>.
-            </div>
-          </div>
-        </footer>
-      </div>
+<footer class="px-6 py-4 border-t border-gray-200 bg-white">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-2 text-sm text-gray-500">
+        <span>&copy; {{ date('Y') }} {{ get_setting('website_name') ?: 'RoofShelter' }}. All rights reserved.</span>
+        <span>Powered by <a href="https://digigrowinfotech.com/" class="text-brand-600 hover:text-brand-700" target="_blank">Digi Grow Infotech</a></span>
+    </div>
+</footer>

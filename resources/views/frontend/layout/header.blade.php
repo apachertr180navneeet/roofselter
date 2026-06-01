@@ -1,75 +1,39 @@
-        <header class="main-header main-header-two">
-            <nav class="main-menu">
-                <div class="main-menu__wrapper">
-                    <div class="container">
-                        <div class="main-menu__wrapper-inner">
-                            <div class="main-menu__left">
-                                <div class="main-menu__logo">
-                                    <a href="{{route('home')}}"><img src="{{ asset(get_setting('system_logo_white') ? 'img/'.get_setting('system_logo_white') : 'webtheme/assets/images/resources/RoofShelter-Logo1.jpg') }}" alt=""></a>
-                                </div>
-                            </div>
-
-                            <div class="main-menu__main-menu-box">
-                                <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
-
-                                <ul class="main-menu__list one-page-scroll-menu">
-                                    <li>
-                                        <a href="{{ route('home') }}">Home</a>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="{{ route('home.services') }}">Services</a>
-                                        <ul>
-                                            <li><a href="{{ route('home.services') }}">All Services</a></li>
-                                            <li><a href="{{ route('home.service-detail', 'roof-repairs') }}">Roof Repairs</a></li>
-                                            <li><a href="{{ route('home.service-detail', 'roof-restorations') }}">Roof Restorations</a></li>
-                                            <li><a href="{{ route('home.service-detail', 'new-roof-installation') }}">New Roof Installation</a></li>
-                                            <li><a href="{{ route('home.pricing') }}">Pricing</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('home.about') }}">About</a>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="{{ route('home.projects') }}">Projects</a>
-                                        <ul>
-                                            <li><a href="{{ route('home.projects') }}">Our Projects</a></li>
-                                            <li><a href="{{ route('home.gallery') }}">Gallery</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('home.team') }}">Team</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('home.testimonials') }}">Testimonials</a>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#">More</a>
-                                        <ul>
-                                            <li><a href="{{ route('home.faq') }}">FAQ</a></li>
-                                            <li><a href="{{ route('home.contact-us') }}">Contact</a></li>
-                                            <li><a href="{{ route('home.become-a-partner') }}">Become a Partner</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="main-menu__right">
-                                <div class="main-menu__search d-none">
-                                    <a href="#"><span
-                                            class="searcher-toggler-box icon-search-interface-symbol"></span></a>
-                                </div>
-
-                                <div class="main-menu__btn">
-                                    <a href="{{ route('home.contact-us') }}" class="thm-btn">Get a quote <span
-                                            class="icon-next1"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md transition-shadow duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 md:h-20">
+            <a href="{{ route('home') }}" class="flex items-center gap-2 shrink-0">
+                <img src="{{ asset(get_setting('system_logo_white') ? 'img/'.get_setting('system_logo_white') : 'webtheme/assets/images/resources/RoofShelter-Logo1.jpg') }}" alt="{{ get_setting('website_name', 'RoofShelter') }}" class="h-14 w-auto">
+            </a>
+            <nav class="hidden lg:flex items-center gap-1">
+                <a href="{{ route('home') }}" class="px-4 py-2 text-sm font-semibold rounded-lg transition-colors {{ request()->routeIs('home') ? 'text-brand-500 bg-brand-50' : 'text-navy-700 hover:text-brand-500 hover:bg-brand-50' }}">Home</a>
+                <a href="{{ route('home.services') }}" class="px-4 py-2 text-sm font-semibold rounded-lg transition-colors {{ request()->routeIs('home.services') || request()->routeIs('home.service-detail') ? 'text-brand-500 bg-brand-50' : 'text-navy-700 hover:text-brand-500 hover:bg-brand-50' }}">Services</a>
+                <a href="{{ route('home.about') }}" class="px-4 py-2 text-sm font-semibold rounded-lg transition-colors {{ request()->routeIs('home.about') || request()->routeIs('home.about-us') ? 'text-brand-500 bg-brand-50' : 'text-navy-700 hover:text-brand-500 hover:bg-brand-50' }}">About</a>
+                <a href="{{ route('home.projects') }}" class="px-4 py-2 text-sm font-semibold rounded-lg transition-colors {{ request()->routeIs('home.projects') || request()->routeIs('home.blog') || request()->routeIs('home.blog-details') ? 'text-brand-500 bg-brand-50' : 'text-navy-700 hover:text-brand-500 hover:bg-brand-50' }}">Projects</a>
+                <a href="{{ route('home.gallery') }}" class="px-4 py-2 text-sm font-semibold rounded-lg transition-colors {{ request()->routeIs('home.gallery') ? 'text-brand-500 bg-brand-50' : 'text-navy-700 hover:text-brand-500 hover:bg-brand-50' }}">Gallery</a>
+                <a href="{{ route('home.team') }}" class="px-4 py-2 text-sm font-semibold rounded-lg transition-colors {{ request()->routeIs('home.team') ? 'text-brand-500 bg-brand-50' : 'text-navy-700 hover:text-brand-500 hover:bg-brand-50' }}">Team</a>
+                <a href="{{ route('home.testimonials') }}" class="px-4 py-2 text-sm font-semibold rounded-lg transition-colors {{ request()->routeIs('home.testimonials') ? 'text-brand-500 bg-brand-50' : 'text-navy-700 hover:text-brand-500 hover:bg-brand-50' }}">Testimonials</a>
+                <a href="{{ route('home.faq') }}" class="px-4 py-2 text-sm font-semibold rounded-lg transition-colors {{ request()->routeIs('home.faq') ? 'text-brand-500 bg-brand-50' : 'text-navy-700 hover:text-brand-500 hover:bg-brand-50' }}">FAQ</a>
+                <a href="{{ route('home.contact-us') }}" class="ml-3 px-5 py-2.5 text-sm font-bold text-white bg-brand-500 hover:bg-brand-600 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-brand-500/25">Get a Quote</a>
             </nav>
-        </header>
-
-        <div class="stricky-header stricked-menu main-menu">
-            <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
-        </div><!-- /.stricky-header -->
+            <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-navy-700 hover:bg-brand-50 transition-colors" aria-label="Toggle menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+    </div>
+    <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 right-0 z-50 bg-white border-t border-gray-100 shadow-xl">
+        <nav class="flex flex-col py-2 max-h-[calc(100vh-5rem)] overflow-y-auto">
+            <a href="{{ route('home') }}" class="px-6 py-3 text-base font-semibold transition-colors {{ request()->routeIs('home') ? 'text-brand-500 bg-brand-50 border-l-4 border-brand-500' : 'text-navy-700 hover:text-brand-500 hover:bg-brand-50 border-l-4 border-transparent' }}" onclick="document.getElementById('mobile-menu').classList.add('hidden');document.body.classList.remove('overflow-hidden');">Home</a>
+            <a href="{{ route('home.services') }}" class="px-6 py-3 text-base font-semibold transition-colors {{ request()->routeIs('home.services') || request()->routeIs('home.service-detail') ? 'text-brand-500 bg-brand-50 border-l-4 border-brand-500' : 'text-navy-700 hover:text-brand-500 hover:bg-brand-50 border-l-4 border-transparent' }}" onclick="document.getElementById('mobile-menu').classList.add('hidden');document.body.classList.remove('overflow-hidden');">Services</a>
+            <a href="{{ route('home.about') }}" class="px-6 py-3 text-base font-semibold transition-colors {{ request()->routeIs('home.about') || request()->routeIs('home.about-us') ? 'text-brand-500 bg-brand-50 border-l-4 border-brand-500' : 'text-navy-700 hover:text-brand-500 hover:bg-brand-50 border-l-4 border-transparent' }}" onclick="document.getElementById('mobile-menu').classList.add('hidden');document.body.classList.remove('overflow-hidden');">About</a>
+            <a href="{{ route('home.projects') }}" class="px-6 py-3 text-base font-semibold transition-colors {{ request()->routeIs('home.projects') || request()->routeIs('home.blog') || request()->routeIs('home.blog-details') ? 'text-brand-500 bg-brand-50 border-l-4 border-brand-500' : 'text-navy-700 hover:text-brand-500 hover:bg-brand-50 border-l-4 border-transparent' }}" onclick="document.getElementById('mobile-menu').classList.add('hidden');document.body.classList.remove('overflow-hidden');">Projects</a>
+            <a href="{{ route('home.gallery') }}" class="px-6 py-3 text-base font-semibold transition-colors {{ request()->routeIs('home.gallery') ? 'text-brand-500 bg-brand-50 border-l-4 border-brand-500' : 'text-navy-700 hover:text-brand-500 hover:bg-brand-50 border-l-4 border-transparent' }}" onclick="document.getElementById('mobile-menu').classList.add('hidden');document.body.classList.remove('overflow-hidden');">Gallery</a>
+            <a href="{{ route('home.team') }}" class="px-6 py-3 text-base font-semibold transition-colors {{ request()->routeIs('home.team') ? 'text-brand-500 bg-brand-50 border-l-4 border-brand-500' : 'text-navy-700 hover:text-brand-500 hover:bg-brand-50 border-l-4 border-transparent' }}" onclick="document.getElementById('mobile-menu').classList.add('hidden');document.body.classList.remove('overflow-hidden');">Team</a>
+            <a href="{{ route('home.testimonials') }}" class="px-6 py-3 text-base font-semibold transition-colors {{ request()->routeIs('home.testimonials') ? 'text-brand-500 bg-brand-50 border-l-4 border-brand-500' : 'text-navy-700 hover:text-brand-500 hover:bg-brand-50 border-l-4 border-transparent' }}" onclick="document.getElementById('mobile-menu').classList.add('hidden');document.body.classList.remove('overflow-hidden');">Testimonials</a>
+            <a href="{{ route('home.faq') }}" class="px-6 py-3 text-base font-semibold transition-colors {{ request()->routeIs('home.faq') ? 'text-brand-500 bg-brand-50 border-l-4 border-brand-500' : 'text-navy-700 hover:text-brand-500 hover:bg-brand-50 border-l-4 border-transparent' }}" onclick="document.getElementById('mobile-menu').classList.add('hidden');document.body.classList.remove('overflow-hidden');">FAQ</a>
+            <div class="px-6 pt-3 pb-4">
+                <a href="{{ route('home.contact-us') }}" class="block w-full text-center px-6 py-3 text-sm font-bold text-white bg-brand-500 hover:bg-brand-600 rounded-full transition-all" onclick="document.getElementById('mobile-menu').classList.add('hidden');document.body.classList.remove('overflow-hidden');">Get a Quote</a>
+            </div>
+        </nav>
+    </div>
+</header>
+<div class="h-16 md:h-20"></div>

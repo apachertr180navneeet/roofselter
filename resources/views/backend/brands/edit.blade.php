@@ -2,92 +2,58 @@
 @section('title', 'Edit Brand')
 @section('content')
 
-<div class="container">
-    <div class="page-inner">
-        <div class="page-header">
-            <h3 class="fw-bold mb-3">Edit Brand</h3>
-            <ul class="breadcrumbs mb-3">
-                <li class="nav-home">
-                    <a href="#">
-                        <i class="icon-home"></i>
-                    </a>
-                </li>
-                <li class="separator">
-                    <i class="icon-arrow-right"></i>
-                </li>
-                <li class="nav-item">
-                    <a href="#">Tables</a>
-                </li>
-                <li class="separator">
-                    <i class="icon-arrow-right"></i>
-                </li>
-                <li class="nav-item">
-                    <a href="#">Datatables</a>
-                </li>
-            </ul>
-        </div>
-        <div class="row">
-            <div class="col-md-8 mx-auto">
-                <div class="card">
-                  <div class="card-header">
-                    <div class="card-title">Update Brand or Partner Record</div>
-                  </div>
-                  <form action="{{route('admin.brands-update',$brands->id)}}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" id="id" name="id">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-md-12 col-lg-12">
-                          <div class="form-group row">
-                              <div class="col-md-3">
-                                  <label for="brand_name">Brand Name</label>
-                                  <span class="text-danger">*</span>
-                              </div>
-                              <div class="col-md-9">
-                                  <input
-                                      type="text"
-                                      name="brand_name"
-                                      class="form-control @error('brand_name') is-invalid @enderror"
-                                      id="brand_name"
-                                      value="{{old('brand_name',$brands->brand_name)}}"
-                                      placeholder="Enter Brand"
-                                  />
-                                  @error('brand_name')
-                                    <p class="invalid-feedback">{{$message}}</p>
-                                  @enderror
-                                  <small id="brand_nameHelp2" class="form-text text-muted"
-                                          >This Brand name your Business Partner Brand Name.
-                                  </small>
-
-                              </div>
-                          </div>
-
-                          <div class="form-group row">
-                              <div class="col-md-3">
-                                  <label for="image">Image</label>
-                              </div>
-                              <div class="col-md-9">
-                                  <x-file-upload name="image" label="Upload Image" :current="$brands->image" />
-                                  <small id="image" class="form-text text-muted"
-                                          >This Image show in your Brand Image section.
-                                  </small>
-                              </div> 
-                          </div>
-                          
-
+<div class="space-y-6">
+    <div class="max-w-2xl mx-auto">
+        <div class="admin-card">
+            <div class="admin-card-header">
+                <div class="card-title">Update Brand or Partner Record</div>
+            </div>
+            <form action="{{route('admin.brands-update',$brands->id)}}" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" id="id" name="id">
+                <div class="admin-card-body">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="md:col-span-1">
+                            <label for="brand_name">Brand Name</label>
+                            <span class="text-red-500">*</span>
                         </div>
-                      </div>
+                        <div class="md:col-span-3">
+                            <input
+                                type="text"
+                                name="brand_name"
+                                class="admin-input @error('brand_name') border-red-500 @enderror"
+                                id="brand_name"
+                                value="{{old('brand_name',$brands->brand_name)}}"
+                                placeholder="Enter Brand"
+                            />
+                            @error('brand_name')
+                                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                            @enderror
+                            <small id="brand_nameHelp2" class="text-xs text-gray-500">
+                                    This Brand name your Business Partner Brand Name.
+                            </small>
+                        </div>
                     </div>
-                    <div class="card-action text-center">
-                      <button class="btn btn-success" type="submit">Submit</button>
-                      <a href="{{route('admin.brands')}}" class="btn btn-danger">Cancel</a>
+
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
+                        <div class="md:col-span-1">
+                            <label for="image">Image</label>
+                        </div>
+                        <div class="md:col-span-3">
+                            <x-file-upload name="image" label="Upload Image" :current="$brands->image" />
+                            <small id="image" class="text-xs text-gray-500">
+                                    This Image show in your Brand Image section.
+                            </small>
+                        </div>
                     </div>
-                  </form>
                 </div>
-              </div>
+                <div class="px-6 py-4 border-t border-gray-100 text-center">
+                    <button class="admin-btn-primary" type="submit">Submit</button>
+                    <a href="{{route('admin.brands')}}" class="admin-btn-danger">Cancel</a>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-
 
 @endsection

@@ -2,136 +2,81 @@
 @section('title', 'About')
 @section('content')
 
-<div class="container">
-    <div class="page-inner">
-        <div class="page-header">
-            <h3 class="fw-bold mb-3">About</h3>
-            <ul class="breadcrumbs mb-3">
-                <li class="nav-home">
-                    <a href="#">
-                        <i class="icon-home"></i>
-                    </a>
-                </li>
-                <li class="separator">
-                    <i class="icon-arrow-right"></i>
-                </li>
-                <li class="nav-item">
-                    <a href="#">Tables</a>
-                </li>
-                <li class="separator">
-                    <i class="icon-arrow-right"></i>
-                </li>
-                <li class="nav-item">
-                    <a href="#">Datatables</a>
-                </li>
-            </ul>
+<div class="space-y-6">
+    <div class="admin-card">
+        <div class="admin-card-header">
+            <h3 class="text-base font-semibold text-gray-900">About Us Info</h3>
+            <a href="{{route('admin.about-create')}}" class="admin-btn-primary ml-auto"><i class="fa fa-plus"></i> Add About</a>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card card-round">
-                    <div class="card-header">
-                        <div class="card-head-row card-tools-still-right">
-                            <div class="card-title">About Us Info</div>
-                            <a href="{{route('admin.about-create')}}" class="btn btn-dark ms-auto"><i class="fa fa-plus"></i> Add About</a>
-                            <!-- <button
-                                class="btn btn-dark  ms-auto"
-                                data-bs-toggle="modal"
-                                data-bs-target="#addRowModal">
-                                <i class="fa fa-plus"></i>
-                                Add About
-                            </button> -->
-                        </div>
-                    </div>
-                    <div class="card-body p-2">
-                        <div class="table-responsive">
-                            <!-- Projects table -->
-                            <table class="table align-items-center mb-0" id="basic-datatables">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Image</th>
-                                        <th scope="col" class="text-end">Title</th>
-                                        <!-- <th scope="col" class="text-end">Category Name</th> -->
-                                        <th scope="col" class="text-end">Published</th>
-                                        <th scope="col" class="text-end">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($aboutus as $about)
-                                    <tr id="record-row-{{ $about->id }}">
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>
-                                            <p class="demo">
-                                            <div class="avatar">
-                                                <img src="{{asset($about->image ? 'img/'.$about->image : '../assets/img/placeholder-image-3.jpg')}}" alt="{{ $about->title }}" class="avatar-img rounded">
-                                            </div>
-                                            </p>
-                                        </td>
-                                        <th scope="row">
-                                            <button
-                                                class="btn btn-icon btn-round btn-success btn-sm me-2">
-                                                <i class="fa fa-check"></i>
-                                            </button>
-                                            {{ $about->title ? $about->title : '--' }}
-                                        </th>
-                                        <td class="text-center d-none">
-                                            @if($about->category != null)
-                                                {{ $about->category->category_name }}
-                                            @else
-                                                --
-                                            @endif
-                                        </td>
+        <div class="overflow-x-auto">
+            <table class="admin-table" id="basic-datatables">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Image</th>
+                        <th scope="col" class="text-right">Title</th>
+                        <th scope="col" class="text-right">Published</th>
+                        <th scope="col" class="text-right">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($aboutus as $about)
+                    <tr id="record-row-{{ $about->id }}">
+                        <td>{{ $loop->iteration }}</td>
+                        <td>
+                            <p class="demo">
+                            <div class="avatar">
+                                <img src="{{asset($about->image ? 'img/'.$about->image : '../assets/img/placeholder-image-3.jpg')}}" alt="{{ $about->title }}" class="avatar-img rounded">
+                            </div>
+                            </p>
+                        </td>
+                        <th scope="row">
+                            <button
+                                class="admin-btn-success admin-btn-sm admin-btn-icon mr-2">
+                                <i class="fa fa-check"></i>
+                            </button>
+                            {{ $about->title ? $about->title : '--' }}
+                        </th>
+                        <td class="text-center hidden">
+                            @if($about->category != null)
+                                {{ $about->category->category_name }}
+                            @else
+                                --
+                            @endif
+                        </td>
 
-                                        <td class="text-end">
-                                            <label class="switch">
-                                              <input type="checkbox" class="toggle-status" data-id="{{ $about->id }}" data-url="{{ route('admin.about-status') }}" {{ $about->status == 1 ? 'checked' : '' }}>
-                                              <span class="record-toggle"></span>
-                                            </label>
-                                             <!-- <span class="badge badge-success">Completed</span> -->
-                                        </td>
-                                        <td class="text-end">
-                                            <div class="form-button-action">
-                                                
+                        <td class="text-right">
+                            <label class="switch">
+                              <input type="checkbox" class="toggle-status" data-id="{{ $about->id }}" data-url="{{ route('admin.about-status') }}" {{ $about->status == 1 ? 'checked' : '' }}>
+                              <span class="record-toggle"></span>
+                            </label>
+                        </td>
+                        <td class="text-right">
+                            <div class="form-button-action">
 
-                                                <a href="{{route('admin.about-edit',$about->id)}}"
-                                                   class="btn btn-icon btn-round btn-primary btn-lg me-3">
-                                                   <i class="fa fa-edit"></i>
-                                                </a>
+                                <a href="{{route('admin.about-edit',$about->id)}}"
+                                   class="admin-btn-primary admin-btn-icon mr-3">
+                                   <i class="fa fa-edit"></i>
+                                </a>
 
-                                                <a href="javascript:void(0)"
-                                                   class="btn btn-icon btn-round btn-danger btn-lg delete-record"
-                                                   data-id="{{ $about->id }}"
-                                                   data-url="{{ route('admin.about-destroy', $about->id) }}">
-                                                   <i class="fa fa-trash"></i>
-                                                </a>
+                                <a href="javascript:void(0)"
+                                   class="admin-btn-danger admin-btn-icon delete-record"
+                                   data-id="{{ $about->id }}"
+                                   data-url="{{ route('admin.about-destroy', $about->id) }}">
+                                   <i class="fa fa-trash"></i>
+                                </a>
 
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                  
 
-
-
-                                                <!-- <button
-                                                    type="button"
-                                                    data-bs-toggle="tooltip"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    data-original-title="Remove">
-                                                    <i class="fa fa-times"></i>
-                                                </button> -->
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                  
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-
 
 @endsection
 

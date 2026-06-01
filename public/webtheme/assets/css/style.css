@@ -22,12 +22,12 @@
   --reroof-font-two: "Rubik", sans-serif;
   --reroof-gray: #555555;
   --reroof-gray-rgb: 85, 85, 85;
-  --reroof-base: #b48c50;
-  --reroof-base-rgb: 180, 140, 80;
-  --reroof-base-light: #dcc8a0;
-  --reroof-base-light-rgb: 220, 200, 160;
-  --reroof-black: #3c3c3c;
-  --reroof-black-rgb: 60, 60, 60;
+  --reroof-base: #FF5A00;
+  --reroof-base-rgb: 255, 90, 0;
+  --reroof-base-light: #FFEBE0;
+  --reroof-base-light-rgb: 255, 235, 224;
+  --reroof-black: #000F3C;
+  --reroof-black-rgb: 0, 15, 60;
   --reroof-white: #ffffff;
   --reroof-white-rgb: 255, 255, 255;
   --reroof-bdr-color: #DDDDDD;
@@ -1935,10 +1935,64 @@ img.clickMe {
   color: var(--reroof-black);
 }
 
+/*--------------------------------------------------------------
+# Why Choose Us Override and Custom Polish
+--------------------------------------------------------------*/
+#why-choose-us .work-process-one__single-tab {
+  opacity: 1 !important;
+  transform: none !important;
+  background: #ffffff;
+  border: 1px solid rgba(var(--reroof-black-rgb), 0.08);
+  border-radius: 12px;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 30px rgba(var(--reroof-black-rgb), 0.04);
+  transition: all 0.3s ease-in-out;
+  height: calc(100% - 30px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
 
+#why-choose-us .work-process-one__single-tab:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 15px 40px rgba(var(--reroof-base-rgb), 0.1);
+  border-color: rgba(var(--reroof-base-rgb), 0.3);
+}
 
+#why-choose-us .work-process-one__single-tab-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
 
+#why-choose-us .work-process-one__single-tab .icon-box span {
+  color: var(--reroof-base);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
 
+#why-choose-us .work-process-one__single-tab:hover .icon-box span {
+  transform: scale(1.1);
+}
+
+#why-choose-us .work-process-one__single-tab h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--reroof-black);
+  margin-top: 15px;
+  margin-bottom: 12px;
+}
+
+#why-choose-us .work-process-one__single-tab p {
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--reroof-gray);
+}
 
 /*--------------------------------------------------------------
 # End

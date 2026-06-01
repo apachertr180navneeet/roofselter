@@ -1,144 +1,92 @@
 @extends('backend.layout.app')
 @section('title', 'Create Testimonial')
 @section('content')
-        <div class="container">
-          <div class="page-inner">
-            <div class="page-header">
-              <h3 class="fw-bold mb-3">Forms</h3>
-              <ul class="breadcrumbs mb-3">
-                <li class="nav-home">
-                  <a href="#">
-                    <i class="icon-home"></i>
-                  </a>
-                </li>
-                <li class="separator">
-                  <i class="icon-arrow-right"></i>
-                </li>
-                <li class="nav-item">
-                  <a href="#">Forms</a>
-                </li>
-                <li class="separator">
-                  <i class="icon-arrow-right"></i>
-                </li>
-                <li class="nav-item">
-                  <a href="#">Basic Form</a>
-                </li>
-              </ul>
-            </div>
-            <div class="row">
-              <div class="col-md-10 mx-auto">
-                <div class="card">
-                  <div class="card-header">
-                    <div class="card-title">Add Testimonial Record</div>
-                  </div>
-                  <form action="{{route('admin.testimonial-store')}}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-md-12 col-lg-12">
-                          <div class="form-group row">
-                              <div class="col-md-3">
-                                  <label for="name">Name</label>
-                                  <span class="text-danger">*</span>
-                              </div>
-                              <div class="col-md-9">
-                                  <input
-                                      type="text"
-                                      name="name"
-                                      class="form-control @error('name') is-invalid @enderror"
-                                      id="name"
-                                      placeholder="Enter Name"
-                                  />
-                                  @error('name')
-                                    <p class="invalid-feedback">{{$message}}</p>
-                                  @enderror
-                                  <small id="nameHelp" class="form-text text-muted"
-                                          >This name your Testimonial Person.
-                                  </small>
-
-                              </div>
-                          </div>
-
-                          <div class="form-group row">
-                              <div class="col-md-3">
-                                  <label for="designation">Designation</label>
-                                  <!-- <span class="text-danger">*</span> -->
-                              </div>
-                              <div class="col-md-9">
-                                  <input
-                                      type="text"
-                                      name="designation"
-                                      class="form-control"
-                                      id="designation"
-                                      placeholder="Enter Designation"
-                                  />
-                                 
-                                  <small id="designationHelp" class="form-text text-muted"
-                                          >This designation your Testimonial Person.
-                                  </small>
-
-                              </div>
-                          </div>
-
-                          <div class="form-group row">
-                              <div class="col-md-3">
-                                  <label for="rating">Rating</label>
-                                  <!-- <span class="text-danger">*</span> -->
-                              </div>
-                              <div class="col-md-9">
-                                <div id="rateYo" class="mb-3"></div>
-                                  <input
-                                      type="hidden"
-                                      name="rating"
-                                      id="rating"
-                                      placeholder="Enter Rating"
-                                  />
-                                  
-                                 
-                                  <small id="rating-message" style="font-weight:bold; color:#f39c12;"
-                                          >
-                                  </small>
-
-                              </div>
-                          </div>
-                          
-                          
-                          <div class="form-group row">
-                              <div class="col-md-3">
-                                  <label for="image">Image</label>
-                              </div>
-                              <div class="col-md-9">
-                                  
-                                  <x-file-upload name="image" label="Upload Image" />
-
-                                  <small id="image" class="form-text text-muted"
-                                          >This Image is Testimonial Clients Image.
-                                  </small>
-                              </div> 
-                          </div>
-                          <div class="form-group row">
-                              <div class="col-md-3">
-                                  <label for="message">Message</label>
-                              </div>
-                              <div class="col-md-9">
-                                  <textarea id="myeditor" name="message"></textarea>
-                              </div> 
-                          </div>
-
-                          
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-action text-center">
-                      <button class="btn btn-success" type="submit">Submit</button>
-                      <a href="{{route('admin.testimonial')}}" class="btn btn-danger">Cancel</a>
-                    </div>
-                  </form>
-                </div>
+        <div class="space-y-6">
+          <div class="max-w-4xl mx-auto">
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <h3 class="text-base font-semibold text-gray-900">Add Testimonial Record</h3>
               </div>
+              <form action="{{route('admin.testimonial-store')}}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="admin-card-body">
+                  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                      <div class="md:col-span-1">
+                          <label for="name" class="font-medium text-gray-700">Name</label>
+                          <span class="text-danger">*</span>
+                      </div>
+                      <div class="md:col-span-3">
+                          <input
+                              type="text"
+                              name="name"
+                              class="admin-input @error('name') border-red-500 @enderror"
+                              id="name"
+                              placeholder="Enter Name"
+                          />
+                          @error('name')
+                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                          @enderror
+                          <p class="text-xs text-gray-500 mt-1">This name your Testimonial Person.</p>
+                      </div>
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
+                      <div class="md:col-span-1">
+                          <label for="designation" class="font-medium text-gray-700">Designation</label>
+                      </div>
+                      <div class="md:col-span-3">
+                          <input
+                              type="text"
+                              name="designation"
+                              class="admin-input"
+                              id="designation"
+                              placeholder="Enter Designation"
+                          />
+                          <p class="text-xs text-gray-500 mt-1">This designation your Testimonial Person.</p>
+                      </div>
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
+                      <div class="md:col-span-1">
+                          <label for="rating" class="font-medium text-gray-700">Rating</label>
+                      </div>
+                      <div class="md:col-span-3">
+                        <div id="rateYo" class="mb-3"></div>
+                          <input
+                              type="hidden"
+                              name="rating"
+                              id="rating"
+                              placeholder="Enter Rating"
+                          />
+                          <p id="rating-message" style="font-weight:bold; color:#f39c12;"></p>
+                      </div>
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
+                      <div class="md:col-span-1">
+                          <label for="image" class="font-medium text-gray-700">Image</label>
+                      </div>
+                      <div class="md:col-span-3">
+                          <x-file-upload name="image" label="Upload Image" />
+                          <p class="text-xs text-gray-500 mt-1">This Image is Testimonial Clients Image.</p>
+                      </div>
+                  </div>
+                  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
+                      <div class="md:col-span-1">
+                          <label for="message" class="font-medium text-gray-700">Message</label>
+                      </div>
+                      <div class="md:col-span-3">
+                          <textarea id="myeditor" name="message"></textarea>
+                      </div>
+                  </div>
+                </div>
+                <div class="px-6 py-4 border-t border-gray-100 text-center">
+                  <button class="admin-btn-success" type="submit">Submit</button>
+                  <a href="{{route('admin.testimonial')}}" class="admin-btn-danger">Cancel</a>
+                </div>
+              </form>
             </div>
           </div>
         </div>
 
 @endsection
-

@@ -2,163 +2,104 @@
 @section('title', 'Service Categories')
 @section('content')
 
-<div class="container">
-    <div class="page-inner">
-        <div class="page-header">
-            <h3 class="fw-bold mb-3">Service Categories</h3>
-            <ul class="breadcrumbs mb-3">
-                <li class="nav-home">
-                    <a href="#">
-                        <i class="icon-home"></i>
-                    </a>
-                </li>
-                <li class="separator">
-                    <i class="icon-arrow-right"></i>
-                </li>
-                <li class="nav-item">
-                    <a href="#">Tables</a>
-                </li>
-                <li class="separator">
-                    <i class="icon-arrow-right"></i>
-                </li>
-                <li class="nav-item">
-                    <a href="#">Datatables</a>
-                </li>
-            </ul>
-        </div>
-        <div class="row">
-            <div class="col-md-7">
-                <div class="card card-round">
-                    <div class="card-header">
-                        <div class="card-head-row card-tools-still-right">
-                            <div class="card-title">Service Category Info</div>
-                        </div>
-                    </div>
-                    <div class="card-body p-2">
-                        <div class="table-responsive">
-                            <!-- Projects table -->
-                            <table class="table align-items-center mb-0" id="basic-datatables">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col" class="text-center">Category Name</th>
-                                        <th scope="col" class="text-center">Published</th>
-                                        <th scope="col" class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($service_category as $service_cat)
-                                    <tr id="record-row-{{ $service_cat->id }}">
-                                        <td>{{ $loop->iteration }}</td>
-                                        
-
-                                        <td class="text-center">{{ $service_cat->category_name ? $service_cat->category_name : '--' }}</td>
-                                        
-                                        <td class="text-center">
-                                            <label class="switch">
-                                              <input type="checkbox" class="toggle-status" data-id="{{ $service_cat->id }}" data-url="{{ route('admin.service-category-status') }}" {{ $service_cat->status == 1 ? 'checked' : '' }}>
-                                              <span class="record-toggle"></span>
-                                            </label>
-                                             <!-- <span class="badge badge-success">Completed</span> -->
-                                        </td>
-
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                
-
-                                                <a href="{{route('admin.service-category-edit',$service_cat->id)}}"
-                                                   class="btn btn-link btn-primary btn-lg me-2">
-                                                   <i class="fa fa-edit"></i>
-                                                </a>
-
-                                                <a href="javascript:void(0)"
-                                                   class="btn btn-link btn-danger btn-lg delete-record"
-                                                   data-id="{{ $service_cat->id }}"
-                                                   data-url="{{ route('admin.service-category-destroy', $service_cat->id) }}">
-                                                   <i class="fa fa-trash"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                  
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+<div class="space-y-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-7">
+            <div class="admin-card">
+                <div class="admin-card-header">
+                    <h3 class="text-base font-semibold text-gray-900">Service Category Info</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="admin-table" id="basic-datatables">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th class="text-center">Category Name</th>
+                                <th class="text-center">Published</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($service_category as $service_cat)
+                            <tr id="record-row-{{ $service_cat->id }}">
+                                <td>{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $service_cat->category_name ? $service_cat->category_name : '--' }}</td>
+                                <td class="text-center">
+                                    <label class="switch">
+                                      <input type="checkbox" class="toggle-status" data-id="{{ $service_cat->id }}" data-url="{{ route('admin.service-category-status') }}" {{ $service_cat->status == 1 ? 'checked' : '' }}>
+                                      <span class="record-toggle"></span>
+                                    </label>
+                                </td>
+                                <td class="text-center">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <a href="{{route('admin.service-category-edit',$service_cat->id)}}"
+                                           class="admin-btn-primary admin-btn-icon">
+                                           <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a href="javascript:void(0)"
+                                           class="admin-btn-danger admin-btn-icon delete-record"
+                                           data-id="{{ $service_cat->id }}"
+                                           data-url="{{ route('admin.service-category-destroy', $service_cat->id) }}">
+                                           <i class="fa fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div class="col-md-5">
-                <div class="card">
-                  <div class="card-header">
-                    <div class="card-title">Add Record for Service Category</div>
-                  </div>
-                  <form action="{{route('admin.service-category-store')}}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-md-12 col-lg-12">
-                          <div class="form-group row">
-                              <div class="col-md-3">
-                                  <label for="cat_name">Category Name</label>
-                                  <span class="text-danger">*</span>
-                              </div>
-                              <div class="col-md-9">
-                                  <input
-                                      type="text"
-                                      name="category_name"
-                                      onkeyup="makeSlug(this.value)"
-                                      class="form-control @error('category_name') is-invalid @enderror"
-                                      id="cat_name"
-                                      placeholder="Enter Category"
-                                  />
-                                  @error('category_name')
-                                    <p class="invalid-feedback">{{$message}}</p>
-                                  @enderror
-                                  <small id="cat_nameHelp2" class="form-text text-muted"
-                                          >This Category name your Service Category Name.
-                                  </small>
-
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                              <div class="col-md-3">
-                                  <label for="slug">Slug</label>
-                                  <span class="text-danger">*</span>
-                              </div>
-                              <div class="col-md-9">
-                                  <input
-                                      type="text"
-                                      class="form-control"
-                                      name="slug"
-                                      id="slug"
-                                      placeholder="slug"
-                                      
-                                  />
-                                  <small id="slug" class="form-text text-muted"
-                                          >creating a slug from your category name.
-                                  </small>
-                              </div>
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-action text-center">
-                      <button class="btn btn-success" type="submit">Submit</button>
-                    </div>
-                  </form>
-                </div>
+        </div>
+        <div class="lg:col-span-5">
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <h3 class="text-base font-semibold text-gray-900">Add Record for Service Category</h3>
               </div>
+              <form action="{{route('admin.service-category-store')}}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="admin-card-body space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <label class="text-sm font-medium text-gray-700">Category Name <span class="text-red-500">*</span></label>
+                        <div class="md:col-span-3">
+                            <input
+                                type="text"
+                                name="category_name"
+                                onkeyup="makeSlug(this.value)"
+                                class="admin-input @error('category_name') border-red-500 @enderror"
+                                id="cat_name"
+                                placeholder="Enter Category"
+                            />
+                            @error('category_name')
+                              <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                            @enderror
+                            <p id="cat_nameHelp2" class="text-xs text-gray-500 mt-1">This Category name your Service Category Name.</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <label class="text-sm font-medium text-gray-700">Slug <span class="text-red-500">*</span></label>
+                        <div class="md:col-span-3">
+                            <input
+                                type="text"
+                                class="admin-input"
+                                name="slug"
+                                id="slug"
+                                placeholder="slug"
+                            />
+                            <p id="slug" class="text-xs text-gray-500 mt-1">creating a slug from your category name.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-6 py-4 border-t border-gray-100 text-center">
+                  <button class="admin-btn-primary" type="submit">Submit</button>
+                </div>
+              </form>
+            </div>
         </div>
     </div>
 </div>
 
-
 @endsection
-
-
 
 @section('script')
 <script>

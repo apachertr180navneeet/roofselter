@@ -1,798 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', (get_setting('website_name') ?: 'RoofShelter')) | ADMIN PANEL</title>
-    <meta
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-      name="viewport"
-    />
-    <link
-      rel="icon"
-      href="{{ asset(get_setting('site_logo') ? 'img/'.get_setting('site_logo') : 'webtheme/assets/images/resources/RoofShelter-Logo1.jpg') }}"
-      type="image/x-icon"
-    />
+    <link rel="icon" href="{{ asset(get_setting('site_logo') ? 'img/'.get_setting('site_logo') : 'webtheme/assets/images/resources/RoofShelter-Logo1.jpg') }}" type="image/x-icon" />
 
-    <!-- Fonts and icons -->
-    <script src="{{asset('assets/js/plugin/webfont/webfont.min.js')}}"></script>
-    <script>
-      WebFont.load({
-        google: { families: ["Public Sans:300,400,500,600,700"] },
-        custom: {
-          families: [
-            "Font Awesome 5 Solid",
-            "Font Awesome 5 Regular",
-            "Font Awesome 5 Brands",
-            "simple-line-icons",
-          ],
-          urls: ["{{asset('assets/css/fonts.min.css')}}"],
-        },
-        active: function () {
-          sessionStorage.fonts = true;
-        },
-      });
-    </script>
+    @vite(['resources/css/app.css', 'resources/js/admin.js'])
 
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('assets/css/plugins.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('assets/css/kaiadmin.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('assets/css/admin-brand.css')}}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link rel="stylesheet" href="{{asset('assets/css/demo.css')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- CSS switch toggle -->
-    <link rel="stylesheet" href="{{asset('assets/css/switchtoggle.css')}}" />
-
-    <!-- CSS file-upload -->
     <link rel="stylesheet" href="{{ asset('assets/css/file-upload.css') }}">
-
-
-    <!-- CSS select2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
-  </head>
-  <body>
-    <div class="wrapper">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.css">
+</head>
+<body class="bg-gray-50 font-sans antialiased">
+<div class="flex h-screen overflow-hidden">
 
     @include('backend.layout.sidebar')
-    @include('backend.layout.header')
-    @yield('content')
-    @include('backend.layout.footer')
 
+    <div class="flex-1 flex flex-col min-w-0 ml-64 transition-all duration-300" id="admin-content-wrapper">
+        @include('backend.layout.header')
 
-    <!-- Custom template | don't include it in your project! -->
-      <div class="custom-template">
-        <div class="title">Settings</div>
-        <div class="custom-content">
-          <div class="switcher">
-            <div class="switch-block">
-              <h4>Logo Header</h4>
-              <div class="btnSwitch">
-                <button
-                  type="button"
-                  class="selected changeLogoHeaderColor"
-                  data-color="dark"
-                ></button>
-                <button
-                  type="button"
-                  class="changeLogoHeaderColor"
-                  data-color="blue"
-                ></button>
-                <button
-                  type="button"
-                  class="changeLogoHeaderColor"
-                  data-color="purple"
-                ></button>
-                <button
-                  type="button"
-                  class="changeLogoHeaderColor"
-                  data-color="light-blue"
-                ></button>
-                <button
-                  type="button"
-                  class="changeLogoHeaderColor"
-                  data-color="green"
-                ></button>
-                <button
-                  type="button"
-                  class="changeLogoHeaderColor"
-                  data-color="orange"
-                ></button>
-                <button
-                  type="button"
-                  class="changeLogoHeaderColor"
-                  data-color="red"
-                ></button>
-                <button
-                  type="button"
-                  class="changeLogoHeaderColor"
-                  data-color="white"
-                ></button>
-                <br />
-                <button
-                  type="button"
-                  class="changeLogoHeaderColor"
-                  data-color="dark2"
-                ></button>
-                <button
-                  type="button"
-                  class="changeLogoHeaderColor"
-                  data-color="blue2"
-                ></button>
-                <button
-                  type="button"
-                  class="changeLogoHeaderColor"
-                  data-color="purple2"
-                ></button>
-                <button
-                  type="button"
-                  class="changeLogoHeaderColor"
-                  data-color="light-blue2"
-                ></button>
-                <button
-                  type="button"
-                  class="changeLogoHeaderColor"
-                  data-color="green2"
-                ></button>
-                <button
-                  type="button"
-                  class="changeLogoHeaderColor"
-                  data-color="orange2"
-                ></button>
-                <button
-                  type="button"
-                  class="changeLogoHeaderColor"
-                  data-color="red2"
-                ></button>
-              </div>
-            </div>
-            <div class="switch-block">
-              <h4>Navbar Header</h4>
-              <div class="btnSwitch">
-                <button
-                  type="button"
-                  class="changeTopBarColor"
-                  data-color="dark"
-                ></button>
-                <button
-                  type="button"
-                  class="changeTopBarColor"
-                  data-color="blue"
-                ></button>
-                <button
-                  type="button"
-                  class="changeTopBarColor"
-                  data-color="purple"
-                ></button>
-                <button
-                  type="button"
-                  class="changeTopBarColor"
-                  data-color="light-blue"
-                ></button>
-                <button
-                  type="button"
-                  class="changeTopBarColor"
-                  data-color="green"
-                ></button>
-                <button
-                  type="button"
-                  class="changeTopBarColor"
-                  data-color="orange"
-                ></button>
-                <button
-                  type="button"
-                  class="changeTopBarColor"
-                  data-color="red"
-                ></button>
-                <button
-                  type="button"
-                  class="selected changeTopBarColor"
-                  data-color="white"
-                ></button>
-                <br />
-                <button
-                  type="button"
-                  class="changeTopBarColor"
-                  data-color="dark2"
-                ></button>
-                <button
-                  type="button"
-                  class="changeTopBarColor"
-                  data-color="blue2"
-                ></button>
-                <button
-                  type="button"
-                  class="changeTopBarColor"
-                  data-color="purple2"
-                ></button>
-                <button
-                  type="button"
-                  class="changeTopBarColor"
-                  data-color="light-blue2"
-                ></button>
-                <button
-                  type="button"
-                  class="changeTopBarColor"
-                  data-color="green2"
-                ></button>
-                <button
-                  type="button"
-                  class="changeTopBarColor"
-                  data-color="orange2"
-                ></button>
-                <button
-                  type="button"
-                  class="changeTopBarColor"
-                  data-color="red2"
-                ></button>
-              </div>
-            </div>
-            <div class="switch-block">
-              <h4>Sidebar</h4>
-              <div class="btnSwitch">
-                <button
-                  type="button"
-                  class="changeSideBarColor"
-                  data-color="white"
-                ></button>
-                <button
-                  type="button"
-                  class="selected changeSideBarColor"
-                  data-color="dark"
-                ></button>
-                <button
-                  type="button"
-                  class="changeSideBarColor"
-                  data-color="dark2"
-                ></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="custom-toggle">
-          <i class="icon-settings"></i>
-        </div>
-      </div>
-      <!-- End Custom template -->
+        <main class="flex-1 overflow-y-auto p-6">
+            @yield('content')
+        </main>
+
+        @include('backend.layout.footer')
     </div>
-    <!--   Core JS Files   -->
 
-    @yield('modal')
+</div>
 
-    @yield('script')
-    
-    <script src="{{asset('assets/js/core/jquery-3.7.1.min.js')}}"></script>
-    <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
-    <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
+@yield('modal')
 
-    <!-- jQuery Scrollbar -->
-    <script src="{{asset('assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js')}}"></script>
+@yield('script')
 
-    <!-- Chart JS -->
-    <script src="{{asset('assets/js/plugin/chart.js/chart.min.js')}}"></script>
-
-    <!-- jQuery Sparkline -->
-    <script src="{{asset('assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js')}}"></script>
-
-    <!-- Chart Circle -->
-    <script src="{{asset('assets/js/plugin/chart-circle/circles.min.js')}}"></script>
-
-    <!-- Datatables -->
-    <script src="{{asset('assets/js/plugin/datatables/datatables.min.js')}}"></script>
-
-    <!-- Bootstrap Notify -->
-    <script src="{{asset('assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
-
-    <!-- jQuery Vector Maps -->
-    <script src="{{asset('assets/js/plugin/jsvectormap/jsvectormap.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugin/jsvectormap/world.js')}}"></script>
-
-    <!-- Sweet Alert -->
-    <script src="{{asset('assets/js/plugin/sweetalert/sweetalert.min.js')}}"></script>
-
-    <!-- Kaiadmin JS -->
-    <script src="{{asset('assets/js/kaiadmin.min.js')}}"></script>
-
-    <!-- Kaiadmin DEMO methods, don't include it in your project! -->
-    <script src="{{asset('assets/js/setting-demo.js')}}"></script>
-    <script src="{{asset('assets/js/demo.js')}}"></script>
-
-    <!-- file-upload JS -->
-    <script src="{{ asset('assets/js/file-upload.js') }}"></script>
-
-    <!-- select2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-   
-
-   <!-- RateYo CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.css">
-
-<!-- jQuery FIRST -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
-
-<!-- RateYo JS -->
+<script src="{{asset('assets/js/core/jquery-3.7.1.min.js')}}"></script>
+<script src="{{asset('assets/js/core/popper.min.js')}}"></script>
+<script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js')}}"></script>
+<script src="{{asset('assets/js/plugin/chart.js/chart.min.js')}}"></script>
+<script src="{{asset('assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js')}}"></script>
+<script src="{{asset('assets/js/plugin/chart-circle/circles.min.js')}}"></script>
+<script src="{{asset('assets/js/plugin/datatables/datatables.min.js')}}"></script>
+<script src="{{asset('assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
+<script src="{{asset('assets/js/plugin/jsvectormap/jsvectormap.min.js')}}"></script>
+<script src="{{asset('assets/js/plugin/jsvectormap/world.js')}}"></script>
+<script src="{{asset('assets/js/plugin/sweetalert/sweetalert.min.js')}}"></script>
+<script src="{{ asset('assets/js/file-upload.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.js"></script>
-
+<script src="{{asset('tinymce/tinymce.min.js')}}"></script>
 
 <script>
 $(function () {
-  let initialRating = parseFloat($("#rating").val()) || 0;
-
-  $("#rateYo").rateYo({
-    rating: initialRating,
-    halfStar: true,
-    starWidth: "30px",
-    ratedFill: "#f39c12",
-    normalFill: "#dcdcdc",
-    onSet: function (rating) {
-      $("#rating").val(rating);
-
-      // Select hone par message dikhana
-      $("#rating-message").text("✨ You have selected " + rating + " stars!");
+    // RateYo for rating input
+    let $rating = $("#rating");
+    if ($rating.length) {
+        let initialRating = parseFloat($rating.val()) || 0;
+        $("#rateYo").rateYo({
+            rating: initialRating,
+            halfStar: true,
+            starWidth: "30px",
+            ratedFill: "#f97316",
+            normalFill: "#dcdcdc",
+            onSet: function (rating) {
+                $rating.val(rating);
+                $("#rating-message").text("You have selected " + rating + " stars!");
+            }
+        });
+        if (initialRating > 0) {
+            $("#rating-message").text("You have selected " + initialRating + " stars!");
+        }
     }
-  });
 
-  // Agar edit mode me rating pehle se hai to message show karna
-  if (initialRating > 0) {
-    $("#rating-message").text("✨ You have selected " + initialRating + " stars!");
-  }
-});
-</script>
-
-<script>
-$(function () {
+    // RateYo for read-only star displays
     $(".star-display").each(function () {
-        let rating = parseFloat($(this).data("rating"));
         $(this).rateYo({
-            rating: rating,
+            rating: parseFloat($(this).data("rating")),
             readOnly: true,
             starWidth: "25px",
-            ratedFill: "#f39c12",
+            ratedFill: "#f97316",
             normalFill: "#ddd"
         });
     });
 });
-</script>
 
-
-    <script>
-      $(document).ready(function() {
-          $('#category_id').select2({
-              allowClear: true
-          });
-      });
-    </script>
-
-<script>
 $(document).ready(function () {
-    function loadIcons(selectedIcon = null) {
-        $.getJSON("{{ asset('icons.json') }}", function (data) {
-            // remove duplicates
-            let uniqueIcons = [...new Set(data)];
-
-            let iconsData = [
-                { id: '', text: '✨ Select an Icon' },
-                ...uniqueIcons.map(icon => ({
-                    id: icon,
-                    text: icon,
-                    html: `<i class="${icon}"></i> ${icon}`,
-                    title: icon
-                }))
-            ];
-
-            $("#icon").empty().select2({
-                tags: true,
-                data: iconsData,
-                createTag: function (params) {
-                    let term = $.trim(params.term);
-                    if (term === '') return null;
-
-                    let iconClass = term.startsWith("fa") ? term : `fa fa-${term}`;
-                    return {
-                        id: iconClass,
-                        text: iconClass,
-                        newOption: true
-                    };
-                },
-                templateResult: function (data) {
-                    if (data.loading) return data.text;
-                    if (!data.id) return $('<span class="text-muted">✨ Select an Icon</span>');
-                    return $(`<span><i class="fa ${data.id}"></i> ${data.text}</span>`);
-                },
-                templateSelection: function (data) {
-                    if (!data.id) return $('<span class="text-muted">✨ Select an Icon</span>');
-                    return $(`<span><i class="fa ${data.id}"></i> ${data.text}</span>`);
-                },
-                escapeMarkup: function (markup) { return markup; }
-            });
-
-            if (selectedIcon) {
-                $("#icon").val(selectedIcon).trigger("change");
-            }
-        });
-    }
-
-    // Initial Load
-    loadIcons($("#icon").data("selected"));
-
-    // Save new icon
-    $("#icon").on("select2:select", function (e) {
-        let data = e.params.data;
-        if (data.newOption) {
-            $.ajax({
-                url: "{{ route('icons.add') }}",
-                type: "POST",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    icon: data.id
-                },
-                success: function (res) {
-                    if (res.success) {
-                        loadIcons(res.icon);
-                    } else {
-                        // Show duplicate notify
-                        $.notify({
-                            message: res.message,
-                            icon: 'fa fa-exclamation-circle'
-                        }, {
-                            type: "danger",
-                            placement: { from: "top", align: "center" },
-                            delay: 2000,
-                        });
-                        loadIcons(); // reload cleaned list
-                    }
-                }
-            });
-        }
-    });
-});
-</script>
-
-
-
-<script>
-$(document).ready(function () {
-    // Initialize Select2
+    // Select2
     $('.select2').select2();
+    $('#category_id').select2({ allowClear: true });
 
-    function loadSubcategories(categoryId, selectedSubcategoryId = null) {
+    // Category → Subcategory cascade
+    function loadSubcategories(categoryId, selectedSubcategoryId) {
         if (categoryId) {
-            $.ajax({
-                url: "{{ route('admin.getservice-subcategories') }}",
-                type: "GET",
-                data: { category_id: categoryId },
-                success: function (data) {
-                    // Reset & rebuild subcategory select
-                    $('#subcategory_id').empty().append('<option value="">-- Select Sub Category --</option>');
-
-                    $.each(data, function (key, subcategory) {
-                        let selected = (subcategory.id == selectedSubcategoryId) ? 'selected' : '';
-                        $('#subcategory_id').append(
-                            '<option value="' + subcategory.id + '" ' + selected + '>' + subcategory.subcategory_name + '</option>'
-                        );
-                    });
-
-                    // Refresh Select2 after data change
-                    $('#subcategory_id').trigger('change.select2');
-                }
+            $.get("{{ route('admin.getservice-subcategories') }}", { category_id: categoryId }, function (data) {
+                $('#subcategory_id').empty().append('<option value="">-- Select Sub Category --</option>');
+                $.each(data, function (k, s) {
+                    let sel = s.id == selectedSubcategoryId ? 'selected' : '';
+                    $('#subcategory_id').append('<option value="' + s.id + '" ' + sel + '>' + s.subcategory_name + '</option>');
+                });
+                $('#subcategory_id').trigger('change.select2');
             });
         } else {
-            $('#subcategory_id').empty().append('<option value="">-- Select Sub Category --</option>');
-            $('#subcategory_id').trigger('change.select2');
+            $('#subcategory_id').empty().append('<option value="">-- Select Sub Category --</option>').trigger('change.select2');
         }
     }
+    $('#servicecategory_id').on('change', function () { loadSubcategories($(this).val()); });
+    let sc = $('#servicecategory_id').data('selected');
+    let ss = $('#subcategory_id').data('selected');
+    if (sc) { $('#servicecategory_id').val(sc).trigger('change.select2'); loadSubcategories(sc, ss); }
 
-    // On category change
-    $('#servicecategory_id').on('change', function () {
-        var categoryId = $(this).val();
-        loadSubcategories(categoryId);
-    });
-
-    // ==== For Edit Case ====
-    var selectedCategoryId = $('#servicecategory_id').data('selected');   // pass from blade
-    var selectedSubcategoryId = $('#subcategory_id').data('selected');   // pass from blade
-
-    if (selectedCategoryId) {
-        $('#servicecategory_id').val(selectedCategoryId).trigger('change.select2');
-        loadSubcategories(selectedCategoryId, selectedSubcategoryId);
+    // Icon select2
+    function loadIcons(selected) {
+        $.getJSON("{{ asset('icons.json') }}", function (data) {
+            let unique = [...new Set(data)];
+            let items = [{ id: '', text: 'Select an Icon' }, ...unique.map(i => ({ id: i, text: i, html: '<i class="'+i+'"></i> '+i }))];
+            $("#icon").empty().select2({
+                data: items,
+                tags: true,
+                createTag: function (p) {
+                    let t = $.trim(p.term);
+                    if (!t) return null;
+                    return { id: t.startsWith("fa") ? t : 'fa fa-'+t, text: t.startsWith("fa") ? t : 'fa fa-'+t, newOption: true };
+                },
+                templateResult: function (d) { return d.id ? $('<span><i class="fa '+d.id+'"></i> '+d.text+'</span>') : $('<span class="text-gray-400">Select an Icon</span>'); },
+                templateSelection: function (d) { return d.id ? $('<span><i class="fa '+d.id+'"></i> '+d.text+'</span>') : $('<span class="text-gray-400">Select an Icon</span>'); },
+                escapeMarkup: function (m) { return m; }
+            });
+            if (selected) $("#icon").val(selected).trigger("change");
+        });
     }
-});
-</script>
-
-
-    <script>
-      $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
-        type: "line",
-        height: "70",
-        width: "100%",
-        lineWidth: "2",
-        lineColor: "#177dff",
-        fillColor: "rgba(23, 125, 255, 0.14)",
-      });
-
-      $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
-        type: "line",
-        height: "70",
-        width: "100%",
-        lineWidth: "2",
-        lineColor: "#f3545d",
-        fillColor: "rgba(243, 84, 93, .14)",
-      });
-
-      $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
-        type: "line",
-        height: "70",
-        width: "100%",
-        lineWidth: "2",
-        lineColor: "#ffa534",
-        fillColor: "rgba(255, 165, 52, .14)",
-      });
-    </script>
-
-    <script>
-    $(document).ready(function() {
-        $("#basic-datatables").DataTable({});
-
-        $("#multi-filter-select").DataTable({
-            pageLength: 5,
-            initComplete: function() {
-                this.api()
-                    .columns()
-                    .every(function() {
-                        var column = this;
-                        var select = $(
-                                '<select class="form-select"><option value=""></option></select>'
-                            )
-                            .appendTo($(column.footer()).empty())
-                            .on("change", function() {
-                                var val = $.fn.dataTable.util.escapeRegex($(this).val());
-
-                                column
-                                    .search(val ? "^" + val + "$" : "", true, false)
-                                    .draw();
-                            });
-
-                        column
-                            .data()
-                            .unique()
-                            .sort()
-                            .each(function(d, j) {
-                                select.append(
-                                    '<option value="' + d + '">' + d + "</option>"
-                                );
-                            });
-                    });
-            },
-        });
-
-        // Add Row
-        $("#add-row").DataTable({
-            pageLength: 5,
-        });
-
-        var action =
-            '<td> <div class="form-button-action"> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
-
-        $("#addRowButton").click(function() {
-            $("#add-row")
-                .dataTable()
-                .fnAddData([
-                    $("#addName").val(),
-                    $("#addPosition").val(),
-                    $("#addOffice").val(),
-                    action,
-                ]);
-            $("#addRowModal").modal("hide");
-        });
-    });
-</script>
-
-<script>
-$(document).on("click", ".delete-record", function (e) {
-    e.preventDefault();
-
-    let url = $(this).data("url");
-    let id = $(this).data("id");
-    let row = $("#record-row-" + id);
-
-    swal({
-        title: "Are you sure?",
-        text: "This record will be permanently deleted!",
-        icon: "warning",
-        buttons: ["Cancel", "Yes, Delete!"],
-        dangerMode: true,
-    }).then((willDelete) => {
-        if (willDelete) {
-            $.ajax({
-                url: url,
-                type: "GET",
-                success: function (response) {
-                    if (response.success) {
-                        // ✅ directly DataTable se row remove karo
-                        let table = $("#basic-datatables").DataTable();
-                        table.row(row).remove().draw(false);
-                        row.fadeOut(400, function () {
-                            $(this).remove();
-                        });
-
-                    }
-                }
+    loadIcons($("#icon").data("selected"));
+    $("#icon").on("select2:select", function (e) {
+        let d = e.params.data;
+        if (d.newOption) {
+            $.post("{{ route('icons.add') }}", { _token: "{{ csrf_token() }}", icon: d.id }, function (r) {
+                if (r.success) loadIcons(r.icon);
+                else { $.notify({ message: r.message, icon: 'fa fa-exclamation-circle' }, { type: "danger", placement: { from: "top", align: "center" }, delay: 2000 }); loadIcons(); }
             });
         }
     });
-});
 
+    // DataTables
+    if ($.fn.DataTable) {
+        $("#basic-datatables").DataTable();
+        $("#multi-filter-select").DataTable({ pageLength: 5 });
+        $("#add-row").DataTable({ pageLength: 5 });
+    }
 
-$(document).on("change", ".toggle-status", function () {
-    let id = $(this).data("id");
-    let url = $(this).data("url");
-    let status = $(this).is(":checked") ? 1 : 0;
-
-    $.ajax({
-        url: url,
-        type: "POST",
-        data: {
-            _token: "{{ csrf_token() }}",
-            id: id,
-            status: status
-        },
-        success: function (response) {
-            if (response.success) {
-                $.notify(
-                    {
-                        message: "Published status updated successfully!",
-                        title: "Success",
-                        icon: "fa fa-check"
-                    },
-                    {
-                        type: "success",
-                        placement: {
-                            from: "top",
-                            align: "center"
-                        },
-                        time: 3000,
-                        delay: 2000
-                    }
-                );
-            }
-        }
+    // Delete record
+    $(document).on("click", ".delete-record", function (e) {
+        e.preventDefault();
+        let url = $(this).data("url"), id = $(this).data("id"), row = $("#record-row-" + id);
+        swal({ title: "Are you sure?", text: "This record will be permanently deleted!", icon: "warning", buttons: ["Cancel", "Yes, Delete!"], dangerMode: true })
+            .then(function (willDelete) {
+                if (willDelete) {
+                    $.get(url, function (r) {
+                        if (r.success) { let t = $("#basic-datatables").DataTable(); t.row(row).remove().draw(false); row.fadeOut(400, function () { $(this).remove(); }); }
+                    });
+                }
+            });
     });
-});
 
+    // Toggle status
+    $(document).on("change", ".toggle-status", function () {
+        let id = $(this).data("id"), url = $(this).data("url"), status = $(this).is(":checked") ? 1 : 0;
+        $.post(url, { _token: "{{ csrf_token() }}", id: id, status: status }, function (r) {
+            if (r.success) $.notify({ message: "Published status updated successfully!", title: "Success", icon: "fa fa-check" }, { type: "success", placement: { from: "top", align: "center" }, time: 3000, delay: 2000 });
+        });
+    });
 
-</script>
+    // TinyMCE
+    if (typeof tinymce !== 'undefined') {
+        tinymce.init({ selector: '#myeditor', height: 300, license_key: 'gpl', menubar: false, plugins: 'lists link image code', toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist | link image | code' });
+    }
 
+    // Social fields toggle
+    $('#add_social').change(function () { if ($(this).is(':checked')) $('#social-fields').slideDown(); else $('#social-fields').slideUp(); });
 
+    // Enquiry polling
+    let lastCount = 0;
+    function fetchCounts() {
+        $.get("{{ url('/admin/enquiries/latest') }}", function (data) {
+            $('#enquiry-count, #header-enquiry-count').text(data.count);
+            $('#notif-total').text(data.count);
+            let html = '';
+            data.notifications.forEach(function (n) {
+                html += '<a href="{{ url('/admin/enquiries') }}" class="flex items-start gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"><div class="w-8 h-8 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 flex-shrink-0"><i class="fa fa-envelope text-xs"></i></div><div class="min-w-0"><span class="block text-sm font-medium text-gray-900 truncate">' + n.username + ' sent enquiry</span><span class="block text-xs text-gray-500">' + new Date(n.created_at).toLocaleString() + '</span></div></a>';
+            });
+            $('#notif-list').html(html);
+            if (data.count > lastCount) {
+                if (Notification.permission === "granted") new Notification("New Enquiry!", { body: "You have a new enquiry.", icon: "{{ asset('admin-icon.png') }}" });
+                new Audio("{{ asset('sounds/notify.mp3') }}").play();
+            }
+            lastCount = data.count;
+        });
+        $.get("{{ route('admin.appointments.count') }}", function (d) { $('#appointment-count').text(d.count); });
+        $.get("{{ route('admin.quotes.count') }}", function (d) { if (d && typeof d.count !== 'undefined') $('#quote-count').text(d.count); });
+    }
+    fetchCounts();
+    setInterval(fetchCounts, 15000);
+    if (Notification.permission !== "granted") Notification.requestPermission();
+
+    // Session flash notifications
     @if(session('success'))
-    <script>
-        $.notify({
-            message: "{{ session('success') }}",
-            icon: 'fa fa-check-circle'
-        },{
-            type: "success",
-            placement: { from: "top", align: "center" },
-            delay: 3000,
-        });
-        </script>
+    $.notify({ message: "{{ session('success') }}", icon: 'fa fa-check-circle' }, { type: "success", placement: { from: "top", align: "center" }, delay: 3000 });
     @endif
-
     @if(session('error'))
-    <script>
-        $.notify({
-            message: "{{ session('error') }}",
-            icon: 'fa fa-exclamation-circle'
-        },{
-            type: "danger",
-            placement: { from: "top", align: "center" },
-            delay: 3000,
-        });
-        </script>
+    $.notify({ message: "{{ session('error') }}", icon: 'fa fa-exclamation-circle' }, { type: "danger", placement: { from: "top", align: "center" }, delay: 3000 });
     @endif
-
-
-<script src="{{asset('tinymce\tinymce.min.js')}}"></script>
-
-<script>
-    tinymce.init({
-      selector: '#myeditor',
-      height: 300,
-      license_key: 'gpl', // ✅ No API key required
-      menubar: false,
-      plugins: 'lists link image code',
-      toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist | link image | code',
-    });
-  </script>
-
-<script>
-    $(document).ready(function(){
-        $('#add_social').change(function(){
-            if($(this).is(':checked')){
-                $('#social-fields').slideDown();
-            } else {
-                $('#social-fields').slideUp();
-            }
-        });
-    });
+});
 </script>
 
-<script>
-let lastCount = 0;
-
-// 🔹 Count + notifications fetch
-function fetchEnquiryCount() {
-    $.get("{{ url('/admin/enquiries/latest') }}", function (data) {
-        // Sidebar badge
-        $('#enquiry-count').text(data.count);
-
-        // Header badge
-        $('#header-enquiry-count').text(data.count);
-
-        // Dropdown title
-        $('#notif-total').text(data.count);
-
-        // Header dropdown list
-        let html = '';
-        data.notifications.forEach(function(n) {
-            html += `
-                <a href="{{ url('/admin/enquiries') }}">
-                    <div class="notif-icon notif-primary">
-                        <i class="fa fa-envelope"></i>
-                    </div>
-                    <div class="notif-content">
-                        <span class="block">${n.username} sent enquiry</span>
-                        <span class="time">${new Date(n.created_at).toLocaleString()}</span>
-                    </div>
-                </a>`;
-        });
-        $('#notif-list').html(html);
-
-        // Agar nayi enquiry aayi
-        if (data.count > lastCount) {
-            // Browser notification
-            if (Notification.permission === "granted") {
-                new Notification("New Enquiry!", {
-                    body: "You have a new enquiry.",
-                    icon: "{{ asset('admin-icon.png') }}"
-                });
-            }
-
-            // Sound play
-            let audio = new Audio("{{ asset('sounds/notify.mp3') }}");
-            audio.play();
-        }
-
-        lastCount = data.count;
-    });
-
-    // Fetch Appointment count
-    $.get("{{ route('admin.appointments.count') }}", function (data) {
-        $('#appointment-count').text(data.count);
-    });
-
-    // Fetch Quote count
-    $.get("{{ route('admin.quotes.count') }}", function (data) {
-        if(data && typeof data.count !== 'undefined') {
-            $('#quote-count').text(data.count);
-        }
-    });
-}
-
-// 🔹 First load + repeat every 15 sec
-fetchEnquiryCount();
-setInterval(fetchEnquiryCount, 15000);
-
-// 🔹 Browser notification permission request
-if (Notification.permission !== "granted") {
-    Notification.requestPermission();
-}
-
-
-</script>
-
-
-
-  </body>
+</body>
 </html>

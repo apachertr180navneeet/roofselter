@@ -39,6 +39,8 @@ class SettingController extends Controller
             'about_description',
             'team_section_title',
             'team_section_tagline',
+            'faq_section_tagline',
+            'faq_section_title',
             'social_facebook',
             'social_instagram',
             'social_twitter',

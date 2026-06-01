@@ -1,112 +1,85 @@
 @extends('backend.layout.app')
 @section('title', 'Create Industry Service')
 @section('content')
-        <div class="container">
-          <div class="page-inner">
-            <div class="page-header">
-              <h3 class="fw-bold mb-3">Forms</h3>
-              <ul class="breadcrumbs mb-3">
-                <li class="nav-home">
-                  <a href="#">
-                    <i class="icon-home"></i>
-                  </a>
-                </li>
-                <li class="separator">
-                  <i class="icon-arrow-right"></i>
-                </li>
-                <li class="nav-item">
-                  <a href="#">Forms</a>
-                </li>
-                <li class="separator">
-                  <i class="icon-arrow-right"></i>
-                </li>
-                <li class="nav-item">
-                  <a href="#">Basic Form</a>
-                </li>
-              </ul>
-            </div>
-            <div class="row">
-              <div class="col-md-10 mx-auto">
-                <div class="card">
-                  <div class="card-header">
-                    <div class="card-title">Add Industry Service Record for Your Industries</div>
-                  </div>
-                  <form action="{{route('admin.industry-service-store')}}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-md-12 col-lg-12">
-                          <div class="form-group row">
-                              <div class="col-md-3">
-                                  <label for="industry_id">Select Your Industry </label>
-                              </div>
-                              <div class="col-md-9">
-                                  <select name="industry_id" id="industry_id" class="form-select select2" data-live-search="true">
-                                    <option>-- Select Your Industry --</option>
-                                    @foreach($industry_info as $industry)
-                                        <option value="{{ $industry->id }}">{{ $industry->title }}</option>
-                                    @endforeach
-                                  </select>
-                              </div> 
-                          </div>
-
-                          <div class="form-group row">
-                              <div class="col-md-3">
-                                  <label for="title">Title</label>
-                                  <span class="text-danger">*</span>
-                              </div>
-                              <div class="col-md-9">
-                                  <input
-                                      type="text"
-                                      name="title"
-                                      class="form-control @error('title') is-invalid @enderror"
-                                      id="title"
-                                      placeholder="Enter Title"
-                                  />
-                                  @error('title')
-                                    <p class="invalid-feedback">{{$message}}</p>
-                                  @enderror
-                                  <small id="titleHelp" class="form-text text-muted"
-                                          >Add Title for your selected Industry.
-                                  </small>
-
-                              </div>
-                          </div>
-
-                          <div class="form-group row">
-                              <div class="col-md-3">
-                                  <label for="icon">Select Your Icon </label>
-                              </div>
-                              <div class="col-md-9">
-                                  <select name="icon" id="icon" class="form-select select2" data-live-search="true">
-                                    
-                                  </select>
-                              </div> 
-                          </div>
-                          
-                          <div class="form-group row">
-                              <div class="col-md-3">
-                                  <label for="short_descripition">Short Description</label>
-                              </div>
-                              <div class="col-md-9">
-                                  <textarea id="short_description" class="form-control" row="4" name="short_description"></textarea>
-                              </div> 
-                          </div>
-
-                        
-                        </div>
-                      </div>
+<div class="space-y-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h3 class="text-base font-semibold text-gray-900">Add Industry Service Record for Your Industries</h3>
+        </div>
+        <form action="{{route('admin.industry-service-store')}}" method="post" enctype="multipart/form-data">
+          @csrf
+          <div class="admin-card-body">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+              <div class="md:col-span-12">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label for="industry_id">Select Your Industry </label>
                     </div>
-                    <div class="card-action text-center">
-                      <button class="btn btn-success" type="submit">Submit</button>
-                      <a href="{{route('admin.industry-service')}}" class="btn btn-danger">Cancel</a>
-                    </div>
-                  </form>
+                    <div class="md:col-span-3">
+                        <select name="industry_id" id="industry_id" class="admin-select select2" data-live-search="true">
+                          <option>-- Select Your Industry --</option>
+                          @foreach($industry_info as $industry)
+                              <option value="{{ $industry->id }}">{{ $industry->title }}</option>
+                          @endforeach
+                        </select>
+                    </div> 
                 </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label for="title">Title</label>
+                        <span class="text-red-500">*</span>
+                    </div>
+                    <div class="md:col-span-3">
+                        <input
+                            type="text"
+                            name="title"
+                            class="admin-input @error('title') border-red-500 @enderror"
+                            id="title"
+                            placeholder="Enter Title"
+                        />
+                        @error('title')
+                          <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                        @enderror
+                        <small id="titleHelp" class="text-xs text-gray-500"
+                                >Add Title for your selected Industry.
+                        </small>
+
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label for="icon">Select Your Icon </label>
+                    </div>
+                    <div class="md:col-span-3">
+                        <select name="icon" id="icon" class="admin-select select2" data-live-search="true">
+                          
+                        </select>
+                    </div> 
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label for="short_descripition">Short Description</label>
+                    </div>
+                    <div class="md:col-span-3">
+                        <textarea id="short_description" class="admin-textarea" row="4" name="short_description"></textarea>
+                    </div> 
+                </div>
+
+              
               </div>
             </div>
           </div>
-        </div>
+          <div class="px-6 py-4 border-t border-gray-100 text-center">
+            <button class="admin-btn-primary" type="submit">Submit</button>
+            <a href="{{route('admin.industry-service')}}" class="admin-btn-danger">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
 
 @endsection
-

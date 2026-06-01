@@ -1,159 +1,108 @@
-      <!-- Sidebar -->
-      <div class="sidebar" data-background-color="dark">
-        <div class="sidebar-logo pt-2">
-          <!-- Logo Header -->
-          <div class="logo-header" data-background-color="dark">
-            <a href="{{route('admin')}}" class="logo">
-              <img
-                src="{{ asset(get_setting('system_logo_black') ? 'img/'.get_setting('system_logo_black') : 'webtheme/assets/images/resources/RoofShelter-Logo1.jpg') }}"
-                alt="navbar brand"
-                class="navbar-brand rounded-3 bg-white"
-                height="auto"
-                width="110px"
-              />
+<aside id="admin-sidebar" class="admin-sidebar flex flex-col">
+    <div class="flex items-center h-16 px-4 border-b border-white/10 flex-shrink-0">
+        <a href="{{route('admin')}}" class="flex items-center gap-3">
+            <img src="{{ asset(get_setting('system_logo_white') ? 'img/'.get_setting('system_logo_white') : 'webtheme/assets/images/resources/RoofShelter-Logo1.jpg') }}" alt="Logo" class="h-9 w-auto rounded">
+            <span class="nav-text text-white font-semibold text-lg whitespace-nowrap">{{ get_setting('website_name') ?: 'RoofShelter' }}</span>
+        </a>
+    </div>
+
+    <nav class="flex-1 overflow-y-auto py-4 space-y-1">
+        <a href="{{route('admin')}}" class="nav-item{{ request()->routeIs('admin') ? ' active' : '' }}">
+            <i class="fas fa-home w-5 text-center nav-icon"></i>
+            <span class="nav-text">Dashboard</span>
+        </a>
+
+        <div class="px-4 pt-4 pb-1">
+            <span class="nav-text text-xs font-semibold uppercase tracking-wider text-gray-500">Content</span>
+        </div>
+
+        <a href="{{route('admin.slider')}}" class="nav-item{{ request()->routeIs('admin.slider*') ? ' active' : '' }}">
+            <i class="fas fa-sliders-h w-5 text-center nav-icon"></i>
+            <span class="nav-text">Slider</span>
+        </a>
+        <a href="{{route('admin.service')}}" class="nav-item{{ request()->routeIs('admin.service*') && !request()->routeIs('admin.service-*') ? ' active' : '' }}">
+            <i class="fas fa-cogs w-5 text-center nav-icon"></i>
+            <span class="nav-text">Services</span>
+        </a>
+        <a href="{{route('admin.team_members')}}" class="nav-item{{ request()->routeIs('admin.team_members*') ? ' active' : '' }}">
+            <i class="fas fa-user-friends w-5 text-center nav-icon"></i>
+            <span class="nav-text">Team Members</span>
+        </a>
+        <a href="{{route('admin.become-partner')}}" class="nav-item{{ request()->routeIs('admin.become-partner') ? ' active' : '' }}">
+            <i class="fas fa-handshake w-5 text-center nav-icon"></i>
+            <span class="nav-text">Partners</span>
+        </a>
+        <a href="{{route('admin.before-after')}}" class="nav-item{{ request()->routeIs('admin.before-after*') ? ' active' : '' }}">
+            <i class="fas fa-images w-5 text-center nav-icon"></i>
+            <span class="nav-text">Before & After</span>
+        </a>
+        <a href="{{route('admin.certifications')}}" class="nav-item{{ request()->routeIs('admin.certifications*') ? ' active' : '' }}">
+            <i class="fas fa-certificate w-5 text-center nav-icon"></i>
+            <span class="nav-text">Certifications</span>
+        </a>
+        <a href="{{route('admin.why-choose-us')}}" class="nav-item{{ request()->routeIs('admin.why-choose-us*') ? ' active' : '' }}">
+            <i class="fas fa-star w-5 text-center nav-icon"></i>
+            <span class="nav-text">Why Choose Us</span>
+        </a>
+
+        <div class="relative">
+            <a href="#" class="nav-item subnav-toggle{{ request()->routeIs('admin.blog*') || request()->routeIs('admin.blog-category*') ? ' active' : '' }}" data-target="projects-subnav">
+                <i class="fas fa-folder-open w-5 text-center nav-icon"></i>
+                <span class="nav-text flex-1">Projects</span>
+                <i class="fas fa-chevron-down text-xs transition-transform nav-text"></i>
             </a>
-            <div class="nav-toggle">
-              <button class="btn btn-toggle toggle-sidebar">
-                <i class="gg-menu-right"></i>
-              </button>
-              <button class="btn btn-toggle sidenav-toggler">
-                <i class="gg-menu-left"></i>
-              </button>
+            <div id="projects-subnav" class="subnav{{ request()->routeIs('admin.blog*') || request()->routeIs('admin.blog-category*') ? '' : ' hidden' }}">
+                <a href="{{route('admin.blog')}}" class="subnav-item{{ request()->routeIs('admin.blog') && !request()->routeIs('admin.blog-category*') ? ' active' : '' }}">All Projects</a>
+                <a href="{{route('admin.blog-category')}}" class="subnav-item{{ request()->routeIs('admin.blog-category*') ? ' active' : '' }}">Category</a>
             </div>
-            <button class="topbar-toggler more">
-              <i class="gg-more-vertical-alt"></i>
-            </button>
-          </div>
-          <!-- End Logo Header -->
         </div>
-        <div class="sidebar-wrapper scrollbar scrollbar-inner">
-          <div class="sidebar-content">
-            <ul class="nav nav-secondary">
-              <li class="nav-item{{ request()->routeIs('admin') ? ' active' : '' }}">
-                <a href="{{route('admin')}}">
-                  <i class="fas fa-home"></i>
-                  <p>Dashboard</p>
-                </a>
-              </li>
-              
-              <li class="nav-section">
-                <span class="sidebar-mini-icon">
-                  <i class="fa fa-ellipsis-h"></i>
-                </span>
-                <h4 class="text-section">Components</h4>
-              </li>
-              <li class="nav-item{{ request()->routeIs('admin.slider*') ? ' active' : '' }}">
-                <a href="{{route('admin.slider')}}">
-                  <i class="fas fa-sliders-h"></i>
-                  <p>Slider</p>
-                </a>
-              </li>
 
-              <li class="nav-item{{ request()->routeIs('admin.service*') && !request()->routeIs('admin.service-*') ? ' active' : '' }}">
-                <a href="{{route('admin.service')}}">
-                  <i class="icon-equalizer"></i>
-                  <p>Services</p>
-                </a>
-              </li>
-
-              <li class="nav-item{{ request()->routeIs('admin.team_members*') ? ' active' : '' }}">
-                <a href="{{route('admin.team_members')}}">
-                  <i class="fas fa-user-friends"></i>
-                  <p>Team Members</p>
-                </a>
-              </li>
-              <li class="nav-item{{ request()->routeIs('admin.become-partner') ? ' active' : '' }}">
-                <a href="{{route('admin.become-partner')}}">
-                  <i class="fas fa-handshake"></i>
-                  <p>Partners</p>
-                </a>
-              </li>
-              <li class="nav-item{{ request()->routeIs('admin.before-after*') ? ' active' : '' }}">
-                <a href="{{route('admin.before-after')}}">
-                  <i class="fas fa-images"></i>
-                  <p>Before & After</p>
-                </a>
-              </li>
-              <li class="nav-item{{ request()->routeIs('admin.certifications*') ? ' active' : '' }}">
-                <a href="{{route('admin.certifications')}}">
-                  <i class="fas fa-certificate"></i>
-                  <p>Certifications</p>
-                </a>
-              </li>
-              <li class="nav-item{{ request()->routeIs('admin.why-choose-us*') ? ' active' : '' }}">
-                <a href="{{route('admin.why-choose-us')}}">
-                  <i class="fas fa-star"></i>
-                  <p>Why Choose Us</p>
-                </a>
-              </li>
-              
-              <li class="nav-item{{ request()->routeIs('admin.blog*') || request()->routeIs('admin.blog-category*') ? ' active show' : '' }}">
-                <a data-bs-toggle="collapse" href="#blogs">
-                  <i class="fas fa-folder-open"></i>
-                  <p>Projects</p>
-                  <span class="caret"></span>
-                </a>
-                <div class="collapse{{ request()->routeIs('admin.blog*') || request()->routeIs('admin.blog-category*') ? ' show' : '' }}" id="blogs">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="{{route('admin.blog')}}" class="{{ request()->routeIs('admin.blog') && !request()->routeIs('admin.blog-category*') ? 'active' : '' }}">All Projects</a>
-                    </li>
-                    <li>
-                      <a href="{{route('admin.blog-category')}}" class="{{ request()->routeIs('admin.blog-category*') ? 'active' : '' }}">Category</a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-
-              <li class="nav-item{{ request()->routeIs('admin.testimonial*') ? ' active' : '' }}">
-                <a href="{{route('admin.testimonial')}}">
-                  <i class="fa fa-users"></i>
-                  <p>Testimonials</p>
-                </a>
-              </li>
-              <li class="nav-item{{ request()->routeIs('admin.galleries*') ? ' active' : '' }}">
-                <a href="{{route('admin.galleries')}}">
-                  <i class="fas fa-images"></i>
-                  <p>Gallery</p>
-                </a>
-              </li>
-              <li class="nav-item{{ request()->routeIs('admin.faqs*') ? ' active' : '' }}">
-                <a href="{{route('admin.faqs')}}">
-                  <i class="fas fa-question-circle"></i>
-                  <p>FAQs</p>
-                </a>
-              </li>
-              <li class="nav-item{{ request()->routeIs('admin.enquiries*') ? ' active' : '' }}">
-                <a href="{{ url('admin/enquiries') }}" id="enquiry-link">
-                  <i class="fas fa-bullhorn"></i>
-                  <p>Enquiries</p>
-                  <span id="enquiry-count" class="badge bg-danger">0</span>
-                </a>
-              </li>
-              <li class="nav-item{{ request()->routeIs('admin.appointments*') ? ' active' : '' }}">
-                <a href="{{ route('admin.appointments') }}" id="appointment-link">
-                  <i class="fas fa-calendar-check"></i>
-                  <p>Appointments</p>
-                  <span id="appointment-count" class="badge bg-warning text-dark">0</span>
-                </a>
-              </li>
-              <li class="nav-item{{ request()->routeIs('admin.quotes*') ? ' active' : '' }}">
-                <a href="{{ route('admin.quotes') }}" id="quote-link">
-                  <i class="fas fa-file-invoice-dollar"></i>
-                  <p>Quote Requests</p>
-                  <span id="quote-count" class="badge bg-success">0</span>
-                </a>
-              </li>
-              <li class="nav-item{{ request()->routeIs('admin.settings*') || request()->routeIs('admin.profile*') ? ' active' : '' }}">
-                <a href="{{route('admin.settings.index')}}">
-                  <i class="fas fa-desktop"></i>
-                  <p>Website Setup</p>
-                </a>
-              </li>
-            </ul>
-          </div>
+        <div class="px-4 pt-4 pb-1">
+            <span class="nav-text text-xs font-semibold uppercase tracking-wider text-gray-500">Inquiries</span>
         </div>
-      </div>
-      <!-- End Sidebar -->
+
+        <a href="{{route('admin.enquiries')}}" class="nav-item{{ request()->routeIs('admin.enquiries*') ? ' active' : '' }}">
+            <i class="fas fa-bullhorn w-5 text-center nav-icon"></i>
+            <span class="nav-text flex-1">Enquiries</span>
+            <span id="enquiry-count" class="nav-text px-2 py-0.5 text-xs rounded-full bg-red-500 text-white">0</span>
+        </a>
+        <a href="{{route('admin.appointments')}}" class="nav-item{{ request()->routeIs('admin.appointments*') ? ' active' : '' }}">
+            <i class="fas fa-calendar-check w-5 text-center nav-icon"></i>
+            <span class="nav-text flex-1">Appointments</span>
+            <span id="appointment-count" class="nav-text px-2 py-0.5 text-xs rounded-full bg-yellow-500 text-white">0</span>
+        </a>
+        <a href="{{route('admin.quotes')}}" class="nav-item{{ request()->routeIs('admin.quotes*') ? ' active' : '' }}">
+            <i class="fas fa-file-invoice-dollar w-5 text-center nav-icon"></i>
+            <span class="nav-text flex-1">Quote Requests</span>
+            <span id="quote-count" class="nav-text px-2 py-0.5 text-xs rounded-full bg-green-500 text-white">0</span>
+        </a>
+
+        <div class="px-4 pt-4 pb-1">
+            <span class="nav-text text-xs font-semibold uppercase tracking-wider text-gray-500">Engagement</span>
+        </div>
+
+        <a href="{{route('admin.testimonial')}}" class="nav-item{{ request()->routeIs('admin.testimonial*') ? ' active' : '' }}">
+            <i class="fa fa-users w-5 text-center nav-icon"></i>
+            <span class="nav-text">Testimonials</span>
+        </a>
+        <a href="{{route('admin.galleries')}}" class="nav-item{{ request()->routeIs('admin.galleries*') ? ' active' : '' }}">
+            <i class="fas fa-images w-5 text-center nav-icon"></i>
+            <span class="nav-text">Gallery</span>
+        </a>
+        <a href="{{route('admin.faqs')}}" class="nav-item{{ request()->routeIs('admin.faqs*') ? ' active' : '' }}">
+            <i class="fas fa-question-circle w-5 text-center nav-icon"></i>
+            <span class="nav-text">FAQs</span>
+        </a>
+
+        <div class="px-4 pt-4 pb-1">
+            <span class="nav-text text-xs font-semibold uppercase tracking-wider text-gray-500">System</span>
+        </div>
+
+        <a href="{{route('admin.settings.index')}}" class="nav-item{{ request()->routeIs('admin.settings*') || request()->routeIs('admin.profile*') ? ' active' : '' }}">
+            <i class="fas fa-desktop w-5 text-center nav-icon"></i>
+            <span class="nav-text">Website Setup</span>
+        </a>
+    </nav>
+</aside>
 
       

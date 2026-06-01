@@ -95,20 +95,8 @@ class HomeController extends Controller
 
     public function faq()
     {
-        $serviceFaqs = ServiceFaq::with('service')
-            ->where('status', 1)
-            ->get()
-            ->groupBy(function($faq) {
-                return $faq->service ? $faq->service->title : 'General';
-            });
-        $industryFaqs = IndustryFaq::with('industry')
-            ->where('status', 1)
-            ->get()
-            ->groupBy(function($faq) {
-                return $faq->industry ? $faq->industry->title : 'General';
-            });
-        $generalFaqs = Faq::where('status', 1)->get();
-        return view('frontend.faq', compact('serviceFaqs', 'industryFaqs', 'generalFaqs'));
+        $faqs = Faq::where('status', 1)->get();
+        return view('frontend.faq', compact('faqs'));
     }
 
     public function pricing()
