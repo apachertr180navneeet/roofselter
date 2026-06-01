@@ -1,0 +1,161 @@
+:root {
+  --brand-gold: #b48c50;
+  --brand-gold-rgb: 180, 140, 80;
+  --brand-charcoal: #3c3c3c;
+  --brand-charcoal-rgb: 60, 60, 60;
+  --brand-gold-light: #dcc8a0;
+}
+
+/* Sidebar brand colors */
+.sidebar.sidebar-style-2[data-background-color=dark2],
+.sidebar[data-background-color=dark],
+.sidebar .sidebar-wrapper[data-background-color=dark],
+.sidebar.sidebar-style-2 .sidebar-wrapper[data-background-color=dark] {
+  background: var(--brand-charcoal);
+}
+
+.sidebar .sidebar-wrapper .nav .nav-item.active a,
+.sidebar .sidebar-wrapper .nav .nav-item:hover a {
+  color: var(--brand-gold) !important;
+}
+
+.sidebar .sidebar-wrapper .nav .nav-item.active:before {
+  background: var(--brand-gold) !important;
+}
+
+.sidebar .sidebar-wrapper .nav .nav-item.active > a,
+.sidebar .sidebar-wrapper .nav .nav-item.active a:hover {
+  color: var(--brand-gold) !important;
+}
+
+/* Logo header */
+.logo-header[data-background-color=dark] {
+  background: var(--brand-charcoal) !important;
+}
+
+/* Primary button colors */
+.btn-primary {
+  background-color: var(--brand-gold) !important;
+  border-color: var(--brand-gold) !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #9e7a45 !important;
+  border-color: #9e7a45 !important;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active {
+  background-color: #9e7a45 !important;
+  border-color: #9e7a45 !important;
+}
+
+/* Primary text color */
+.text-primary {
+  color: var(--brand-gold) !important;
+}
+
+a {
+  color: var(--brand-gold);
+}
+
+a:hover {
+  color: #9e7a45;
+}
+
+/* Navbar */
+.main-header .navbar-header {
+  border-bottom: 1px solid rgba(var(--brand-gold-rgb), 0.15);
+}
+
+/* Dropdown menu active items */
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background: rgba(var(--brand-gold-rgb), 0.08);
+}
+
+/* Badge primary */
+.badge-primary {
+  background-color: var(--brand-gold) !important;
+}
+
+/* Custom template active state */
+.custom-template .custom-content .switcher .switch-block .btnSwitch button.selected:before {
+  background: var(--brand-gold) !important;
+}
+
+/* Page title colors */
+.page-title .page-category {
+  color: var(--brand-gold);
+}
+
+/* Form controls focus */
+.form-control:focus {
+  border-color: var(--brand-gold) !important;
+}
+
+/* Pagination active */
+.page-item.active .page-link {
+  background-color: var(--brand-gold) !important;
+  border-color: var(--brand-gold) !important;
+}
+
+/* Nav pills */
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: var(--brand-gold) !important;
+}
+
+/* Progress bar */
+.progress-bar {
+  background-color: var(--brand-gold) !important;
+}
+
+/* Select2 overrides */
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+  background-color: var(--brand-gold) !important;
+}
+
+/* Switch toggle */
+.custom-switch-input:checked ~ .custom-switch-indicator {
+  background: var(--brand-gold) !important;
+}
+
+/* Alert primary */
+.alert-primary {
+  background-color: rgba(var(--brand-gold-rgb), 0.15) !important;
+  border-color: rgba(var(--brand-gold-rgb), 0.3) !important;
+  color: var(--brand-charcoal) !important;
+}
+
+/* SweetAlert confirm button */
+.swal-button--confirm {
+  background-color: var(--brand-gold) !important;
+}
+
+.swal-button--confirm:hover {
+  background-color: #9e7a45 !important;
+}
+
+/* DataTable buttons */
+.dataTable > thead > tr > th.sorting_asc:before,
+.dataTable > thead > tr > th.sorting_desc:after {
+  color: var(--brand-gold) !important;
+}
+
+/* Card header with bg-primary */
+.card-header[class*="bg-primary"] {
+  background: linear-gradient(135deg, var(--brand-gold), #9e7a45) !important;
+}
+
+/* Footer border */
+.main-header .navbar-header {
+  border-bottom-color: rgba(var(--brand-gold-rgb), 0.1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar-thumb {
+  background: var(--brand-gold) !important;
+}
