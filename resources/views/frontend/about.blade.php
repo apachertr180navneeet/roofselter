@@ -1,55 +1,44 @@
 @extends('frontend.layout.app')
-@section('meta_title', 'About Us | ' . (get_setting('website_name') ?: 'RoofShelter'))
-@section('meta_description', 'Learn about our company, mission, and team.')
+@section('meta_title', (get_setting('about_section_tagline') ?: 'About Us') . ' | ' . (get_setting('website_name') ?: 'RoofShelter'))
+@section('meta_description', get_setting('about_section_title') ?: 'Learn about our company, mission, and team.')
 @section('content')
 <section class="page-header">
     <div class="container">
         <div class="page-header__inner">
-            <h2>About Us</h2>
+            <h2>{{ get_setting('about_section_tagline') ?: 'About Us' }}</h2>
             <ul class="thm-breadcrumb">
                 <li><a href="{{ route('home') }}">Home</a></li>
                 <li><span class="icon-chevron-right"></span></li>
-                <li>About Us</li>
+                <li>{{ get_setting('about_section_tagline') ?: 'About Us' }}</li>
             </ul>
         </div>
     </div>
 </section>
 
-@foreach($abouts as $about)
+@if(get_setting('about_title') || get_setting('about_description'))
 <section class="about-one" id="about">
     <div class="container">
         <div class="row">
-            <div class="col-xl-6 wow fadeInRight">
-                <div class="about-one__img">
-                    <div class="about-one__img-inner">
-                        <div class="about-one__img1">
-                            <img src="{{ $about->image ? asset('img/'.$about->image) : asset('assets/img/placeholder-image-3.jpg') }}" alt="{{ $about->title }}">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-6 wow fadeInLeft">
+            <div class="col-xl-12 wow fadeInLeft">
                 <div class="about-one__content">
                     <div class="section-title sec-title-animation animation-style2">
-                        <div class="section-title__tagline title-animation"><h4>// {{ $about->category->category_name ?? 'About Us' }} //</h4></div>
-                        <h2 class="section-title__title title-animation">{{ $about->title }}</h2>
+                        <div class="section-title__tagline title-animation"><h4>// {{ get_setting('about_section_tagline', 'About Us') }} //</h4></div>
+                        <h2 class="section-title__title title-animation">{{ get_setting('about_title', 'Welcome to RoofShelter') }}</h2>
                     </div>
-                    <div class="about-one__content-text"><p>{!! $about->description !!}</p></div>
-                    @if($about->description2)
-                        <div class="about-one__content-text mt-3"><p>{!! $about->description2 !!}</p></div>
-                    @endif
+                    <div class="about-one__content-text"><p>{{ get_setting('about_description') }}</p></div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-@endforeach
+@endif
 
+@if($team_members->count() > 0)
 <section class="team-one" id="team">
     <div class="container">
         <div class="section-title text-center sec-title-animation animation-style2">
-            <div class="section-title__tagline title-animation"><h4>// Our Team //</h4></div>
-            <h2 class="section-title__title title-animation">Meet Our Expert Team</h2>
+            <div class="section-title__tagline title-animation"><h4>// {{ get_setting('team_section_tagline', 'Our Team') }} //</h4></div>
+            <h2 class="section-title__title title-animation">{{ get_setting('team_section_title', 'Meet Our Expert Team') }}</h2>
         </div>
         <div class="row">
             @foreach($team_members as $team)
@@ -74,4 +63,5 @@
         </div>
     </div>
 </section>
+@endif
 @endsection

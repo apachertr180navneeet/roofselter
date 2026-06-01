@@ -78,7 +78,7 @@
                                     
                                     <li>
                                         <div class="text mt-4">
-                                            <pre>ABN      678671880</pre>
+                                            <pre>ABN      {{ get_setting('contact_abn', '678671880') }}</pre>
                                         </div>
                                     </li>
                                 </ul>

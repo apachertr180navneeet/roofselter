@@ -73,7 +73,11 @@
                         <ul>
                             @foreach($recentPosts as $recent)
                             <li>
+                                @if($recent->slug)
                                 <h5><a href="{{ route('home.blog-details', $recent->slug) }}">{{ $recent->title }}</a></h5>
+                                @else
+                                <h5>{{ $recent->title }}</h5>
+                                @endif
                                 <span>{{ $recent->created_at->format('M d, Y') }}</span>
                             </li>
                             @endforeach

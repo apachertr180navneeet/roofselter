@@ -29,6 +29,8 @@ use App\Http\Controllers\admin\WhyChooseUsController;
 use App\Http\Controllers\admin\BeforeAfterImageController;
 use App\Http\Controllers\admin\CertificationController;
 use App\Http\Controllers\admin\BecomePartnerAdminController;
+use App\Http\Controllers\admin\FaqController;
+use App\Http\Controllers\admin\GalleryController;
 use App\Http\Controllers\BecomePartnerController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
@@ -309,6 +311,22 @@ Route::group(['prefix' => 'admin'], function() {
         Route::post('industry-features/{id}/update',[IndustryFeatureController::class,'update'])->name('admin.industry-features-update');
         Route::get('industry-features/{id}/destroy',[IndustryFeatureController::class,'destroy'])->name('admin.industry-features-destroy');
         Route::post('industry-features/toggle-status', [IndustryFeatureController::class, 'industryFeatures_toggleStatus'])->name('admin.industry-features-status');
+
+        // Admin FAQs
+        Route::get('faqs', [FaqController::class, 'index'])->name('admin.faqs');
+        Route::post('faqs/store', [FaqController::class, 'store'])->name('admin.faqs-store');
+        Route::get('faqs/{id}/edit', [FaqController::class, 'edit'])->name('admin.faqs-edit');
+        Route::post('faqs/{id}/update', [FaqController::class, 'update'])->name('admin.faqs-update');
+        Route::get('faqs/{id}/destroy', [FaqController::class, 'destroy'])->name('admin.faqs-destroy');
+        Route::post('faqs/toggle-status', [FaqController::class, 'toggleStatus'])->name('admin.faqs-status');
+
+        // Admin Gallery
+        Route::get('galleries', [GalleryController::class, 'index'])->name('admin.galleries');
+        Route::post('galleries/store', [GalleryController::class, 'store'])->name('admin.galleries-store');
+        Route::get('galleries/{id}/edit', [GalleryController::class, 'edit'])->name('admin.galleries-edit');
+        Route::post('galleries/{id}/update', [GalleryController::class, 'update'])->name('admin.galleries-update');
+        Route::get('galleries/{id}/destroy', [GalleryController::class, 'destroy'])->name('admin.galleries-destroy');
+        Route::post('galleries/toggle-status', [GalleryController::class, 'toggleStatus'])->name('admin.galleries-status');
 
         // Admin Icon
         Route::post('/icons/add', [IconController::class, 'add'])->name('icons.add');

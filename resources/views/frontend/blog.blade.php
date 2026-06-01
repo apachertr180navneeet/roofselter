@@ -30,11 +30,17 @@
                         </div>
                     </div>
                     <div class="blog-one__single-content">
+                        @if($blog->slug)
                         <h2><a href="{{ route('home.blog-details', $blog->slug) }}">{{ $blog->title }}</a></h2>
+                        @else
+                        <h2>{{ $blog->title }}</h2>
+                        @endif
                         <p>{{ \Illuminate\Support\Str::limit($blog->short_description, 100) }}</p>
+                        @if($blog->slug)
                         <div class="btn-box">
                             <a href="{{ route('home.blog-details', $blog->slug) }}">Read More <span class="icon-next1"></span></a>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

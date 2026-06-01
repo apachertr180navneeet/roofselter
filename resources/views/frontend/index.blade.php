@@ -130,86 +130,23 @@
         </section>
         <!--End Features One-->
 
+        @if(get_setting('about_title') || get_setting('about_description'))
         <!--Start About One-->
-        @foreach($abouts as $key => $about)
         <section class="about-one" id="about">
             <div class="container">
                 <div class="row">
-                    <!--Start About One Img-->
-                    <div class="col-xl-6 wow fadeInRight" data-wow-delay="200ms" data-wow-duration="1500ms">
-                        <div class="about-one__img">
-                            <div class="about-one__img-inner">
-                                <div class="about-one__img1">
-                                    <img src="{{ $about->image ? asset('img/'.$about->image) : asset('assets/img/placeholder-image-3.jpg') }}" alt="">
-                                </div>
-                            </div>
-
-                            <div class="about-one__counter-box">
-                                <div class="icon-box">
-                                    <span class="icon-roof-3"></span>
-                                </div>
-
-                                <div class="content-box">
-                                    <div class="count-box">
-                                        <h2 class="count-text" data-stop="9" data-speed="1500">00</h2>
-                                        <span class="k">k</span>
-                                        <span class="plus">+</span>
-                                    </div>
-                                    <p>Complete Projects</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End About One Img-->
-
                     <!--Start About One Content-->
-                    <div class="col-xl-6 wow fadeInLeft" data-wow-delay="200ms" data-wow-duration="1500ms">
+                    <div class="col-xl-12 wow fadeInLeft" data-wow-delay="200ms" data-wow-duration="1500ms">
                         <div class="about-one__content">
                             <div class="section-title sec-title-animation animation-style2">
                                 <div class="section-title__tagline title-animation">
-                                    <h4>// About Us //</h4>
+                                    <h4>// {{ get_setting('about_section_tagline', 'About Us') }} //</h4>
                                 </div>
-                                <h2 class="section-title__title title-animation">{{ $about->title }}</h2>
+                                <h2 class="section-title__title title-animation">{{ get_setting('about_title', 'Welcome to RoofShelter') }}</h2>
                             </div>
 
                             <div class="about-one__content-text">
-                                <p>{!! $about->description !!}</p>
-                            </div>
-
-                            <div class="about-one__content-list-box d-none">
-                                <div class="row">
-                                    <div class="col-xl-6 col-lg-6 col-md-6">
-                                        <div class="about-one__content-list">
-                                            <ul>
-                                                <li>
-                                                    <p><span class="icon-verified"></span> Expert & Professional</p>
-                                                </li>
-
-                                                <li>
-                                                    <p><span class="icon-verified"></span> Professional Approach</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-6 col-lg-6 col-md-6">
-                                        <div class="about-one__content-list">
-                                            <ul>
-                                                <li>
-                                                    <p><span class="icon-verified"></span> Hight Quality Work</p>
-                                                </li>
-
-                                                <li>
-                                                    <p><span class="icon-verified"></span> Satisfaction Guarantee</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="about-one__content-btn d-none">
-                                <a href="about.html" class="thm-btn">About Us <span class="icon-next1"></span></a>
+                                <p>{{ get_setting('about_description') }}</p>
                             </div>
                         </div>
                     </div>
@@ -217,8 +154,8 @@
                 </div>
             </div>
         </section>
-        @endforeach
         <!--End About One-->
+        @endif
 
         <!--Start Service One-->
         <section class="service-one">
@@ -537,6 +474,7 @@
         </section>
         <!--End Testimonials One-->
 
+        @if($faqs->count() > 0)
         <!--Start Faq One-->
         <section class="faq-one" id="faq">
             <div class="container">
@@ -553,45 +491,18 @@
                             </div>
 
                             <div class="accrodion-grp faq-one-accrodion" data-grp-name="faq-one-accrodion-1">
-
-                                <div class="accrodion active">
+                                @foreach($faqs as $faq)
+                                <div class="accrodion {{ $loop->first ? 'active' : '' }}">
                                     <div class="accrodion-title">
-                                        <h4>How can I track my shipment?</h4>
+                                        <h4>{{ $faq->question }}</h4>
                                     </div>
-
                                     <div class="accrodion-content">
                                         <div class="inner">
-                                            <p>It is recommended to inspect your roof at least twice a year, in the
-                                                spring and fall. Signs include</p>
+                                            <p>{{ $faq->answer }}</p>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="accrodion">
-                                    <div class="accrodion-title">
-                                        <h4>How long does a roof replacement?</h4>
-                                    </div>
-
-                                    <div class="accrodion-content">
-                                        <div class="inner">
-                                            <p>It is recommended to inspect your roof at least twice a year, in the
-                                                spring and fall. Signs include</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accrodion">
-                                    <div class="accrodion-title">
-                                        <h4>Why does a roof Install take?</h4>
-                                    </div>
-
-                                    <div class="accrodion-content">
-                                        <div class="inner">
-                                            <p>It is recommended to inspect your roof at least twice a year, in the
-                                                spring and fall. Signs include</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -617,7 +528,7 @@
 
                                             <div class="faq-one__counter-single-content">
                                                 <div class="count-box">
-                                                    <h2 class="count-text" data-stop="450" data-speed="1500">00</h2>
+                                                    <h2 class="count-text" data-stop="{{ get_setting('counter_projects', '450') }}" data-speed="1500">00</h2>
                                                     <span class="plus">+</span>
                                                 </div>
 
@@ -634,7 +545,7 @@
 
                                             <div class="faq-one__counter-single-content">
                                                 <div class="count-box">
-                                                    <h2 class="count-text" data-stop="370" data-speed="1500">00</h2>
+                                                    <h2 class="count-text" data-stop="{{ get_setting('counter_clients', '370') }}" data-speed="1500">00</h2>
                                                     <span class="plus">+</span>
                                                 </div>
 
@@ -651,7 +562,7 @@
 
                                             <div class="faq-one__counter-single-content">
                                                 <div class="count-box">
-                                                    <h2 class="count-text" data-stop="100" data-speed="1500">00</h2>
+                                                    <h2 class="count-text" data-stop="{{ get_setting('counter_team', '100') }}" data-speed="1500">00</h2>
                                                     <span class="plus">+</span>
                                                 </div>
 
@@ -668,7 +579,7 @@
 
                                             <div class="faq-one__counter-single-content">
                                                 <div class="count-box">
-                                                    <h2 class="count-text" data-stop="10" data-speed="1500">00</h2>
+                                                    <h2 class="count-text" data-stop="{{ get_setting('counter_years', '10') }}" data-speed="1500">00</h2>
                                                     <span class="plus">+</span>
                                                 </div>
 
@@ -685,6 +596,7 @@
             </div>
         </section>
         <!--End Faq One-->
+        @endif
 
         <!--Start Newsletter One-->
         <section class="newsletter-one d-none">

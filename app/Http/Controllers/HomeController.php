@@ -16,6 +16,8 @@ use App\Models\Testimonial;
 use App\Models\WhyChooseUs;
 use App\Models\BeforeAfterImage;
 use App\Models\Certification;
+use App\Models\Faq;
+use App\Models\Gallery;
 use App\Models\ProjectImage;
 use Illuminate\Http\Request;
 
@@ -36,11 +38,12 @@ class HomeController extends Controller
         $why_choose_us = WhyChooseUs::where('status',1)->orderBy('sort_order')->get();
         $before_after_images = BeforeAfterImage::where('status',1)->orderBy('sort_order')->get();
         $certifications = Certification::where('status',1)->orderBy('sort_order')->get();
+        $faqs = Faq::where('status',1)->get();
 
         return view('frontend.index', compact(
             'sliders','services','abouts','testimonials','team_members',
             'industries','projects','projects_categories','why_choose_us',
-            'before_after_images','certifications'
+            'before_after_images','certifications','faqs'
         ));
     }
 
@@ -104,7 +107,8 @@ class HomeController extends Controller
             ->groupBy(function($faq) {
                 return $faq->industry ? $faq->industry->title : 'General';
             });
-        return view('frontend.faq', compact('serviceFaqs', 'industryFaqs'));
+        $generalFaqs = Faq::where('status', 1)->get();
+        return view('frontend.faq', compact('serviceFaqs', 'industryFaqs', 'generalFaqs'));
     }
 
     public function pricing()
@@ -119,14 +123,15 @@ class HomeController extends Controller
 
     public function gallery()
     {
-        $galleryImages = ProjectImage::with('blog')
+        $projectImages = ProjectImage::with('blog')
             ->orderBy('sort_order')
             ->get();
         $projects = Blog::with('galleryImages')
             ->where('status', 1)
             ->whereHas('galleryImages')
             ->get();
-        return view('frontend.gallery', compact('galleryImages', 'projects'));
+        $galleryImages = Gallery::where('status', 1)->orderBy('sort_order')->get();
+        return view('frontend.gallery', compact('projectImages', 'projects', 'galleryImages'));
     }
 
     public function services()

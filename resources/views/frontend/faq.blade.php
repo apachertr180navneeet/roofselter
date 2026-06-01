@@ -17,6 +17,26 @@
 
 <section class="faq-page">
     <div class="container">
+        @if($generalFaqs->count())
+        <div class="faq-group mb-5">
+            <h3 class="faq-group__title">General</h3>
+            <div class="accrodion-grp" data-grp-name="general-faq">
+                @foreach($generalFaqs as $index => $faq)
+                <div class="accrodion {{ $loop->first ? 'active' : '' }}">
+                    <div class="accrodion-title">
+                        <h4>{{ $faq->question }}</h4>
+                    </div>
+                    <div class="accrodion-content" style="{{ $loop->first ? 'display: block;' : 'display: none;' }}">
+                        <div class="inner">
+                            <p>{{ $faq->answer }}</p>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+        @endif
+
         @if($serviceFaqs->count())
             @foreach($serviceFaqs as $serviceTitle => $faqs)
             <div class="faq-group mb-5">
@@ -61,7 +81,7 @@
             @endforeach
         @endif
 
-        @if(!$serviceFaqs->count() && !$industryFaqs->count())
+        @if(!$generalFaqs->count() && !$serviceFaqs->count() && !$industryFaqs->count())
         <div class="text-center py-5">
             <h4>No FAQs available at the moment.</h4>
             <p>Please check back later or <a href="{{ route('home.contact-us') }}">contact us</a> for any questions.</p>

@@ -17,7 +17,8 @@
 
 <section class="gallery-page">
     <div class="container">
-        @if($projects->count())
+        @if($projects->count() > 0 || $projectImages->count() > 0 || $galleryImages->count() > 0)
+            @if($projects->count() > 0)
             <div class="section-title text-center sec-title-animation animation-style2">
                 <div class="section-title__tagline title-animation"><h4>// Our Projects //</h4></div>
                 <h2 class="section-title__title title-animation">Project Gallery</h2>
@@ -35,7 +36,11 @@
                             </div>
                         </div>
                         <div class="gallery-one__single-content">
+                            @if($project->slug)
                             <h3><a href="{{ route('home.blog-details', $project->slug) }}">{{ $project->title }}</a></h3>
+                            @else
+                            <h3>{{ $project->title }}</h3>
+                            @endif
                             @if($project->location)
                                 <p><span class="icon-gps"></span> {{ $project->location }}</p>
                             @endif
@@ -44,14 +49,15 @@
                 </div>
                 @endforeach
             </div>
+            @endif
 
-            @if($galleryImages->count())
+            @if($projectImages->count() > 0)
             <div class="section-title text-center sec-title-animation animation-style2 mt-5">
                 <div class="section-title__tagline title-animation"><h4>// Extra Shots //</h4></div>
                 <h2 class="section-title__title title-animation">More Photos</h2>
             </div>
             <div class="row">
-                @foreach($galleryImages as $image)
+                @foreach($projectImages as $image)
                 <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp">
                     <div class="gallery-one__single">
                         <div class="gallery-one__single-img">
@@ -65,6 +71,34 @@
                         @if($image->label)
                         <div class="gallery-one__single-content">
                             <p>{{ $image->label }}</p>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            @endif
+
+            @if($galleryImages->count() > 0)
+            <div class="section-title text-center sec-title-animation animation-style2 mt-5">
+                <div class="section-title__tagline title-animation"><h4>// Gallery //</h4></div>
+                <h2 class="section-title__title title-animation">Photo Gallery</h2>
+            </div>
+            <div class="row">
+                @foreach($galleryImages as $image)
+                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp">
+                    <div class="gallery-one__single">
+                        <div class="gallery-one__single-img">
+                            <img src="{{ asset('img/'.$image->image) }}" alt="{{ $image->caption ?? 'Gallery image' }}" style="height:200px;width:100%;object-fit:cover;">
+                            <div class="gallery-one__single-img-overlay">
+                                <a href="{{ asset('img/'.$image->image) }}" class="img-popup">
+                                    <span class="icon-plus"></span>
+                                </a>
+                            </div>
+                        </div>
+                        @if($image->caption)
+                        <div class="gallery-one__single-content">
+                            <p>{{ $image->caption }}</p>
                         </div>
                         @endif
                     </div>

@@ -111,6 +111,18 @@
                   <p>Testimonials</p>
                 </a>
               </li>
+              <li class="nav-item{{ request()->routeIs('admin.galleries*') ? ' active' : '' }}">
+                <a href="{{route('admin.galleries')}}">
+                  <i class="fas fa-images"></i>
+                  <p>Gallery</p>
+                </a>
+              </li>
+              <li class="nav-item{{ request()->routeIs('admin.faqs*') ? ' active' : '' }}">
+                <a href="{{route('admin.faqs')}}">
+                  <i class="fas fa-question-circle"></i>
+                  <p>FAQs</p>
+                </a>
+              </li>
               <li class="nav-item{{ request()->routeIs('admin.enquiries*') ? ' active' : '' }}">
                 <a href="{{ url('admin/enquiries') }}" id="enquiry-link">
                   <i class="fas fa-bullhorn"></i>

@@ -9,6 +9,6 @@
     <url><loc>{{ route('home.service-detail', $s->slug) }}</loc><lastmod>{{ $s->updated_at->format('Y-m-d') }}</lastmod><priority>0.6</priority></url>
     @endforeach
     @foreach($projects as $p)
-    <url><loc>{{ route('home.blog-details', $p->slug) }}</loc><lastmod>{{ $p->updated_at->format('Y-m-d') }}</lastmod><priority>0.6</priority></url>
+    @if($p->slug)<url><loc>{{ route('home.blog-details', $p->slug) }}</loc><lastmod>{{ $p->updated_at->format('Y-m-d') }}</lastmod><priority>0.6</priority></url>@endif
     @endforeach
 </urlset>
