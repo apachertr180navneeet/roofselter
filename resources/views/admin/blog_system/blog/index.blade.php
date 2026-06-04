@@ -14,7 +14,7 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Image</th>
-                        <th scope="col" class="text-right">Title</th>
+                        <th scope="col">Title</th>
                         <th scope="col" class="text-right">Category</th>
                         <th scope="col" class="text-right">Published</th>
                         <th scope="col" class="text-right">Action</th>
@@ -25,19 +25,18 @@
                     <tr id="record-row-{{ $blog->id }}">
                         <td>{{ $loop->iteration }}</td>
                         <td>
-                            <p class="demo">
-                            <div class="w-12 h-12 rounded-lg object-cover">
+                            <div class="w-12 h-12 rounded-lg overflow-hidden">
                                 <img src="{{asset($blog->image ? 'img/'.$blog->image : '../panel-assets/assets/img/placeholder-image-3.jpg')}}" alt="{{ $blog->title }}" class="w-12 h-12 rounded-lg object-cover">
                             </div>
-                            </p>
                         </td>
-                        <th scope="row">
-                            <button
-                                class="admin-btn-primary admin-btn-icon admin-btn-sm me-2">
-                                <i class="fa fa-check"></i>
-                            </button>
-                            {{ $blog->title ? $blog->title : '--' }}
-                        </th>
+                        <td>
+                            <div class="flex items-center gap-2">
+                                <button class="admin-btn-primary admin-btn-icon admin-btn-sm">
+                                    <i class="fa fa-check"></i>
+                                </button>
+                                <span>{{ $blog->title ? $blog->title : '--' }}</span>
+                            </div>
+                        </td>
 
                         <td class="text-right">
                             @if($blog->category != null)
