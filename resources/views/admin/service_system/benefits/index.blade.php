@@ -24,13 +24,13 @@
                     @foreach($service_benefits as $benefits)
                     <tr id="record-row-{{ $benefits->id }}">
                         <td>{{ $loop->iteration }}</td>
-                        <th scope="row">
+                        <td>
                             <button
                                 class="admin-btn-success admin-btn-sm admin-btn-icon mr-2">
                                 <i class="fa fa-check"></i>
                             </button>
                             {{ $benefits->title ? $benefits->title : '--' }}
-                        </th>
+                        </td>
                         <td class="text-center">
                             @if($benefits->service != null)
                                 {{ $benefits->service->title }}

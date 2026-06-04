@@ -24,13 +24,13 @@
                     @foreach($industry_service as $industry)
                     <tr id="record-row-{{ $industry->id }}">
                         <td>{{ $loop->iteration }}</td>
-                        <th scope="row">
+                        <td>
                             <button
                                 class="admin-btn-success admin-btn-sm admin-btn-icon mr-2">
                                 <i class="fa fa-check"></i>
                             </button>
                             {{ $industry->title ? $industry->title : '--' }}
-                        </th>
+                        </td>
                         <td class="text-center">
                             @if($industry->industry != null)
                                 {{ $industry->industry->title }}

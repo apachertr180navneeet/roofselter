@@ -14,10 +14,10 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Image</th>
-                        <th scope="col" class="text-right">Title</th>
-                        <th scope="col" class="text-right">Short Desc</th>
-                        <th scope="col" class="text-right">Published</th>
-                        <th scope="col" class="text-right">Action</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Short Desc</th>
+                        <th scope="col">Published</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,19 +25,17 @@
                     <tr id="record-row-{{ $industry->id }}">
                         <td>{{ $loop->iteration }}</td>
                         <td>
-                            <p class="demo">
                             <div class="avatar">
-                                <img src="{{asset($industry->image ? 'img/'.$industry->image : '../panel-assets/assets/img/placeholder-image-3.jpg')}}" alt="{{ $industry->title }}" class="avatar-img rounded">
+                                <img src="{{asset($industry->image ? 'img/'.$industry->image : 'panel-assets/assets/img/placeholder-image.svg')}}" alt="{{ $industry->title }}" class="avatar-img rounded">
                             </div>
-                            </p>
                         </td>
-                        <th scope="row">
+                        <td>
                             <button
                                 class="admin-btn-success admin-btn-sm admin-btn-icon mr-2">
                                 <i class="fa fa-check"></i>
                             </button>
                             {{ $industry->title ? $industry->title : '--' }}
-                        </th>
+                        </td>
 
                         
                         <td class="text-right">{{ $industry->short_description ? $industry->short_description : '--' }}</td>

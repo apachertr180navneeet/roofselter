@@ -27,7 +27,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td class="text-center">
                                     <div class="inline-flex">
-                                        <img src="{{ asset($gallery->image ? 'img/'.$gallery->image : '../panel-assets/assets/img/placeholder-image-3.jpg') }}" alt="{{ $gallery->caption }}" class="rounded-lg object-cover" style="width:80px;height:60px;object-fit:cover;">
+                                        <img src="{{ asset($gallery->image ? 'img/'.$gallery->image : 'panel-assets/assets/img/placeholder-image.svg') }}" alt="{{ $gallery->caption }}" class="rounded-lg object-cover" style="width:80px;height:60px;object-fit:cover;">
                                     </div>
                                 </td>
                                 <td>{{ $gallery->caption ?? '--' }}</td>

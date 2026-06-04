@@ -24,13 +24,13 @@
                     @foreach($service_features as $features)
                     <tr id="record-row-{{ $features->id }}">
                         <td>{{ $loop->iteration }}</td>
-                        <th scope="row">
+                        <td>
                             <button
                                 class="admin-btn-success admin-btn-sm admin-btn-icon mr-2">
                                 <i class="fa fa-check"></i>
                             </button>
                             {{ $features->title ? $features->title : '--' }}
-                        </th>
+                        </td>
                         <td class="text-center">
                             @if($features->service != null)
                                 {{ $features->service->title }}

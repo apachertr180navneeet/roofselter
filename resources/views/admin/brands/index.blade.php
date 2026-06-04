@@ -26,11 +26,9 @@
                                 <tr id="record-row-{{ $brand->id }}">
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
-                                        <p class="demo">
                                         <div class="avatar">
-                                            <img src="{{asset($brand->image ? 'img/'.$brand->image : '../panel-assets/assets/img/placeholder-image-3.jpg')}}" alt="{{ $brand->brands_name }}" class="avatar-img rounded">
+                                            <img src="{{asset($brand->image ? 'img/'.$brand->image : 'panel-assets/assets/img/placeholder-image.svg')}}" alt="{{ $brand->brands_name }}" class="avatar-img rounded">
                                         </div>
-                                        </p>
                                     </td>
                                     <td class="text-center">{{ $brand->brand_name ? $brand->brand_name : '--' }}</td>
                                     <td class="text-center">

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
-use App\Models\BlogCategory;
 use App\Models\ProjectImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -17,8 +16,7 @@ class BlogController extends Controller
     }
 
     public function create(){
-        $blog_categories = BlogCategory::where('status',1)->get();
-        return view('admin.blog_system.blog.create',compact('blog_categories'));
+        return view('admin.blog_system.blog.create');
     }
 
     public function store(Request $request)
@@ -29,7 +27,6 @@ class BlogController extends Controller
 
         if ($validator->passes()) {
             $create = new Blog();
-            $create->category_id = $request->category_id;
             $create->title = $request->title;
             $create->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->slug));
             $create->short_description = $request->short_description;
@@ -70,8 +67,7 @@ class BlogController extends Controller
 
     public function edit($id){
         $blog = Blog::with('galleryImages')->find($id);
-        $blog_categories = BlogCategory::where('status',1)->get();
-        return view('admin.blog_system.blog.edit',compact('blog','blog_categories'));
+        return view('admin.blog_system.blog.edit',compact('blog'));
     }
 
     public function update(Request $request, $id)
@@ -83,7 +79,6 @@ class BlogController extends Controller
         if ($validator->passes()) {
             $update = Blog::find($id);
             $update->title = $request->title;
-            $update->category_id = $request->category_id;
             $update->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->slug));
             $update->short_description = $request->short_description;
             $update->description = $request->description;

@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Blog extends Model
 {
     protected $fillable = [
-        'category_id',
         'title',
         'slug',
         'short_description',
@@ -21,10 +20,6 @@ class Blog extends Model
         'meta_description',
         'meta_keywords',
     ];
-
-    public function category() {
-        return $this->belongsTo(BlogCategory::class, 'category_id');
-    }
 
     public function galleryImages()
     {

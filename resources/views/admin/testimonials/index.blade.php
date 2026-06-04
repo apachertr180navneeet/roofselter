@@ -14,11 +14,11 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Image</th>
-                        <th scope="col" class="text-right">Name</th>
-                        <th scope="col" class="text-right">Designation</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Designation</th>
                         <th scope="col" class="text-center">Rating</th>
-                        <th scope="col" class="text-right">Published</th>
-                        <th scope="col" class="text-right">Action</th>
+                        <th scope="col">Published</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,22 +26,20 @@
                     <tr id="record-row-{{ $testimonial->id }}">
                         <td>{{ $loop->iteration }}</td>
                         <td>
-                            <p class="demo">
                             <div class="w-12 h-12 rounded-lg object-cover">
-                                <img src="{{asset($testimonial->image ? 'img/'.$testimonial->image : '../panel-assets/assets/img/placeholder-image-3.jpg')}}" alt="{{ $testimonial->title }}" class="w-12 h-12 rounded-lg object-cover">
+                                <img src="{{asset($testimonial->image ? 'img/'.$testimonial->image : 'panel-assets/assets/img/placeholder-image.svg')}}" alt="{{ $testimonial->title }}" class="w-12 h-12 rounded-lg object-cover">
                             </div>
-                            </p>
                         </td>
-                        <th scope="row">
+                        <td>
                             <button
                                 class="admin-btn-primary admin-btn-icon admin-btn-sm me-2">
                                 <i class="fa fa-check"></i>
                             </button>
                             {{ $testimonial->name ? $testimonial->name : '--' }}
-                        </th>
-                        <th scope="row">
+                        </td>
+                        <td>
                             {{ $testimonial->designation ? $testimonial->designation : '--' }}
-                        </th>
+                        </td>
                         <td class="text-center">
                             <div class="star-display" data-rating="{{ $testimonial->rating }}"></div>
                         </td>

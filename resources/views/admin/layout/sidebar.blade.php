@@ -36,34 +36,12 @@
             <i class="fas fa-user-friends w-5 text-center nav-icon"></i>
             <span class="nav-text">Team Members</span>
         </a>
-        <a href="{{route('admin.become-partner')}}" class="nav-item{{ request()->routeIs('admin.become-partner') ? ' active' : '' }}">
-            <i class="fas fa-handshake w-5 text-center nav-icon"></i>
-            <span class="nav-text">Partners</span>
-        </a>
-        <a href="{{route('admin.before-after')}}" class="nav-item{{ request()->routeIs('admin.before-after*') ? ' active' : '' }}">
-            <i class="fas fa-images w-5 text-center nav-icon"></i>
-            <span class="nav-text">Before & After</span>
-        </a>
-        <a href="{{route('admin.certifications')}}" class="nav-item{{ request()->routeIs('admin.certifications*') ? ' active' : '' }}">
-            <i class="fas fa-certificate w-5 text-center nav-icon"></i>
-            <span class="nav-text">Certifications</span>
-        </a>
-        <a href="{{route('admin.why-choose-us')}}" class="nav-item{{ request()->routeIs('admin.why-choose-us*') ? ' active' : '' }}">
-            <i class="fas fa-star w-5 text-center nav-icon"></i>
-            <span class="nav-text">Why Choose Us</span>
-        </a>
 
-        <div class="relative">
-            <a href="#" class="nav-item subnav-toggle{{ request()->routeIs('admin.blog*') || request()->routeIs('admin.blog-category*') ? ' active' : '' }}" data-target="projects-subnav">
-                <i class="fas fa-folder-open w-5 text-center nav-icon"></i>
-                <span class="nav-text flex-1">Projects</span>
-                <i class="fas fa-chevron-down text-xs transition-transform nav-text"></i>
-            </a>
-            <div id="projects-subnav" class="subnav{{ request()->routeIs('admin.blog*') || request()->routeIs('admin.blog-category*') ? '' : ' hidden' }}">
-                <a href="{{route('admin.blog')}}" class="subnav-item{{ request()->routeIs('admin.blog') && !request()->routeIs('admin.blog-category*') ? ' active' : '' }}">All Projects</a>
-                <a href="{{route('admin.blog-category')}}" class="subnav-item{{ request()->routeIs('admin.blog-category*') ? ' active' : '' }}">Category</a>
-            </div>
-        </div>
+
+        <a href="{{route('admin.blog')}}" class="nav-item{{ request()->routeIs('admin.blog*') ? ' active' : '' }}">
+            <i class="fas fa-folder-open w-5 text-center nav-icon"></i>
+            <span class="nav-text">Projects</span>
+        </a>
 
         <div class="px-4 pt-4 pb-1">
             <span class="nav-text text-xs font-semibold uppercase tracking-wider text-gray-500">Inquiries</span>

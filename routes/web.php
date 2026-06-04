@@ -6,7 +6,6 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminDashboardController;
 use App\Http\Controllers\admin\AdminLoginController;
 use App\Http\Controllers\admin\AdminProfileController;
-use App\Http\Controllers\admin\BlogCategoryController;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\EnquiryController;
@@ -25,13 +24,8 @@ use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\TeamMemberController;
 use App\Http\Controllers\admin\TestimonialController;
-use App\Http\Controllers\admin\WhyChooseUsController;
-use App\Http\Controllers\admin\BeforeAfterImageController;
-use App\Http\Controllers\admin\CertificationController;
-use App\Http\Controllers\admin\BecomePartnerAdminController;
 use App\Http\Controllers\admin\FaqController;
 use App\Http\Controllers\admin\GalleryController;
-use App\Http\Controllers\Frontend\BecomePartnerController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -46,10 +40,6 @@ use Illuminate\Support\Facades\Route;
 
 // Sitemap
 Route::get('sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
-
-// Frontend Routes
-Route::get('become-a-partner',[BecomePartnerController::class,'index'])->name('home.become-a-partner');
-Route::post('/become-partner/store',[BecomePartnerController::class,'store'])->name('become-partner.store');
 
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('about-us',[HomeController::class,'about'])->name('home.about-us');
@@ -125,32 +115,6 @@ Route::group(['prefix' => 'admin'], function() {
         Route::post('quotes/{id}/status', [QuoteAdminController::class, 'updateStatus'])->name('admin.quote-status');
         Route::get('quotes-destroy/{id}', [QuoteAdminController::class, 'destroy'])->name('admin.quote-destroy');
         Route::get('quotes/count', [QuoteAdminController::class, 'count'])->name('admin.quotes.count');
-
-        // Become Partner (Admin)
-        Route::get('become-partner', [BecomePartnerAdminController::class, 'index'])->name('admin.become-partner');
-        Route::get('become-partner/{id}/destroy', [BecomePartnerAdminController::class, 'destroy'])->name('admin.become-partner.destroy');
-
-        // Certifications & Licenses
-        Route::get('certifications', [CertificationController::class, 'index'])->name('admin.certifications');
-        Route::post('certifications/store', [CertificationController::class, 'store'])->name('admin.certifications.store');
-        Route::post('certifications/{id}/update', [CertificationController::class, 'update'])->name('admin.certifications.update');
-        Route::get('certifications/{id}/destroy', [CertificationController::class, 'destroy'])->name('admin.certifications.destroy');
-        Route::post('certifications/toggle-status', [CertificationController::class, 'toggleStatus'])->name('admin.certifications.status');
-
-        // Before & After Images
-        Route::get('before-after', [BeforeAfterImageController::class, 'index'])->name('admin.before-after');
-        Route::post('before-after/store', [BeforeAfterImageController::class, 'store'])->name('admin.before-after.store');
-        Route::post('before-after/{id}/update', [BeforeAfterImageController::class, 'update'])->name('admin.before-after.update');
-        Route::get('before-after/{id}/destroy', [BeforeAfterImageController::class, 'destroy'])->name('admin.before-after.destroy');
-        Route::post('before-after/toggle-status', [BeforeAfterImageController::class, 'toggleStatus'])->name('admin.before-after.status');
-
-        // Why Choose Us
-        Route::get('why-choose-us', [WhyChooseUsController::class, 'index'])->name('admin.why-choose-us');
-        Route::post('why-choose-us/store', [WhyChooseUsController::class, 'store'])->name('admin.why-choose-us-store');
-        Route::get('why-choose-us/{id}/edit', [WhyChooseUsController::class, 'edit'])->name('admin.why-choose-us-edit');
-        Route::post('why-choose-us/{id}/update', [WhyChooseUsController::class, 'update'])->name('admin.why-choose-us-update');
-        Route::get('why-choose-us/{id}/destroy', [WhyChooseUsController::class, 'destroy'])->name('admin.why-choose-us-destroy');
-        Route::post('why-choose-us/toggle-status', [WhyChooseUsController::class, 'toggleStatus'])->name('admin.why-choose-us-status');
 
         // Dashboard
         Route::get('/',[AdminController::class,'index'])->name('admin');
@@ -239,13 +203,6 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('projects/gallery-images/{id}/destroy', [BlogController::class, 'destroyGalleryImage'])->name('admin.blog.destroy-gallery');
         Route::get('projects/{id}/destroy',[BlogController::class,'destroy'])->name('admin.blog-destroy');
         Route::post('projects/toggle-status', [BlogController::class, 'blog_toggleStatus'])->name('admin.blog-status');
-
-        Route::get('projects-category',[BlogCategoryController::class,'index'])->name('admin.blog-category');
-        Route::post('projects-category/store',[BlogCategoryController::class,'store'])->name('admin.blog-category-store');
-        Route::get('projects-category/{id}/edit',[BlogCategoryController::class,'edit'])->name('admin.blog-category-edit');
-        Route::post('projects-category/{id}/update',[BlogCategoryController::class,'update'])->name('admin.blog-category-update');
-        Route::get('projects-category/{id}/destroy',[BlogCategoryController::class,'destroy'])->name('admin.blog-category-destroy');
-        Route::post('projects-category/toggle-status', [BlogCategoryController::class, 'blogCategory_toggleStatus'])->name('admin.blog-category-status');
 
         // Admin Brands
         Route::get('brands',[BrandController::class,'index'])->name('admin.brands');

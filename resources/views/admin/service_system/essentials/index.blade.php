@@ -24,13 +24,13 @@
                     @foreach($service_essentials as $essentials)
                     <tr id="record-row-{{ $essentials->id }}">
                         <td>{{ $loop->iteration }}</td>
-                        <th scope="row">
+                        <td>
                             <button
                                 class="admin-btn-success admin-btn-sm admin-btn-icon mr-2">
                                 <i class="fa fa-check"></i>
                             </button>
                             {{ $essentials->title ? $essentials->title : '--' }}
-                        </th>
+                        </td>
                         <td class="text-center">
                             @if($essentials->service != null)
                                 {{ $essentials->service->title }}

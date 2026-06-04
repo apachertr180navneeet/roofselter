@@ -25,8 +25,12 @@
                             <div class="md:col-span-3"><input type="text" name="cms_home_title" class="admin-input" value="{{ get_setting('cms_home_title', 'Home') }}"></div>
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Heading</label></div>
                             <div class="md:col-span-3"><input type="text" name="cms_home_heading" class="admin-input" value="{{ get_setting('cms_home_heading', 'Welcome to RoofShelter') }}"></div>
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Title</label></div>
+                            <div class="md:col-span-3"><input type="text" name="cms_home_meta_title" class="admin-input" value="{{ get_setting('cms_home_meta_title') }}"></div>
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Description</label></div>
                             <div class="md:col-span-3"><textarea name="cms_home_meta_desc" class="admin-textarea" rows="3">{{ get_setting('cms_home_meta_desc') }}</textarea></div>
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Keywords</label></div>
+                            <div class="md:col-span-3"><input type="text" name="cms_home_meta_keywords" class="admin-input" placeholder="keyword1, keyword2" value="{{ get_setting('cms_home_meta_keywords') }}"></div>
                         </div>
                     </div>
                     <div class="cms-panel hidden" id="services" role="tabpanel">
@@ -37,8 +41,12 @@
                             <div class="md:col-span-3"><input type="text" name="cms_services_heading" class="admin-input" value="{{ get_setting('cms_services_heading', 'Our Services') }}"></div>
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Banner Description</label></div>
                             <div class="md:col-span-3"><textarea name="cms_services_description" class="admin-textarea" rows="3">{{ get_setting('cms_services_description') }}</textarea></div>
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Title</label></div>
+                            <div class="md:col-span-3"><input type="text" name="cms_services_meta_title" class="admin-input" value="{{ get_setting('cms_services_meta_title') }}"></div>
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Description</label></div>
                             <div class="md:col-span-3"><textarea name="cms_services_meta_desc" class="admin-textarea" rows="3">{{ get_setting('cms_services_meta_desc') }}</textarea></div>
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Keywords</label></div>
+                            <div class="md:col-span-3"><input type="text" name="cms_services_meta_keywords" class="admin-input" placeholder="keyword1, keyword2" value="{{ get_setting('cms_services_meta_keywords') }}"></div>
                         </div>
                     </div>
                     <div class="cms-panel hidden" id="gallery" role="tabpanel">
@@ -49,8 +57,12 @@
                             <div class="md:col-span-3"><input type="text" name="cms_gallery_heading" class="admin-input" value="{{ get_setting('cms_gallery_heading', 'Our Gallery') }}"></div>
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Banner Description</label></div>
                             <div class="md:col-span-3"><textarea name="cms_gallery_description" class="admin-textarea" rows="3">{{ get_setting('cms_gallery_description') }}</textarea></div>
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Title</label></div>
+                            <div class="md:col-span-3"><input type="text" name="cms_gallery_meta_title" class="admin-input" value="{{ get_setting('cms_gallery_meta_title') }}"></div>
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Description</label></div>
                             <div class="md:col-span-3"><textarea name="cms_gallery_meta_desc" class="admin-textarea" rows="3">{{ get_setting('cms_gallery_meta_desc') }}</textarea></div>
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Keywords</label></div>
+                            <div class="md:col-span-3"><input type="text" name="cms_gallery_meta_keywords" class="admin-input" placeholder="keyword1, keyword2" value="{{ get_setting('cms_gallery_meta_keywords') }}"></div>
                         </div>
                     </div>
                     <div class="cms-panel hidden" id="testimonials" role="tabpanel">
@@ -61,8 +73,12 @@
                             <div class="md:col-span-3"><input type="text" name="cms_testimonials_heading" class="admin-input" value="{{ get_setting('cms_testimonials_heading', 'What Our Clients Say') }}"></div>
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Banner Description</label></div>
                             <div class="md:col-span-3"><textarea name="cms_testimonials_description" class="admin-textarea" rows="3">{{ get_setting('cms_testimonials_description') }}</textarea></div>
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Title</label></div>
+                            <div class="md:col-span-3"><input type="text" name="cms_testimonials_meta_title" class="admin-input" value="{{ get_setting('cms_testimonials_meta_title') }}"></div>
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Description</label></div>
                             <div class="md:col-span-3"><textarea name="cms_testimonials_meta_desc" class="admin-textarea" rows="3">{{ get_setting('cms_testimonials_meta_desc') }}</textarea></div>
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Keywords</label></div>
+                            <div class="md:col-span-3"><input type="text" name="cms_testimonials_meta_keywords" class="admin-input" placeholder="keyword1, keyword2" value="{{ get_setting('cms_testimonials_meta_keywords') }}"></div>
                         </div>
                     </div>
                     <div class="cms-panel hidden" id="contact" role="tabpanel">
@@ -73,8 +89,12 @@
                             <div class="md:col-span-3"><input type="text" name="cms_contact_heading" class="admin-input" value="{{ get_setting('cms_contact_heading', 'Get In Touch') }}"></div>
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Banner Description</label></div>
                             <div class="md:col-span-3"><textarea name="cms_contact_description" class="admin-textarea" rows="3">{{ get_setting('cms_contact_description') }}</textarea></div>
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Title</label></div>
+                            <div class="md:col-span-3"><input type="text" name="cms_contact_meta_title" class="admin-input" value="{{ get_setting('cms_contact_meta_title') }}"></div>
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Description</label></div>
                             <div class="md:col-span-3"><textarea name="cms_contact_meta_desc" class="admin-textarea" rows="3">{{ get_setting('cms_contact_meta_desc') }}</textarea></div>
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Keywords</label></div>
+                            <div class="md:col-span-3"><input type="text" name="cms_contact_meta_keywords" class="admin-input" placeholder="keyword1, keyword2" value="{{ get_setting('cms_contact_meta_keywords') }}"></div>
                         </div>
                     </div>
                     <div class="cms-panel hidden" id="faq" role="tabpanel">
@@ -85,8 +105,12 @@
                             <div class="md:col-span-3"><input type="text" name="cms_faq_heading" class="admin-input" value="{{ get_setting('cms_faq_heading', 'Frequently Asked Questions') }}"></div>
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Banner Description</label></div>
                             <div class="md:col-span-3"><textarea name="cms_faq_description" class="admin-textarea" rows="3">{{ get_setting('cms_faq_description') }}</textarea></div>
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Title</label></div>
+                            <div class="md:col-span-3"><input type="text" name="cms_faq_meta_title" class="admin-input" value="{{ get_setting('cms_faq_meta_title') }}"></div>
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Description</label></div>
                             <div class="md:col-span-3"><textarea name="cms_faq_meta_desc" class="admin-textarea" rows="3">{{ get_setting('cms_faq_meta_desc') }}</textarea></div>
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Keywords</label></div>
+                            <div class="md:col-span-3"><input type="text" name="cms_faq_meta_keywords" class="admin-input" placeholder="keyword1, keyword2" value="{{ get_setting('cms_faq_meta_keywords') }}"></div>
                         </div>
                     </div>
                 </div>

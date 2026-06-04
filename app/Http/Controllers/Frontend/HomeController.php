@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\About;
 use App\Models\Blog;
-use App\Models\BlogCategory;
 use App\Models\Industry;
 use App\Models\IndustryFaq;
 use App\Http\Controllers\Controller;
@@ -13,9 +12,6 @@ use App\Models\ServiceFaq;
 use App\Models\Slider;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
-use App\Models\WhyChooseUs;
-use App\Models\BeforeAfterImage;
-use App\Models\Certification;
 use App\Models\Faq;
 use App\Models\Gallery;
 use App\Models\ProjectImage;
@@ -30,20 +26,12 @@ class HomeController extends Controller
         $testimonials = Testimonial::where('status',1)->get();
         $team_members = TeamMember::where('status',1)->get();
         $industries = Industry::where('status',1)->get();
-        $projects = Blog::with('category')->where('status', 1)->get();
-        $projects_categories = $projects
-            ->map(function ($project) {
-                return optional($project->category)->category_name;
-            })->filter()->unique()->values();
-        $why_choose_us = WhyChooseUs::where('status',1)->orderBy('sort_order')->get();
-        $before_after_images = BeforeAfterImage::where('status',1)->orderBy('sort_order')->get();
-        $certifications = Certification::where('status',1)->orderBy('sort_order')->get();
+        $projects = Blog::where('status', 1)->get();
         $faqs = Faq::where('status',1)->get();
 
         return view('frontend.index', compact(
             'sliders','services','abouts','testimonials','team_members',
-            'industries','projects','projects_categories','why_choose_us',
-            'before_after_images','certifications','faqs'
+            'industries','projects','faqs'
         ));
     }
 
@@ -62,14 +50,13 @@ class HomeController extends Controller
 
     public function blog()
     {
-        $blogs = Blog::with('category')->where('status', 1)->latest()->paginate(9);
-        $categories = BlogCategory::where('status', 1)->get();
-        return view('frontend.blog', compact('blogs', 'categories'));
+        $blogs = Blog::where('status', 1)->latest()->paginate(9);
+        return view('frontend.blog', compact('blogs'));
     }
 
     public function blog_details($slug)
     {
-        $blog = Blog::with('category', 'galleryImages')->where('slug', $slug)->where('status', 1)->firstOrFail();
+        $blog = Blog::with('galleryImages')->where('slug', $slug)->where('status', 1)->firstOrFail();
         $recentPosts = Blog::where('status', 1)->where('id', '!=', $blog->id)->latest()->limit(3)->get();
         return view('frontend.blog-details', compact('blog', 'recentPosts'));
     }
