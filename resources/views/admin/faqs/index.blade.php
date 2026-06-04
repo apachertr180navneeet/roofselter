@@ -15,8 +15,8 @@
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">Question</th>
-                                <th scope="col" class="text-center">Published</th>
-                                <th scope="col" class="text-center">Action</th>
+                                <th scope="col">Published</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -24,13 +24,13 @@
                             <tr id="record-row-{{ $faq->id }}">
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $faq->question }}</td>
-                                <td class="text-center">
+                                <td>
                                     <label class="switch">
                                       <input type="checkbox" class="toggle-status" data-id="{{ $faq->id }}" data-url="{{ route('admin.faqs-status') }}" {{ $faq->status == 1 ? 'checked' : '' }}>
                                       <span class="record-toggle"></span>
                                     </label>
                                 </td>
-                                <td class="text-center">
+                                <td>
                                     <div class="form-button-action">
                                         <a href="{{route('admin.faqs-edit',$faq->id)}}"
                                            class="admin-btn-secondary admin-btn-icon me-2">
@@ -61,8 +61,7 @@
                 <div class="admin-card-body">
                   <div class="grid grid-cols-1 gap-4">
                     <div>
-                        <label for="question" class="font-medium text-gray-700">Question</label>
-                        <span class="text-danger">*</span>
+                        <label for="question" class="block text-sm font-medium text-gray-700">Question <span class="text-red-500">*</span></label>
                         <input
                             type="text"
                             name="question"
@@ -77,8 +76,7 @@
                     </div>
 
                     <div>
-                        <label for="answer" class="font-medium text-gray-700">Answer</label>
-                        <span class="text-danger">*</span>
+                        <label for="answer" class="block text-sm font-medium text-gray-700">Answer <span class="text-red-500">*</span></label>
                         <textarea
                             name="answer"
                             class="admin-textarea @error('answer') border-red-500 @enderror"

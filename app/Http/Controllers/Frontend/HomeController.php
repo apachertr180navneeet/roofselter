@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\About;
-use App\Models\AboutCategory;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Industry;
@@ -27,7 +26,7 @@ class HomeController extends Controller
     public function index(){
         $sliders = Slider::where('status',1)->get();
         $services = Service::where('status',1)->latest()->get();
-        $abouts = About::where('status',1)->limit(1)->get();
+        $abouts = About::where('status', 1)->limit(1)->get();
         $testimonials = Testimonial::where('status',1)->get();
         $team_members = TeamMember::where('status',1)->get();
         $industries = Industry::where('status',1)->get();
@@ -50,11 +49,10 @@ class HomeController extends Controller
 
     public function about()
     {
-        $abouts = About::with('category')->where('status', 1)->get();
-        $aboutCategories = AboutCategory::where('status', 1)->get();
+        $abouts = About::where('status', 1)->get();
         $team_members = TeamMember::where('status', 1)->get();
         $testimonials = Testimonial::where('status', 1)->get();
-        return view('frontend.about', compact('abouts', 'aboutCategories', 'team_members', 'testimonials'));
+        return view('frontend.about', compact('abouts', 'team_members', 'testimonials'));
     }
 
     public function contact()

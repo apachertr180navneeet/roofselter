@@ -14,11 +14,11 @@
               <div class="md:col-span-12">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div>
-                        <label for="service_id">Select Your Service </label>
+                        <label for="service_id" class="block text-sm font-medium text-gray-700">Select Your Service <span class="text-red-500">*</span></label>
                     </div>
                     <div class="md:col-span-3">
                         <select name="service_id" id="service_id" class="admin-select select2" data-live-search="true">
-                          <option>-- Select Your Service --</option>
+                          <option value="">-- Select Your Service --</option>
                           @foreach($service_info as $service)
                               <option value="{{ $service->id }}">{{ $service->title }}</option>
                           @endforeach
@@ -28,8 +28,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div>
-                        <label for="question">Question</label>
-                        <span class="text-red-500">*</span>
+                        <label for="question" class="block text-sm font-medium text-gray-700">Question <span class="text-red-500">*</span></label>
                     </div>
                     <div class="md:col-span-3">
                         <input
@@ -51,7 +50,7 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div>
-                        <label for="answer">Answer</label>
+                        <label for="answer" class="block text-sm font-medium text-gray-700">Answer <span class="text-red-500">*</span></label>
                     </div>
                     <div class="md:col-span-3">
                         <textarea id="myeditor" name="answer"></textarea>

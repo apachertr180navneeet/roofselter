@@ -20,6 +20,14 @@
             <i class="fas fa-sliders-h w-5 text-center nav-icon"></i>
             <span class="nav-text">Slider</span>
         </a>
+        <a href="{{route('admin.cms')}}" class="nav-item{{ request()->routeIs('admin.cms*') ? ' active' : '' }}">
+            <i class="fas fa-file-alt w-5 text-center nav-icon"></i>
+            <span class="nav-text">CMS Pages</span>
+        </a>
+        <a href="{{route('admin.about')}}" class="nav-item{{ request()->routeIs('admin.about*') ? ' active' : '' }}">
+            <i class="fas fa-info-circle w-5 text-center nav-icon"></i>
+            <span class="nav-text">About</span>
+        </a>
         <a href="{{route('admin.service')}}" class="nav-item{{ request()->routeIs('admin.service*') && !request()->routeIs('admin.service-*') ? ' active' : '' }}">
             <i class="fas fa-cogs w-5 text-center nav-icon"></i>
             <span class="nav-text">Services</span>

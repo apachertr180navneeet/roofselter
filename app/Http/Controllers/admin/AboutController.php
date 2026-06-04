@@ -4,125 +4,141 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
-use App\Models\AboutCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class AboutController extends Controller
 {
-    //This method will show About listing
-    public function index(){
-        $aboutus = About::get();
-        return view('admin.about_system.about.index',compact('aboutus'));
+    public function index()
+    {
+        $about = About::orderBy('created_at', 'DESC')->first();
+        return view('admin.about_system.about.index', compact('about'));
     }
 
-    //This method will show about form for creating a listing
-    public function create(){
-        $about_categories = AboutCategory::where('status',1)->get();
-        return view('admin.about_system.about.create',compact('about_categories'));
-    }
-
-    //This method will store a record of aboutus
-    public function store(Request $request){
-
-        $validator = Validator::make($request->all(),[
-            'category_id' => 'nullable|integer|exists:about_categories,id',
-            'title'       => 'required|string|max:255',
-            
-        ]);
-
-        if($validator->passes()){
-            $create = new About();
-            $create->category_id = $request->category_id ? $request->category_id : null; 
-            $create->title = $request->title;
-            $create->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->slug));
-            $create->description = $request->description;
-            $create->description2 = $request->description2;
-            $create->meta_title = $request->meta_title;
-            $create->meta_description = $request->meta_description;
-            $create->meta_keywords = $request->meta_keywords;
-
-            if ($request->hasFile('image')) {
-                $filename = time().'.'.$request->image->extension();
-                $request->image->move(public_path('img'), $filename);
-                $create->image = $filename;
-            }   
-
-            $create->save();
-
-            return redirect()->route('admin.about')->with('success','About Us Data Added Successfully');
-        }else{
-            return redirect()->back()->withInput()->withErrors($validator);
-        }
-
-        
-    }
-
-    //This method will show about form for updating a listing
-    public function edit($id){
-        $edit = About::find($id);
-        $about_categories = AboutCategory::where('status',1)->get();
-        return view('admin.about_system.about.edit',compact('edit','about_categories'));
-    }
-
-    //This method will update a existing listing of aboutus
-    public function update(Request $request, $id){
-
-        $validator = Validator::make($request->all(),[
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
             'title' => 'required',
         ]);
 
-        if($validator->passes()){
-            $update = About::find($id);
-            $update->category_id = $request->category_id;
-            $update->title = $request->title;
-            $update->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->slug));
-            $update->description = $request->description;
-            $update->description2 = $request->description2;
-            $update->meta_title = $request->meta_title;
-            $update->meta_description = $request->meta_description;
-            $update->meta_keywords = $request->meta_keywords;
+        if ($validator->passes()) {
+            $about = new About();
+            $about->title = $request->title;
+            $about->slug = Str::slug($request->title);
+            $about->description = $request->description;
+            $about->description2 = $request->description2;
+            $about->meta_title = $request->meta_title;
+            $about->meta_description = $request->meta_description;
+            $about->meta_keywords = $request->meta_keywords;
+            $about->counter1_number = $request->counter1_number;
+            $about->counter1_label = $request->counter1_label;
+            $about->counter2_number = $request->counter2_number;
+            $about->counter2_label = $request->counter2_label;
+            $about->counter3_number = $request->counter3_number;
+            $about->counter3_label = $request->counter3_label;
+            $about->counter4_number = $request->counter4_number;
+            $about->counter4_label = $request->counter4_label;
+
+            if ($request->hasFile('image')) {
+                $filename = time() . '.' . $request->image->extension();
+                $request->image->move(public_path('img'), $filename);
+                $about->image = $filename;
+            }
+
+            if ($request->hasFile('image2')) {
+                $filename = time() . '_2.' . $request->image2->extension();
+                $request->image2->move(public_path('img'), $filename);
+                $about->image2 = $filename;
+            }
+
+            $about->save();
+
+            return redirect()->route('admin.about')->with('success', 'About Added Successfully');
+        } else {
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+        ]);
+
+        if ($validator->passes()) {
+            $about = About::findOrFail($id);
+            $about->title = $request->title;
+            $about->slug = Str::slug($request->title);
+            $about->description = $request->description;
+            $about->description2 = $request->description2;
+            $about->meta_title = $request->meta_title;
+            $about->meta_description = $request->meta_description;
+            $about->meta_keywords = $request->meta_keywords;
+            $about->counter1_number = $request->counter1_number;
+            $about->counter1_label = $request->counter1_label;
+            $about->counter2_number = $request->counter2_number;
+            $about->counter2_label = $request->counter2_label;
+            $about->counter3_number = $request->counter3_number;
+            $about->counter3_label = $request->counter3_label;
+            $about->counter4_number = $request->counter4_number;
+            $about->counter4_label = $request->counter4_label;
 
             if ($request->input('remove_image') == "1") {
-                if ($update->image && file_exists(public_path('img/' . $update->image))) {
-                    unlink(public_path('img/' . $update->image));
+                if ($about->image && file_exists(public_path('img/' . $about->image))) {
+                    unlink(public_path('img/' . $about->image));
                 }
-                $update->image = null;
+                $about->image = null;
             }
 
             if ($request->hasFile('image')) {
-                if ($update->image && file_exists(public_path('img/' . $update->image))) {
-                    unlink(public_path('img/' . $update->image));
+                if ($about->image && file_exists(public_path('img/' . $about->image))) {
+                    unlink(public_path('img/' . $about->image));
                 }
                 $file = $request->file('image');
                 $filename = time() . '_' . $file->getClientOriginalName();
                 $file->move(public_path('img'), $filename);
-                $update->image = $filename;
+                $about->image = $filename;
             }
-  
-            $update->save();
 
-            return redirect()->route('admin.about')->with('success','About Us Data Updated Successfully');
-        }else{
+            if ($request->input('remove_image2') == "1") {
+                if ($about->image2 && file_exists(public_path('img/' . $about->image2))) {
+                    unlink(public_path('img/' . $about->image2));
+                }
+                $about->image2 = null;
+            }
+
+            if ($request->hasFile('image2')) {
+                if ($about->image2 && file_exists(public_path('img/' . $about->image2))) {
+                    unlink(public_path('img/' . $about->image2));
+                }
+                $file = $request->file('image2');
+                $filename = time() . '_2_' . $file->getClientOriginalName();
+                $file->move(public_path('img'), $filename);
+                $about->image2 = $filename;
+            }
+
+            $about->save();
+
+            return redirect()->route('admin.about')->with('success', 'About Updated Successfully');
+        } else {
             return redirect()->back()->withInput()->withErrors($validator);
         }
     }
 
-    //This method will destroy a particular listing
-    public function destroy($id){
-        About::find($id)->delete();
+    public function destroy($id)
+    {
+        About::findOrFail($id)->delete();
         return response()->json(['success' => true]);
     }
 
-    // This method will show for published unpublished notification
-    public function about_toggleStatus(Request $request)
+    public function toggleStatus(Request $request)
     {
-        $toggle = About::find($request->id);
-        if ($toggle) {
-            $toggle->status = $request->status; // 1 ya 0
-            $toggle->save();
-
-            return response()->json(['success' => true, 'status' => $toggle->status]);
+        $about = About::find($request->id);
+        if ($about) {
+            $about->status = $request->status;
+            $about->save();
+            return response()->json(['success' => true, 'status' => $about->status]);
         }
         return response()->json(['success' => false]);
     }

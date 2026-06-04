@@ -6,21 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class About extends Model
 {
-    protected $fillable = [
-        'category_id',
-        'title',
-        'slug',
-        'description',
-        'description2',
-        'image',
-        'status',
-        'meta_title',
-        'meta_description',
-        'meta_keywords',
-    ];
-
-    public function category() {
-        return $this->belongsTo(AboutCategory::class, 'category_id');
-    }
-
+    protected $fillable = ['title', 'slug', 'image', 'image2', 'description', 'description2', 'meta_title', 'meta_description', 'meta_keywords', 'status', 'counter1_number', 'counter1_label', 'counter2_number', 'counter2_label', 'counter3_number', 'counter3_label', 'counter4_number', 'counter4_label'];
 }

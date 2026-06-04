@@ -59,6 +59,9 @@
 .admin-card { @apply bg-white rounded-xl shadow-sm border border-gray-200; }
 .admin-card-header { @apply px-6 py-4 border-b border-gray-100 flex items-center justify-between; }
 .admin-card-body { @apply p-6; }
+.admin-card > .overflow-x-auto { @apply p-6; }
+.admin-card > .overflow-x-auto:first-child { @apply rounded-t-xl; }
+.admin-card > .overflow-x-auto:last-child { @apply rounded-b-xl; }
 
 .admin-btn-primary { @apply inline-flex items-center gap-2 px-4 py-2 bg-brand-500 text-white text-sm font-medium rounded-lg hover:bg-brand-600 transition-colors; }
 .admin-btn-secondary { @apply inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-200 transition-colors; }
@@ -72,9 +75,26 @@
 .admin-textarea { @apply w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 outline-none transition-all; }
 
 .admin-table { @apply w-full text-sm; }
-.admin-table th { @apply px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-50; }
-.admin-table td { @apply px-4 py-3 border-t border-gray-100; }
-.admin-table tr:hover td { @apply bg-gray-50; }
+.admin-table thead th { @apply px-3 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-50 border-b-2 border-gray-200; }
+.admin-table tbody tr { @apply transition-colors duration-150; }
+.admin-table tbody tr:nth-child(even) { @apply bg-gray-50/50; }
+.admin-table tbody td { @apply px-3 py-3 border-t border-gray-100 text-gray-700; }
+.admin-table tbody tr:hover td { @apply bg-brand-50/60; }
+
+.dataTables_wrapper { @apply pt-2; }
+.dataTables_length { @apply mb-3; }
+.dataTables_length label { @apply text-sm text-gray-600 flex items-center gap-2; }
+.dataTables_length select { @apply px-2 py-1.5 border border-gray-300 rounded-lg text-sm bg-white outline-none cursor-pointer; }
+.dataTables_filter { @apply mb-3; }
+.dataTables_filter label { @apply text-sm text-gray-600 flex items-center gap-2; }
+.dataTables_filter input { @apply px-3 py-1.5 border border-gray-300 rounded-lg text-sm outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all; }
+.dataTables_info { @apply text-sm text-gray-500 py-3; }
+.dataTables_paginate { @apply flex items-center gap-1 py-3; }
+.dataTables_paginate .paginate_button { @apply inline-flex items-center justify-center min-w-[36px] h-9 px-3 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:text-gray-800 cursor-pointer transition-colors select-none; }
+.dataTables_paginate .paginate_button.current { @apply bg-brand-500 text-white border-brand-500 hover:bg-brand-600 hover:text-white; }
+.dataTables_paginate .paginate_button.disabled { @apply text-gray-300 cursor-not-allowed hover:bg-white hover:text-gray-300; }
+.dataTables_paginate .paginate_button.previous,
+.dataTables_paginate .paginate_button.next { @apply px-4; }
 
 .admin-badge { @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium; }
 .admin-badge-success { @apply bg-green-100 text-green-800; }
@@ -110,3 +130,14 @@
 .animate-fade-in-up { animation: fadeInUp 0.6s ease forwards; }
 .animate-fade-in-left { animation: fadeInLeft 0.6s ease forwards; }
 .animate-fade-in-right { animation: fadeInRight 0.6s ease forwards; }
+
+[data-notify="container"] { position: fixed; z-index: 9999; width: 360px; padding: 15px 35px 15px 15px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-size: 14px; color: #fff; pointer-events: auto; }
+[data-notify="container"].alert-success { background: #16a34a; }
+[data-notify="container"].alert-danger { background: #dc2626; }
+[data-notify="container"].alert-info { background: #2563eb; }
+[data-notify="container"].alert-warning { background: #d97706; }
+[data-notify="dismiss"] { position: absolute; right: 10px; top: 8px; background: none; border: none; color: inherit; font-size: 20px; cursor: pointer; opacity: 0.8; padding: 0; line-height: 1; }
+[data-notify="dismiss"]:hover { opacity: 1; }
+[data-notify="icon"] { margin-right: 8px; }
+[data-notify="title"] { font-weight: 600; display: block; margin-bottom: 2px; }
+[data-notify="message"] { display: block; }

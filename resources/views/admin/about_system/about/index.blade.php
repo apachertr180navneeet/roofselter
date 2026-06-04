@@ -3,188 +3,161 @@
 @section('content')
 
 <div class="space-y-6">
-    <div class="admin-card">
-        <div class="admin-card-header">
-            <h3 class="text-base font-semibold text-gray-900">About Us Info</h3>
-            <a href="{{route('admin.about-create')}}" class="admin-btn-primary ml-auto"><i class="fa fa-plus"></i> Add About</a>
-        </div>
-        <div class="overflow-x-auto">
-            <table class="admin-table" id="basic-datatables">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Image</th>
-                        <th scope="col" class="text-right">Title</th>
-                        <th scope="col" class="text-right">Published</th>
-                        <th scope="col" class="text-right">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($aboutus as $about)
-                    <tr id="record-row-{{ $about->id }}">
-                        <td>{{ $loop->iteration }}</td>
-                        <td>
-                            <p class="demo">
-                            <div class="avatar">
-                                <img src="{{asset($about->image ? 'img/'.$about->image : '../panel-assets/assets/img/placeholder-image-3.jpg')}}" alt="{{ $about->title }}" class="avatar-img rounded">
-                            </div>
-                            </p>
-                        </td>
-                        <th scope="row">
-                            <button
-                                class="admin-btn-success admin-btn-sm admin-btn-icon mr-2">
-                                <i class="fa fa-check"></i>
-                            </button>
-                            {{ $about->title ? $about->title : '--' }}
-                        </th>
-                        <td class="text-center hidden">
-                            @if($about->category != null)
-                                {{ $about->category->category_name }}
-                            @else
-                                --
-                            @endif
-                        </td>
+    <div class="max-w-4xl mx-auto">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3 class="text-base font-semibold text-gray-900">{{ $about ? 'Update About' : 'Add About' }}</h3>
+          </div>
+          <form action="{{ $about ? route('admin.about-update', $about->id) : route('admin.about-store') }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="admin-card-body">
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="md:col-span-1">
+                    <label for="title" class="block text-sm font-medium text-gray-700">Title <span class="text-red-500">*</span></label>
+                </div>
+                <div class="md:col-span-3">
+                    <input
+                        type="text"
+                        name="title"
+                        class="admin-input @error('title') border-red-500 @enderror"
+                        id="title"
+                        placeholder="Enter Title"
+                        value="{{old('title', $about->title ?? '')}}"
+                    />
+                    @error('title')
+                      <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                    @enderror
+                </div>
 
-                        <td class="text-right">
-                            <label class="switch">
-                              <input type="checkbox" class="toggle-status" data-id="{{ $about->id }}" data-url="{{ route('admin.about-status') }}" {{ $about->status == 1 ? 'checked' : '' }}>
-                              <span class="record-toggle"></span>
-                            </label>
-                        </td>
-                        <td class="text-right">
-                            <div class="form-button-action">
+                <div class="md:col-span-1">
+                    <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
+                </div>
+                <div class="md:col-span-3">
+                    <x-file-upload name="image" label="Upload Image" :current="$about->image ?? null" />
+                </div>
 
-                                <a href="{{route('admin.about-edit',$about->id)}}"
-                                   class="admin-btn-primary admin-btn-icon mr-3">
-                                   <i class="fa fa-edit"></i>
-                                </a>
+                <div class="md:col-span-1">
+                    <label for="image2" class="block text-sm font-medium text-gray-700">Image 2</label>
+                </div>
+                <div class="md:col-span-3">
+                    <x-file-upload name="image2" label="Upload Image 2" :current="$about->image2 ?? null" />
+                </div>
 
-                                <a href="javascript:void(0)"
-                                   class="admin-btn-danger admin-btn-icon delete-record"
-                                   data-id="{{ $about->id }}"
-                                   data-url="{{ route('admin.about-destroy', $about->id) }}">
-                                   <i class="fa fa-trash"></i>
-                                </a>
+                <div class="md:col-span-1">
+                    <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                </div>
+                <div class="md:col-span-3">
+                    <textarea
+                        name="description"
+                        class="admin-textarea @error('description') border-red-500 @enderror"
+                        id="description"
+                        rows="4"
+                        placeholder="Enter Description">{{old('description', $about->description ?? '')}}</textarea>
+                    @error('description')
+                      <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                    @enderror
+                </div>
 
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                  
+                <div class="md:col-span-1">
+                    <label for="description2" class="block text-sm font-medium text-gray-700">Description 2</label>
+                </div>
+                <div class="md:col-span-3">
+                    <textarea
+                        name="description2"
+                        class="admin-textarea @error('description2') border-red-500 @enderror"
+                        id="description2"
+                        rows="4"
+                        placeholder="Enter Description 2">{{old('description2', $about->description2 ?? '')}}</textarea>
+                    @error('description2')
+                      <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                    @enderror
+                </div>
 
-                </tbody>
-            </table>
+                <div class="md:col-span-1">
+                    <label for="meta_title" class="block text-sm font-medium text-gray-700">Meta Title</label>
+                </div>
+                <div class="md:col-span-3">
+                    <input
+                        type="text"
+                        name="meta_title"
+                        class="admin-input"
+                        id="meta_title"
+                        placeholder="Enter Meta Title"
+                        value="{{old('meta_title', $about->meta_title ?? '')}}"
+                    />
+                </div>
+
+                <div class="md:col-span-1">
+                    <label for="meta_description" class="block text-sm font-medium text-gray-700">Meta Description</label>
+                </div>
+                <div class="md:col-span-3">
+                    <textarea
+                        name="meta_description"
+                        class="admin-textarea"
+                        id="meta_description"
+                        rows="3"
+                        placeholder="Enter Meta Description">{{old('meta_description', $about->meta_description ?? '')}}</textarea>
+                </div>
+
+                <div class="md:col-span-1">
+                    <label for="meta_keywords" class="block text-sm font-medium text-gray-700">Meta Keywords</label>
+                </div>
+                <div class="md:col-span-3">
+                    <input
+                        type="text"
+                        name="meta_keywords"
+                        class="admin-input"
+                        id="meta_keywords"
+                        placeholder="Enter Meta Keywords"
+                        value="{{old('meta_keywords', $about->meta_keywords ?? '')}}"
+                    />
+                </div>
+
+                <div class="md:col-span-4 border-t border-gray-200 my-2"></div>
+                <div class="md:col-span-4">
+                    <h4 class="text-sm font-semibold text-gray-800 mb-2">Counters</h4>
+                </div>
+
+                @php
+                    $counters = [
+                        1 => ['label' => 'Jobs Done'],
+                        2 => ['label' => 'Roofing Awards'],
+                        3 => ['label' => 'Client Satisfaction'],
+                        4 => ['label' => 'Site Installers'],
+                    ];
+                @endphp
+
+                @foreach ($counters as $i => $counter)
+                <div class="md:col-span-1">
+                    <label class="block text-sm font-medium text-gray-700">Counter {{ $i }}</label>
+                </div>
+                <div class="md:col-span-3">
+                    <div class="flex gap-3">
+                        <input
+                            type="text"
+                            name="counter{{ $i }}_number"
+                            class="admin-input w-1/3"
+                            placeholder="e.g. 500+"
+                            value="{{ old('counter'.$i.'_number', $about->{'counter'.$i.'_number'} ?? '') }}"
+                        />
+                        <input
+                            type="text"
+                            name="counter{{ $i }}_label"
+                            class="admin-input w-2/3"
+                            placeholder="{{ $counter['label'] }}"
+                            value="{{ old('counter'.$i.'_label', $about->{'counter'.$i.'_label'} ?? '') }}"
+                        />
+                    </div>
+                </div>
+                @endforeach
+              </div>
+            </div>
+            <div class="px-6 py-4 border-t border-gray-100 text-center">
+              <button class="admin-btn-success" type="submit">{{ $about ? 'Update' : 'Submit' }}</button>
+            </div>
+          </form>
         </div>
     </div>
 </div>
 
 @endsection
-
-
-
-
-<script src="{{asset('panel-assets/assets/js/core/jquery-3.7.1.min.js')}}"></script>
-
-<script>
-
-function admin_slider_update(dr) {
-    let baseUrl = "{{ asset('img') }}/"; 
-    let placeholder = "{{ asset('panel-assets/assets/img/placeholder-image-3.jpg') }}";
-
-    let banner = dr.banner ? baseUrl + dr.banner : placeholder;
-
-    // form fill
-    $('#id').val(dr.id);
-    $('#title').val(dr.title ?? '');
-    $('#short_desc').val(dr.short_desc ?? '');
-
-    // reset remove_image
-    $('#remove_image').val(0);
-
-    $('#add_remove_image').val(0);
-
-    // show existing image
-    showPreview(banner);
-    $('#banner_input').val('');
-
-    addshowPreview(banner);
-    $('#add_banner_input').val('');
-}
-
-// file select hone par preview
-$(document).on('change', '#banner_input', function(event) {
-    if (event.target.files.length > 0) {
-        let reader = new FileReader();
-        reader.onload = function(e) {
-            $('#remove_image').val(0);
-            showPreview(e.target.result);
-        }
-        reader.readAsDataURL(event.target.files[0]);
-    }
-});
-
-// remove image button
-function removeImage() {
-    $('#banner_preview').hide();
-    $('#banner_input').val('');
-    $('#remove_image').val(1);
-}
-
-// helper: show image
-function showPreview(src) {
-    $('#banner_preview').show().html(
-        `<span onclick="removeImage()" 
-                style="position:absolute; top:5px; right:5px; 
-                       background:#1f1f1f; color:#fff; border-radius:50%; 
-                       width:22px; height:22px; display:flex; 
-                       align-items:center; justify-content:center; 
-                       font-size:14px; cursor:pointer; z-index:10;">
-            &times;
-         </span>
-         <img src="` + src + `" style="width:100%; height:100%; object-fit:cover;" class="rounded">`
-    );
-}
-
-
-// file select hone par preview
-$(document).on('change', '#add_banner_input', function(event) {
-    if (event.target.files.length > 0) {
-        let reader = new FileReader();
-        reader.onload = function(e) {
-            $('#add_remove_image').val(0);
-            addshowPreview(e.target.result);
-        }
-        reader.readAsDataURL(event.target.files[0]);
-    }
-});
-
-// remove image button
-function addremoveImage() {
-    $('#add_banner_preview').hide();
-    $('#add_banner_input').val('');
-    $('#add_remove_image').val(1);
-}
-
-// helper: show image
-function addshowPreview(src) {
-    $('#add_banner_preview').show().html(
-        `<span onclick="addremoveImage()" 
-                style="position:absolute; top:5px; right:5px; 
-                       background:#1f1f1f; color:#fff; border-radius:50%; 
-                       width:22px; height:22px; display:flex; 
-                       align-items:center; justify-content:center; 
-                       font-size:14px; cursor:pointer; z-index:10;">
-            &times;
-         </span>
-         <img src="` + src + `" style="width:100%; height:100%; object-fit:cover;" class="rounded">`
-    );
-
-}
-
-</script>
-
-
-
-
-
-

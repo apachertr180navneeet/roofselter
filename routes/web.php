@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\admin\AboutCategoryController;
+
 use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminDashboardController;
@@ -99,6 +99,10 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('settings', [SettingController::class, 'index'])->name('admin.settings.index');
         Route::post('settings', [SettingController::class, 'update'])->name('admin.settings.update');
 
+        // CMS Pages
+        Route::get('cms', [SettingController::class, 'cms'])->name('admin.cms');
+        Route::post('cms', [SettingController::class, 'cmsUpdate'])->name('admin.cms.update');
+
         // Enquiries
         Route::get('/enquiries', [EnquiryController::class, 'index'])->name('admin.enquiries');
         Route::get('/enquiries/count', [EnquiryController::class, 'enquiryCount'])->name('admin.enquiries.count');
@@ -162,23 +166,6 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('slider-destroy/{id}',[SliderController::class,'destroy'])->name('admin.slider-destroy');
         Route::post('slider/toggle-status', [SliderController::class, 'slider_toggleStatus'])->name('admin.slider-status');
 
-        // Admin About
-        Route::get('about-us',[AboutController::class,'index'])->name('admin.about');
-        Route::get('about/create',[AboutController::class,'create'])->name('admin.about-create');
-        Route::get('about/{id}/edit',[AboutController::class,'edit'])->name('admin.about-edit');
-        Route::post('about/store',[AboutController::class,'store'])->name('admin.about-store');
-        Route::post('about/{id}/update',[AboutController::class,'update'])->name('admin.about-update');
-        Route::get('about/{id}/destroy',[AboutController::class,'destroy'])->name('admin.about-destroy');
-        Route::post('about/toggle-status', [AboutController::class, 'about_toggleStatus'])->name('admin.about-status');
-
-        // Admin About Category
-        Route::get('about-category',[AboutCategoryController::class,'index'])->name('admin.about-category');
-        Route::post('about-category/store',[AboutCategoryController::class,'store'])->name('admin.about-category-store');
-        Route::get('about-category/{id}/edit',[AboutCategoryController::class,'edit'])->name('admin.about-category-edit');
-        Route::post('about-category/{id}/update',[AboutCategoryController::class,'update'])->name('admin.about-category-update');
-        Route::get('about-category/{id}/destroy',[AboutCategoryController::class,'destroy'])->name('admin.about-category-destroy');
-        Route::post('about-category/toggle-status', [AboutCategoryController::class, 'aboutCategory_toggleStatus'])->name('admin.about-category-status');
-
         // Admin Service
         Route::get('service',[ServiceController::class,'index'])->name('admin.service');
         Route::get('service/subcategories',[ServiceController::class, 'serviceSubcategories'])->name('admin.getservice-subcategories');
@@ -234,6 +221,13 @@ Route::group(['prefix' => 'admin'], function() {
         Route::post('service-essentials/{id}/update',[ServiceEssentialController::class,'update'])->name('admin.service-essentials-update');
         Route::get('service-essentials/{id}/destroy',[ServiceEssentialController::class,'destroy'])->name('admin.service-essentials-destroy');
         Route::post('service-essentials/toggle-status', [ServiceEssentialController::class, 'serviceEssentials_toggleStatus'])->name('admin.service-essentials-status');
+
+        // Admin About
+        Route::get('about', [AboutController::class, 'index'])->name('admin.about');
+        Route::post('about/store', [AboutController::class, 'store'])->name('admin.about-store');
+        Route::post('about/{id}/update', [AboutController::class, 'update'])->name('admin.about-update');
+        Route::get('about/{id}/destroy', [AboutController::class, 'destroy'])->name('admin.about-destroy');
+        Route::post('about/toggle-status', [AboutController::class, 'toggleStatus'])->name('admin.about-status');
 
         // Admin Blog / Projects
         Route::get('projects',[BlogController::class,'index'])->name('admin.blog');

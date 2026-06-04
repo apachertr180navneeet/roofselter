@@ -14,11 +14,11 @@
               <div class="md:col-span-12">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div>
-                        <label for="industry_id">Select Your Industry </label>
+                        <label for="industry_id" class="block text-sm font-medium text-gray-700">Select Your Industry <span class="text-red-500">*</span></label>
                     </div>
                     <div class="md:col-span-3">
                         <select name="industry_id" id="industry_id" class="admin-select select2" data-live-search="true">
-                          <option>-- Select Your Industry --</option>
+                          <option value="">-- Select Your Industry --</option>
                           @foreach($industry_info as $industry)
                               <option value="{{ $industry->id }}">{{ $industry->title }}</option>
                           @endforeach
@@ -28,8 +28,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div>
-                        <label for="question">Question</label>
-                        <span class="text-red-500">*</span>
+                        <label for="question" class="block text-sm font-medium text-gray-700">Question <span class="text-red-500">*</span></label>
                     </div>
                     <div class="md:col-span-3">
                         <input
@@ -43,7 +42,7 @@
                           <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                         @enderror
                         <small id="questionHelp" class="text-xs text-gray-500"
-                                >Add Question for your selected Service.
+                                >Add Question for your selected Industry.
                         </small>
 
                     </div>
@@ -51,7 +50,7 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div>
-                        <label for="answer">Answer</label>
+                        <label for="answer" class="block text-sm font-medium text-gray-700">Answer <span class="text-red-500">*</span></label>
                     </div>
                     <div class="md:col-span-3">
                         <textarea id="myeditor" name="answer"></textarea>

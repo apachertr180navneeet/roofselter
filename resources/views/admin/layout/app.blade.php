@@ -37,8 +37,6 @@
 
 @yield('modal')
 
-@yield('script')
-
 <script src="{{asset('panel-assets/assets/js/core/jquery-3.7.1.min.js')}}"></script>
 <script src="{{asset('panel-assets/assets/js/core/popper.min.js')}}"></script>
 <script src="{{asset('panel-assets/assets/js/core/bootstrap.min.js')}}"></script>
@@ -91,6 +89,14 @@ $(function () {
 });
 
 $(document).ready(function () {
+    // Session flash notifications
+    @if(session('success'))
+    $.notify({ message: "{{ session('success') }}", icon: 'fa fa-check-circle' }, { type: "success", placement: { from: "top", align: "right" }, delay: 5000 });
+    @endif
+    @if(session('error'))
+    $.notify({ message: "{{ session('error') }}", icon: 'fa fa-exclamation-circle' }, { type: "danger", placement: { from: "top", align: "right" }, delay: 5000 });
+    @endif
+
     // Select2
     $('.select2').select2();
     $('#category_id').select2({ allowClear: true });
@@ -207,15 +213,10 @@ $(document).ready(function () {
     setInterval(fetchCounts, 15000);
     if (Notification.permission !== "granted") Notification.requestPermission();
 
-    // Session flash notifications
-    @if(session('success'))
-    $.notify({ message: "{{ session('success') }}", icon: 'fa fa-check-circle' }, { type: "success", placement: { from: "top", align: "center" }, delay: 3000 });
-    @endif
-    @if(session('error'))
-    $.notify({ message: "{{ session('error') }}", icon: 'fa fa-exclamation-circle' }, { type: "danger", placement: { from: "top", align: "center" }, delay: 3000 });
-    @endif
 });
 </script>
+
+@yield('script')
 
 </body>
 </html>

@@ -1,0 +1,79 @@
+.file-upload {
+    position: relative;
+}
+.file-input {
+    display: block;
+    width: 100%;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+.file-input::file-selector-button {
+    margin-right: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background-color: #eef2ff;
+    color: #4f46e5;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+.file-input::file-selector-button:hover {
+    background-color: #e0e7ff;
+}
+.file-preview {
+    margin-top: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+}
+.file-preview.d-none { display: none; }
+.file-preview .preview-img {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    border: 1px solid #e5e7eb;
+}
+.file-info {
+    flex: 1;
+    min-width: 0;
+}
+.file-info .file-name {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.file-info .file-size {
+    display: block;
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+.file-preview .remove-btn {
+    width: 1.75rem;
+    height: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #9ca3af;
+    background: none;
+    border: 0;
+    font-size: 1.125rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.15s, background-color 0.15s;
+}
+.file-preview .remove-btn:hover {
+    color: #ef4444;
+    background-color: #fef2f2;
+}

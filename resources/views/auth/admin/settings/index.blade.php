@@ -8,16 +8,14 @@
         <form action="{{ route('admin.settings.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="admin-card-body">
-                <div class="flex border-b border-gray-200 gap-0" id="settingsTabs" role="tablist">
-                    <a class="px-4 py-2.5 text-sm font-medium border-b-2 -mb-px border-brand-500 text-brand-600" id="general-tab" data-bs-toggle="tab" href="#general" role="tab" aria-selected="true">General</a>
-                    <a class="px-4 py-2.5 text-sm font-medium border-b-2 -mb-px border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-selected="false">Contact Info</a>
-                    <a class="px-4 py-2.5 text-sm font-medium border-b-2 -mb-px border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" id="social-tab" data-bs-toggle="tab" href="#social" role="tab" aria-selected="false">Social Media</a>
-                    <a class="px-4 py-2.5 text-sm font-medium border-b-2 -mb-px border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" id="content-tab" data-bs-toggle="tab" href="#content-sections" role="tab" aria-selected="false">Content Sections</a>
-                    <a class="px-4 py-2.5 text-sm font-medium border-b-2 -mb-px border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" id="counters-tab" data-bs-toggle="tab" href="#counters" role="tab" aria-selected="false">Counters</a>
-                    <a class="px-4 py-2.5 text-sm font-medium border-b-2 -mb-px border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" id="logos-tab" data-bs-toggle="tab" href="#logos" role="tab" aria-selected="false">Logos</a>
+                <div class="flex border-b border-gray-200 gap-0" id="settingsTabs">
+                    <a class="px-4 py-2.5 text-sm font-medium border-b-2 -mb-px border-brand-500 text-brand-600 settings-tab active" data-tab="general" role="tab" aria-selected="true">General</a>
+                    <a class="px-4 py-2.5 text-sm font-medium border-b-2 -mb-px border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 settings-tab" data-tab="contact" role="tab" aria-selected="false">Contact Info</a>
+                    <a class="px-4 py-2.5 text-sm font-medium border-b-2 -mb-px border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 settings-tab" data-tab="social" role="tab" aria-selected="false">Social Media</a>
+                    <a class="px-4 py-2.5 text-sm font-medium border-b-2 -mb-px border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 settings-tab" data-tab="logos" role="tab" aria-selected="false">Logos</a>
                 </div>
                 <div class="mt-5">
-                    <div class="block" id="general" role="tabpanel">
+                    <div class="settings-panel block" id="general" role="tabpanel">
                         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Website Name</label></div>
                             <div class="md:col-span-3"><input type="text" name="website_name" class="admin-input" value="{{ get_setting('website_name') }}"></div>
@@ -29,7 +27,7 @@
                             <div class="md:col-span-3"><textarea name="google_maps_embed" class="admin-textarea" rows="3">{{ get_setting('google_maps_embed') }}</textarea></div>
                         </div>
                     </div>
-                    <div class="hidden" id="contact" role="tabpanel">
+                    <div class="settings-panel hidden" id="contact" role="tabpanel">
                         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Phone Number</label></div>
                             <div class="md:col-span-3"><input type="text" name="contact_phone" class="admin-input" value="{{ get_setting('contact_phone') }}"></div>
@@ -47,7 +45,7 @@
                             <div class="md:col-span-3"><input type="text" name="contact_abn" class="admin-input" value="{{ get_setting('contact_abn') }}"></div>
                         </div>
                     </div>
-                    <div class="hidden" id="social" role="tabpanel">
+                    <div class="settings-panel hidden" id="social" role="tabpanel">
                         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Facebook URL</label></div>
                             <div class="md:col-span-3"><input type="url" name="social_facebook" class="admin-input" value="{{ get_setting('social_facebook') }}"></div>
@@ -62,49 +60,8 @@
                             <div class="md:col-span-3"><input type="url" name="social_linkedin" class="admin-input" value="{{ get_setting('social_linkedin') }}"></div>
                         </div>
                     </div>
-                    <div class="hidden" id="content-sections" role="tabpanel">
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">About Section Tagline</label></div>
-                            <div class="md:col-span-3"><input type="text" name="about_section_tagline" class="admin-input" value="{{ get_setting('about_section_tagline', 'About Us') }}"></div>
 
-                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">About Section Title</label></div>
-                            <div class="md:col-span-3"><input type="text" name="about_section_title" class="admin-input" value="{{ get_setting('about_section_title', 'About Our Company') }}"></div>
-
-                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">About Page Title</label></div>
-                            <div class="md:col-span-3"><input type="text" name="about_title" class="admin-input" value="{{ get_setting('about_title', 'Welcome to RoofShelter') }}"></div>
-
-                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">About Page Description</label></div>
-                            <div class="md:col-span-3"><textarea name="about_description" class="admin-textarea" rows="4">{{ get_setting('about_description') }}</textarea></div>
-
-                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Team Section Tagline</label></div>
-                            <div class="md:col-span-3"><input type="text" name="team_section_tagline" class="admin-input" value="{{ get_setting('team_section_tagline', 'Our Team') }}"></div>
-
-                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Team Section Title</label></div>
-                            <div class="md:col-span-3"><input type="text" name="team_section_title" class="admin-input" value="{{ get_setting('team_section_title', 'Meet Our Expert Team') }}"></div>
-
-                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">FAQ Section Tagline</label></div>
-                            <div class="md:col-span-3"><input type="text" name="faq_section_tagline" class="admin-input" value="{{ get_setting('faq_section_tagline', 'FAQ') }}"></div>
-
-                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">FAQ Section Title</label></div>
-                            <div class="md:col-span-3"><input type="text" name="faq_section_title" class="admin-input" value="{{ get_setting('faq_section_title', 'Do You Have Any Question Please?') }}"></div>
-                        </div>
-                    </div>
-                    <div class="hidden" id="counters" role="tabpanel">
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Projects Completed</label></div>
-                            <div class="md:col-span-3"><input type="number" name="counter_projects" class="admin-input" value="{{ get_setting('counter_projects', '450') }}"></div>
-
-                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Satisfied Clients</label></div>
-                            <div class="md:col-span-3"><input type="number" name="counter_clients" class="admin-input" value="{{ get_setting('counter_clients', '370') }}"></div>
-
-                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Team Members</label></div>
-                            <div class="md:col-span-3"><input type="number" name="counter_team" class="admin-input" value="{{ get_setting('counter_team', '100') }}"></div>
-
-                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Years Experience</label></div>
-                            <div class="md:col-span-3"><input type="number" name="counter_years" class="admin-input" value="{{ get_setting('counter_years', '10') }}"></div>
-                        </div>
-                    </div>
-                    <div class="hidden" id="logos" role="tabpanel">
+                    <div class="settings-panel hidden" id="logos" role="tabpanel">
                         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Site Logo</label></div>
                             <div class="md:col-span-3"><x-file-upload name="site_logo" label="Upload Logo" :current="get_setting('site_logo')" /></div>
@@ -130,4 +87,18 @@
         </form>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+$(function () {
+    $('.settings-tab').on('click', function () {
+        var tab = $(this).data('tab');
+        $('.settings-tab').removeClass('border-brand-500 text-brand-600').addClass('border-transparent text-gray-500');
+        $(this).addClass('border-brand-500 text-brand-600').removeClass('border-transparent text-gray-500');
+        $('.settings-panel').addClass('hidden').removeClass('block');
+        $('#' + tab).removeClass('hidden').addClass('block');
+    });
+});
+</script>
 @endsection

@@ -69,8 +69,7 @@
                 <div class="admin-card-body">
                   <div class="grid grid-cols-1 gap-4">
                     <div>
-                        <label for="image" class="font-medium text-gray-700">Image</label>
-                        <span class="text-red-500">*</span>
+                        <label for="image" class="block text-sm font-medium text-gray-700">Image <span class="text-red-500">*</span></label>
                         <x-file-upload name="image" label="Upload Image" />
                         @error('image')
                           <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -78,7 +77,7 @@
                     </div>
 
                     <div>
-                        <label for="caption" class="font-medium text-gray-700">Caption</label>
+                        <label for="caption" class="block text-sm font-medium text-gray-700">Caption</label>
                         <input
                             type="text"
                             name="caption"
@@ -93,7 +92,7 @@
                     </div>
 
                     <div>
-                        <label for="sort_order" class="font-medium text-gray-700">Sort Order</label>
+                        <label for="sort_order" class="block text-sm font-medium text-gray-700">Sort Order</label>
                         <input
                             type="number"
                             name="sort_order"
@@ -118,4 +117,3 @@
 </div>
 
 @endsection
-

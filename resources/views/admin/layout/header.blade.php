@@ -9,7 +9,7 @@
 
         <div class="flex items-center gap-3">
             <div class="relative dropdown">
-                <button class="relative p-2 text-gray-500 hover:text-gray-700 rounded-lg hover:bg-gray-100 transition-colors" id="notifDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="relative p-2 text-gray-500 hover:text-gray-700 rounded-lg hover:bg-gray-100 transition-colors dropdown-toggle" id="notifDropdown" aria-expanded="false">
                     <i class="fas fa-bell text-lg"></i>
                     <span id="header-enquiry-count" class="absolute -top-0.5 -right-0.5 w-5 h-5 flex items-center justify-center text-[10px] font-bold text-white bg-red-500 rounded-full">0</span>
                 </button>
@@ -27,7 +27,7 @@
             </div>
 
             <div class="relative dropdown">
-                <button class="flex items-center gap-2 p-1.5 rounded-lg hover:bg-gray-100 transition-colors" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="flex items-center gap-2 p-1.5 rounded-lg hover:bg-gray-100 transition-colors dropdown-toggle" aria-expanded="false">
                     <img src="{{asset('img/'.Auth::guard('admin')->user()->image)}}" alt="" class="w-8 h-8 rounded-full object-cover border-2 border-gray-200">
                     <span class="hidden sm:block text-sm font-medium text-gray-700">{{Auth::guard('admin')->user()->name}}</span>
                     <i class="fas fa-chevron-down text-xs text-gray-400"></i>

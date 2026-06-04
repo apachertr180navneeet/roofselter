@@ -29,18 +29,6 @@ class SettingController extends Controller
             'contact_address',
             'contact_hours',
             'contact_abn',
-            'counter_projects',
-            'counter_clients',
-            'counter_team',
-            'counter_years',
-            'about_section_title',
-            'about_section_tagline',
-            'about_title',
-            'about_description',
-            'team_section_title',
-            'team_section_tagline',
-            'faq_section_tagline',
-            'faq_section_title',
             'social_facebook',
             'social_instagram',
             'social_twitter',
@@ -82,5 +70,33 @@ class SettingController extends Controller
         }
 
         return redirect()->back()->with('success', 'Settings updated successfully!');
+    }
+
+    public function cms()
+    {
+        return view('admin.cms.index');
+    }
+
+    public function cmsUpdate(Request $request)
+    {
+        $fields = [
+            'cms_home_title', 'cms_home_heading', 'cms_home_meta_desc',
+            'cms_services_title', 'cms_services_heading', 'cms_services_description', 'cms_services_meta_desc',
+            'cms_gallery_title', 'cms_gallery_heading', 'cms_gallery_description', 'cms_gallery_meta_desc',
+            'cms_testimonials_title', 'cms_testimonials_heading', 'cms_testimonials_description', 'cms_testimonials_meta_desc',
+            'cms_contact_title', 'cms_contact_heading', 'cms_contact_description', 'cms_contact_meta_desc',
+            'cms_faq_title', 'cms_faq_heading', 'cms_faq_description', 'cms_faq_meta_desc',
+        ];
+
+        foreach ($fields as $field) {
+            if ($request->filled($field)) {
+                Setting::updateOrCreate(
+                    ['key' => $field],
+                    ['value' => $request->$field]
+                );
+            }
+        }
+
+        return redirect()->back()->with('success', 'CMS pages updated successfully!');
     }
 }

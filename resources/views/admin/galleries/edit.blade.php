@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="space-y-6">
-    <div class="max-w-2xl mx-auto">
+    <div class="max-w-4xl mx-auto">
         <div class="admin-card">
           <div class="admin-card-header">
             <h3 class="text-base font-semibold text-gray-900">Update Gallery Image</h3>
@@ -11,17 +11,21 @@
           <form action="{{route('admin.galleries-update',$gallery->id)}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="admin-card-body">
-              <div class="grid grid-cols-1 gap-4">
-                <div>
-                    <label for="image" class="font-medium text-gray-700">Image</label>
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="md:col-span-1">
+                    <label for="image" class="block text-sm font-medium text-gray-700">Image <span class="text-red-500">*</span></label>
+                </div>
+                <div class="md:col-span-3">
                     <x-file-upload name="image" label="Upload Image" :current="$gallery->image" />
                     @error('image')
                       <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                     @enderror
                 </div>
 
-                <div>
-                    <label for="caption" class="font-medium text-gray-700">Caption</label>
+                <div class="md:col-span-1">
+                    <label for="caption" class="block text-sm font-medium text-gray-700">Caption</label>
+                </div>
+                <div class="md:col-span-3">
                     <input
                         type="text"
                         name="caption"
@@ -35,8 +39,10 @@
                     @enderror
                 </div>
 
-                <div>
-                    <label for="sort_order" class="font-medium text-gray-700">Sort Order</label>
+                <div class="md:col-span-1">
+                    <label for="sort_order" class="block text-sm font-medium text-gray-700">Sort Order</label>
+                </div>
+                <div class="md:col-span-3">
                     <input
                         type="number"
                         name="sort_order"
@@ -52,7 +58,7 @@
               </div>
             </div>
             <div class="px-6 py-4 border-t border-gray-100 text-center">
-              <button class="admin-btn-success" type="submit">Submit</button>
+              <button class="admin-btn-primary" type="submit">Submit</button>
               <a href="{{route('admin.galleries')}}" class="admin-btn-danger">Cancel</a>
             </div>
           </form>
