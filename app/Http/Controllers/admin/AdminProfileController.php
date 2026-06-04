@@ -12,7 +12,7 @@ class AdminProfileController extends Controller
 {
     public function profile(){
         $profile = Auth::guard('admin')->user();
-        return view('auth.backend.profile.profile',compact('profile'));
+        return view('auth.admin.profile.profile',compact('profile'));
     }
 
     public function profile_update(Request $request)

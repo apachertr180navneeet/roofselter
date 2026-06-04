@@ -11,8 +11,8 @@ class AdminLoginController extends Controller
 {
     //This method will show login form for admin
     public function index(){
-        // return view('auth.backend.login');
-        return view('auth.backend.login');
+        // return view('auth.admin.login');
+        return view('auth.admin.login');
     }
 
     // This method will authenticate admin

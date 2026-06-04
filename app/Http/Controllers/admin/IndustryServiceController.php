@@ -13,13 +13,13 @@ class IndustryServiceController extends Controller
     //This method will show listing a Industry services
     public function index(){
         $industry_service = IndustryService::where('status',1)->get();
-        return view('backend.industry_system.industry-service.index',compact('industry_service'));
+        return view('admin.industry_system.industry-service.index',compact('industry_service'));
     }
 
     //This method will show listing a industry services
     public function create(){
         $industry_info = Industry::where('status',1)->get();
-        return view('backend.industry_system.industry-service.create',compact('industry_info'));
+        return view('admin.industry_system.industry-service.create',compact('industry_info'));
     }
 
     //This method will store a record of industry services
@@ -48,7 +48,7 @@ class IndustryServiceController extends Controller
     public function edit($id){
         $industry_service = IndustryService::find($id);
         $industry_info = Industry::where('status',1)->get();
-        return view('backend.industry_system.industry-service.edit',compact('industry_service','industry_info'));
+        return view('admin.industry_system.industry-service.edit',compact('industry_service','industry_info'));
     }
 
     //This method will update a existing listing of industry service

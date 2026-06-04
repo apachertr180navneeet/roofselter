@@ -13,13 +13,13 @@ class AboutController extends Controller
     //This method will show About listing
     public function index(){
         $aboutus = About::get();
-        return view('backend.about_system.about.index',compact('aboutus'));
+        return view('admin.about_system.about.index',compact('aboutus'));
     }
 
     //This method will show about form for creating a listing
     public function create(){
         $about_categories = AboutCategory::where('status',1)->get();
-        return view('backend.about_system.about.create',compact('about_categories'));
+        return view('admin.about_system.about.create',compact('about_categories'));
     }
 
     //This method will store a record of aboutus
@@ -62,7 +62,7 @@ class AboutController extends Controller
     public function edit($id){
         $edit = About::find($id);
         $about_categories = AboutCategory::where('status',1)->get();
-        return view('backend.about_system.about.edit',compact('edit','about_categories'));
+        return view('admin.about_system.about.edit',compact('edit','about_categories'));
     }
 
     //This method will update a existing listing of aboutus

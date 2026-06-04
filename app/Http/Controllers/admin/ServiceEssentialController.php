@@ -13,13 +13,13 @@ class ServiceEssentialController extends Controller
     //This method will show listing a services essentials
     public function index(){
         $service_essentials = ServiceEssential::where('status',1)->get();
-        return view('backend.service_system.essentials.index',compact('service_essentials'));
+        return view('admin.service_system.essentials.index',compact('service_essentials'));
     }
 
     //This method will show listing a services essentials
     public function create(){
         $service_info = Service::where('status',1)->get();
-        return view('backend.service_system.essentials.create',compact('service_info'));
+        return view('admin.service_system.essentials.create',compact('service_info'));
     }
 
     //This method will store a record of services essentials
@@ -48,7 +48,7 @@ class ServiceEssentialController extends Controller
     public function edit($id){
         $service_essentials = ServiceEssential::find($id);
         $service_info = Service::where('status',1)->get();
-        return view('backend.service_system.essentials.edit',compact('service_essentials','service_info'));
+        return view('admin.service_system.essentials.edit',compact('service_essentials','service_info'));
     }
 
     //This method will update a existing listing of service essentials

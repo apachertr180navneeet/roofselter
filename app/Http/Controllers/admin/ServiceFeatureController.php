@@ -13,13 +13,13 @@ class ServiceFeatureController extends Controller
     //This method will show listing a services features
     public function index(){
         $service_features = ServiceFeature::where('status',1)->get();
-        return view('backend.service_system.features.index',compact('service_features'));
+        return view('admin.service_system.features.index',compact('service_features'));
     }
 
     //This method will show listing a services features
     public function create(){
         $service_info = Service::where('status',1)->get();
-        return view('backend.service_system.features.create',compact('service_info'));
+        return view('admin.service_system.features.create',compact('service_info'));
     }
 
     //This method will store a record of services features
@@ -48,7 +48,7 @@ class ServiceFeatureController extends Controller
     public function edit($id){
         $service_features = ServiceFeature::find($id);
         $service_info = Service::where('status',1)->get();
-        return view('backend.service_system.features.edit',compact('service_features','service_info'));
+        return view('admin.service_system.features.edit',compact('service_features','service_info'));
     }
 
     //This method will update a existing listing of service features

@@ -12,7 +12,7 @@ class FaqController extends Controller
     public function index()
     {
         $faqs = Faq::orderBy('created_at', 'DESC')->get();
-        return view('backend.faqs.index', compact('faqs'));
+        return view('admin.faqs.index', compact('faqs'));
     }
 
     public function store(Request $request)
@@ -37,7 +37,7 @@ class FaqController extends Controller
     public function edit($id)
     {
         $faq = Faq::find($id);
-        return view('backend.faqs.edit', compact('faq'));
+        return view('admin.faqs.edit', compact('faq'));
     }
 
     public function update(Request $request, $id)

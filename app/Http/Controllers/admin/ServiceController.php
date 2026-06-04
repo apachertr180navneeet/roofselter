@@ -14,7 +14,7 @@ class ServiceController extends Controller
     //This method will show listing for service post
     public function index(){
         $services = Service::latest()->get();
-        return view('backend.service_system.service.index',compact('services'));
+        return view('admin.service_system.service.index',compact('services'));
     }
 
     // This method will get sub categories
@@ -31,7 +31,7 @@ class ServiceController extends Controller
     //This method will show form for creating a listing of service
     public function create(){
         $service_categories = ServiceCategory::where('status',1)->get();
-        return view('backend.service_system.service.create',compact('service_categories'));
+        return view('admin.service_system.service.create',compact('service_categories'));
     }
 
 
@@ -82,7 +82,7 @@ class ServiceController extends Controller
     public function edit($id){
         $service = Service::find($id);
         $service_categories = ServiceCategory::where('status',1)->get();
-        return view('backend.service_system.service.edit',compact('service','service_categories'));
+        return view('admin.service_system.service.edit',compact('service','service_categories'));
     }
 
     //This method will update a existing listing of service

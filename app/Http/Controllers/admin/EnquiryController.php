@@ -12,7 +12,7 @@ class EnquiryController extends Controller
     {
         Contact::where('is_read', 0)->update(['is_read' => 1]);
         $enquiries = Contact::latest()->get();
-        return view('backend.enquiries.index', compact('enquiries'));
+        return view('admin.enquiries.index', compact('enquiries'));
     }
 
     public function search(Request $request)
@@ -31,7 +31,7 @@ class EnquiryController extends Controller
             $query->where('enquiry_status', $request->status);
         }
         $enquiries = $query->latest()->get();
-        return view('backend.enquiries.index', compact('enquiries'));
+        return view('admin.enquiries.index', compact('enquiries'));
     }
 
     public function reply(Request $request, $id)

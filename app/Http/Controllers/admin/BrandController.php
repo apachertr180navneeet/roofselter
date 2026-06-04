@@ -12,7 +12,7 @@ class BrandController extends Controller
     //This method will show listing for brands
     public function index(){
         $brands = Brand::get();
-        return view('backend.brands.index',compact('brands'));
+        return view('admin.brands.index',compact('brands'));
     }
 
     //This method will store a record of brands
@@ -46,7 +46,7 @@ class BrandController extends Controller
     //This method will show brands form for updating a listing
     public function edit($id){
         $brands = Brand::find($id);
-        return view('backend.brands.edit',compact('brands'));
+        return view('admin.brands.edit',compact('brands'));
     }
 
     //This method will update a existing listing of brands

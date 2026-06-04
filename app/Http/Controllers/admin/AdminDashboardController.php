@@ -9,6 +9,6 @@ class AdminDashboardController extends Controller
 {
     //This method will show dashboard page for admin
     public function index(){
-        return view('auth.backend.dashboard');
+        return view('auth.admin.dashboard');
     }
 }

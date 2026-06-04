@@ -12,7 +12,7 @@ class GalleryController extends Controller
     public function index()
     {
         $galleries = Gallery::orderBy('sort_order')->get();
-        return view('backend.galleries.index', compact('galleries'));
+        return view('admin.galleries.index', compact('galleries'));
     }
 
     public function store(Request $request)
@@ -45,7 +45,7 @@ class GalleryController extends Controller
     public function edit($id)
     {
         $gallery = Gallery::find($id);
-        return view('backend.galleries.edit', compact('gallery'));
+        return view('admin.galleries.edit', compact('gallery'));
     }
 
     public function update(Request $request, $id)

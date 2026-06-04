@@ -12,7 +12,7 @@ class SliderController extends Controller
     //This method will show slider listing
     public function index(){
         $sliders = Slider::get();
-        return view('backend.slider.slider',compact('sliders'));
+        return view('admin.slider.slider',compact('sliders'));
     }
 
     // This method store data in database 

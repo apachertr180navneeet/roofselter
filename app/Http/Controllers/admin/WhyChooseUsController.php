@@ -12,7 +12,7 @@ class WhyChooseUsController extends Controller
     public function index()
     {
         $items = WhyChooseUs::orderBy('sort_order')->get();
-        return view('backend.why_choose_us.index', compact('items'));
+        return view('admin.why_choose_us.index', compact('items'));
     }
 
     public function store(Request $request)
@@ -39,7 +39,7 @@ class WhyChooseUsController extends Controller
     public function edit($id)
     {
         $item = WhyChooseUs::findOrFail($id);
-        return view('backend.why_choose_us.edit', compact('item'));
+        return view('admin.why_choose_us.edit', compact('item'));
     }
 
     public function update(Request $request, $id)

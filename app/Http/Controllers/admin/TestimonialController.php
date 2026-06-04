@@ -12,12 +12,12 @@ class TestimonialController extends Controller
     //This method will show Testimonial listing
     public function index(){
         $testimonials = Testimonial::get();
-        return view('backend.testimonials.index',compact('testimonials'));
+        return view('admin.testimonials.index',compact('testimonials'));
     }
 
     //This method will show testimonial form for creating a listing
     public function create(){
-        return view('backend.testimonials.create');
+        return view('admin.testimonials.create');
     }
 
     //This method will store a record of testimonials
@@ -57,7 +57,7 @@ class TestimonialController extends Controller
     //This method will show testimonial form for updating a listing
     public function edit($id){
         $testimonials = Testimonial::find($id);
-        return view('backend.testimonials.edit',compact('testimonials'));
+        return view('admin.testimonials.edit',compact('testimonials'));
     }
 
     //This method will update a existing listing of testimonial

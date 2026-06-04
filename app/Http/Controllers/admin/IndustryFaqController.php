@@ -13,13 +13,13 @@ class IndustryFaqController extends Controller
     //This method will show listing a industry faq
     public function index(){
         $industry_faq = IndustryFaq::where('status',1)->get();
-        return view('backend.industry_system.industry-faq.index',compact('industry_faq'));
+        return view('admin.industry_system.industry-faq.index',compact('industry_faq'));
     }
 
     //This method will show listing a industry faq
     public function create(){
         $industry_info = Industry::where('status',1)->get();
-        return view('backend.industry_system.industry-faq.create',compact('industry_info'));
+        return view('admin.industry_system.industry-faq.create',compact('industry_info'));
     }
 
     //This method will store a record of industry faq
@@ -47,7 +47,7 @@ class IndustryFaqController extends Controller
     public function edit($id){
         $industry_faq = IndustryFaq::find($id);
         $industry_info = Industry::where('status',1)->get();
-        return view('backend.industry_system.industry-faq.edit',compact('industry_faq','industry_info'));
+        return view('admin.industry_system.industry-faq.edit',compact('industry_faq','industry_info'));
     }
 
     //This method will update a existing listing of industry faq

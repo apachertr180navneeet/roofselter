@@ -11,7 +11,7 @@ class SettingController extends Controller
     public function index()
     {
         $settings = Setting::all()->pluck('value', 'key');
-        return view('auth.backend.settings.index', compact('settings'));
+        return view('auth.admin.settings.index', compact('settings'));
     }
 
     public function update(Request $request)

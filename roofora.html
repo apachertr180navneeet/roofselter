@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>Roofora — Roofing & Construction Services HTML Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.2.0/magnific-popup.min.css">
+    <style>
+        /*------------------------------------------------------------------
+        [Master Stylesheet]
+        Project:  Roofora
+        -------------------------------------------------------------------*/
+        /*------------------------------------------------------------------
+        # [Color Codes]
+        #   --primary--color: #1e2e4f;
+        #   --secondary--color: #ffffff;
+        #   --accent--color: #f19e1f;
+        #   --text--color: #616a7e;
+        #   --black--color: #000000;
+        #   --sky--color: #f4f8ff;
+        -------------------------------------------------------------------*/
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Sora:wght@100..800&display=swap');
+
+        :root {
+            --primary--color: #1e2e4f;
+            --secondary--color: #ffffff;
+            --accent--color: #f19e1f;
+            --text--color: #616a7e;
+            --black--color: #000000;
+            --blue--color: #1d2e50;
+            --blue--color2: #293a5b;
+            --sky--color: #f4f8ff;
+            --lemon--color: #fff4e3;
+            --green--color: #3bad20;
+            --yellow--color: #e09017;
+            --lemon--color2: #fff9ef;
+            --border--color: #cfd8e8;
+            --border--color2: #e6ebf6;
+            --light--blue--color: #b7c1d5;
+            --light--blue--color2: #b8c2d8;
+            --light--blue--color3: #afbcd6;
+        }
+
+        body {
+            font-family: "Sora", sans-serif;
+            font-size: 16px;
+            line-height: 26px;
+            font-weight: 400;
+            color: var(--text--color);
+        }
+        h1, h2, h3, h4, h5, h6 { font-family: "Sora", sans-serif; }
+        figure { margin-bottom: 0; }
+        .sora-font { font-family: "Sora", sans-serif; }
+        .oswald-font { font-family: "Oswald", sans-serif; }
+        .z-1 { z-index: 1; }
+        .text-size-120 { font-size: 120px; line-height: 110px; font-weight: 700; color: var(--secondary--color); }
+        .text-size-90 { font-size: 90px; line-height: 96px; font-weight: 700; }
+        .text-size-60 { font-size: 60px; line-height: 63px; font-weight: 700; color: var(--primary--color); }
+        .text-size-56 { font-size: 56px; line-height: 60px; font-weight: 700; color: var(--primary--color); }
+        .text-size-46 { font-size: 46px; line-height: 50px; font-weight: 700; color: var(--secondary--color); }
+        .text-size-40 { font-size: 40px; line-height: 50px; font-weight: 700; }
+        .text-size-30 { font-size: 30px; line-height: 40px; font-weight: 700; color: var(--primary--color); }
+        .text-size-34 { font-size: 34px; line-height: 40px; font-weight: 700; color: var(--primary--color); }
+        .text-size-28 { font-size: 28px; line-height: 32px; font-weight: 700; color: var(--primary--color); }
+        .text-size-26 { font-size: 26px; line-height: 33px; font-weight: 600; color: var(--primary--color); }
+        .text-size-24 { font-size: 24px; line-height: 26px; font-weight: 700; }
+        .text-size-22 { font-size: 22px; line-height: 24px; font-weight: 700; color: var(--primary--color); }
+        .text-size-20 { font-size: 20px; line-height: 24px; font-weight: 600; }
+        .text-size-18 { font-size: 18px; line-height: 28px; font-weight: 400; color: var(--text--color); }
+        .text-size-16 { font-size: 16px; line-height: 24px; font-weight: 500; color: var(--text--color); }
+        .text-size-14 { font-size: 14px; line-height: 20px; }
+        p { font-size: 16px; line-height: 24px; font-weight: 400; color: var(--text--color); word-break: break-word; }
+        .special-text { color: var(--accent--color); font-size: 14px; line-height: 24px; margin-bottom: 18px; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; display: inline-block; }
+        .primary_btn { font-size: 16px; min-width: 206px; padding: 0; height: 58px; line-height: 58px; font-weight: 600; text-align: center; border-radius: 30px; position: relative; display: inline-block; background-color: var(--primary--color); color: var(--secondary--color); transition: all 0.6s ease-in-out; padding-right: 30px; }
+        .primary_btn span, .secondary_btn span, .elementary_btn span { position: absolute; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 100px; right: 8px; top: 7px; }
+        .primary_btn span { background-color: var(--accent--color); }
+        .primary_btn:hover { color: var(--secondary--color); background-color: var(--accent--color); text-decoration: none; }
+        .elementary_btn { font-size: 16px; min-width: 206px; padding: 0; height: 58px; line-height: 58px; font-weight: 600; text-align: center; border-radius: 30px; position: relative; display: inline-block; background-color: var(--secondary--color); color: var(--primary--color); transition: all 0.6s ease-in-out; padding-right: 30px; }
+        .elementary_btn:hover { color: var(--secondary--color); background-color: var(--accent--color); text-decoration: none; }
+        .secondary_btn { font-size: 16px; min-width: 208px; padding: 0; height: 58px; line-height: 58px; font-weight: 600; text-align: center; border-radius: 32px; position: relative; display: inline-block; background-color: var(--accent--color); color: var(--secondary--color); transition: all 0.6s ease-in-out; padding-right: 30px; }
+        .secondary_btn:hover { color: var(--primary--color); background-color: var(--secondary--color); text-decoration: none; }
+        .font-weight-600 { font-weight: 600; }
+        .font-weight-700 { font-weight: 700; }
+        .text-accent { color: var(--accent--color); }
+        .text-blue { color: var(--primary--color); }
+        .text-light-blue { color: var(--light--blue--color2); }
+        .bg-sky { background-color: var(--sky--color); }
+        .bg-blue { background-color: var(--primary--color); }
+        .bg-fff { background-color: var(--secondary--color); }
+        .br-30 { border-radius: 30px; }
+        .br-40 { border-radius: 40px; }
+        .br-50 { border-radius: 50px; }
+        .br-20 { border-radius: 20px; }
+        .spacer { float: left; width: 100%; height: 50px; }
+        .padding-top { padding-top: 140px; }
+        .padding-bottom { padding-bottom: 140px; }
+        .padding-rl { padding-right: 50px; padding-left: 50px; }
+        .main-box { border-radius: 50px; }
+        html { scroll-behavior: smooth; }
+
+        /* HEADER */
+        .header-con { z-index: 5; padding: 20px 0; }
+        .header-con .navbar { padding: 0; }
+        .header-con .navbar-nav { gap: 65px; justify-content: center; align-items: center; background-color: var(--sky--color); border-radius: 30px; height: 58px; padding-right: 27px; padding-left: 15px; }
+        .header-con .nav-link { font-size: 14px; color: var(--primary--color); font-weight: 500; padding: 2px 0; transition: all 0.6s ease-in-out; }
+        .header-con .nav-link:hover { color: var(--accent--color); }
+        .header-con .nav-link.active { color: var(--secondary--color); background-color: var(--primary--color); padding: 2px 15px; border-radius: 15.5px; }
+        .header-con .dropdown-menu { padding: 10px; margin-top: 10px; background: #fff; border: 0; width: 230px; box-shadow: 0 0 100px rgba(0,0,0,0.15); border-radius: 10px; }
+        .header-con .dropdown-item { padding: 7px 12px; font-size: 16px; font-weight: 500; border-radius: 10px; transition: all 0.3s; }
+        .header-con .dropdown-item:hover,
+        .header-con .dropdown-item.active { background-color: var(--accent--color); color: #fff; }
+        .header-contact .last_list { display: flex; align-items: center; margin-right: 22px; margin-left: 22px; }
+        .header-contact .last_list a { margin: 0 4px; transition: all 0.3s; background-color: var(--sky--color); width: 58px; height: 58px; display: flex; align-items: center; justify-content: center; border-radius: 100%; }
+        .header-contact .last_list a img { filter: brightness(0); transition: all 0.3s; }
+        .header-contact .last_list a:hover img { filter: none; }
+        .header-contact .last_list .cart span { font-size: 7px; width: 13px; height: 13px; line-height: 13px; position: absolute; right: 12px; bottom: 12px; text-align: center; border-radius: 100%; color: #fff; background-color: var(--accent--color); }
+        .header-contact ul li:last-child { display: flex; align-items: center; min-width: 255px; height: 58px; border-radius: 30px; background-color: var(--primary--color); padding: 0 10px; transition: all 0.6s; cursor: pointer; }
+        .header-contact ul li:last-child:hover { background-color: var(--accent--color); }
+        .header-contact .header-phone { width: 47px; height: 47px; display: flex; align-items: center; justify-content: center; background-color: var(--secondary--color); border-radius: 100px; position: absolute; left: 7px; top: 6px; }
+        .header-contact ul li a span.number { color: #fff; font-weight: 700; font-size: 18px; padding-left: 54px; }
+        .header-contact .contact-btn { min-width: 238px; background-color: var(--accent--color); color: #fff; height: 58px; line-height: 58px; font-weight: 600; position: relative; font-size: 16px; padding-right: 30px; border-radius: 30px; transition: all 0.6s; text-decoration: none; display: inline-block; text-align: center; }
+        .header-contact .contact-btn figure { position: absolute; background-color: var(--primary--color); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 100px; right: 8px; top: 6px; }
+        .header-contact .contact-btn:hover { background-color: var(--primary--color); color: #fff; }
+
+        /* BANNER */
+        .banner-con { background-image: url(https://html.designingmedia.com/roofora/assets/images/baner-bg-img.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; padding-top: 132px; padding-bottom: 125px; border-radius: 50px; overflow: hidden; }
+        .banner-con::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-image: url(https://html.designingmedia.com/roofora/assets/images/baner-overlay.png); background-size: cover; background-repeat: no-repeat; border-radius: 50px; }
+        .banner-con .banner-floating { position: absolute; right: 50px; top: 50%; transform: translateY(-50%); z-index: 2; }
+        .banner-con .banner-floating .float-box { background: #fff; border-radius: 20px; padding: 15px 25px; margin-bottom: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); display: flex; align-items: center; gap: 12px; }
+        .banner-con .banner-floating .float-box p { margin: 0; font-size: 14px; font-weight: 700; color: var(--primary--color); line-height: 1.3; }
+
+        /* SUB BANNER */
+        .sub-banner-con { background-image: url(https://html.designingmedia.com/roofora/assets/images/sub-banner-bg-img.jpg); background-repeat: no-repeat; background-size: cover; padding-top: 182px; padding-bottom: 182px; overflow: hidden; }
+        .sub-banner-con::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-image: url(https://html.designingmedia.com/roofora/assets/images/sub-banner-overlay.png); background-size: cover; background-repeat: no-repeat; border-radius: 50px; }
+        .sub-banner-con p { font-size: 20px; line-height: 30px; margin-bottom: 35px; }
+        .sub-banner-con h1 { margin-bottom: 23px; }
+        .breadcrumb { padding: 18px 30px; min-width: 198px; border-radius: 26px; background-color: rgba(0,0,0,0.08); border: 1px solid rgba(255,255,255,0.3); justify-content: center; }
+        .breadcrumb-item { font-size: 14px; font-weight: 500; }
+        .breadcrumb-item a { color: var(--accent--color); text-decoration: none; }
+        .breadcrumb-item.active { color: #fff; }
+        .breadcrumb-item+.breadcrumb-item::before { color: #fff; content: "/"; padding: 0 17px; }
+
+        /* ABOUT */
+        .about-con .about-quote { position: absolute; bottom: -40px; left: -40px; background: var(--primary--color); border-radius: 20px; padding: 25px; max-width: 270px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+        .about-con .about-quote p { color: #fff; font-style: italic; font-size: 14px; line-height: 1.6; }
+        .user-detail-box { text-align: center; border-right: 1px solid var(--border--color); padding: 0 20px; }
+        .user-detail-box:last-child { border-right: none; }
+        .user-detail-box span { font-size: 40px; font-weight: 700; color: var(--accent--color); }
+        .user-detail-box p { font-weight: 600; color: var(--primary--color); font-size: 14px; }
+
+        /* SERVICES */
+        .services-con .service-box { background: var(--secondary--color); border-radius: 20px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: all 0.6s; }
+        .services-con .service-box:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+        .services-con .service-box .service-img { position: relative; overflow: hidden; }
+        .services-con .service-box .service-img img { transition: all 0.8s; }
+        .services-con .service-box:hover .service-img img { transform: scale(1.08); }
+        .services-con .service-box .service-icon { position: absolute; bottom: -30px; right: 20px; width: 70px; height: 70px; background: var(--primary--color); border-radius: 100%; display: flex; align-items: center; justify-content: center; }
+        .services-con .service-box .service-content { padding: 35px 25px 25px; }
+
+        /* main services */
+        .main-service-box { background: #fff; border-radius: 20px; overflow: hidden; transition: all 0.6s; margin-bottom: 30px; }
+        .main-service-box:hover { transform: translateY(-6px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+        .main-service-box .main-service-icon { top: 15px; right: 15px; width: 60px; height: 60px; background: var(--primary--color); border-radius: 100%; display: flex; align-items: center; justify-content: center; z-index: 2; }
+        .main-service-box .inner-service { padding: 25px 25px 30px; }
+        .main-service-box .inner-service p { margin-bottom: 20px; }
+        .main-service-box .primary_btn { min-width: 170px; height: 50px; line-height: 50px; font-size: 15px; }
+        .main-service-box .primary_btn span { width: 36px; height: 36px; top: 7px; }
+        .main-service-box .read-more-link { color: var(--primary--color); font-weight: 600; font-size: 15px; margin-left: 15px; text-decoration: none; }
+        .main-service-box .read-more-link:hover { color: var(--accent--color); }
+
+        /* PRICING */
+        .pricing-con .pricing-box { background: #fff; border-radius: 30px; padding: 42px 35px; border: 1px solid #fff; transition: all 0.6s; }
+        .pricing-con .pricing-box:hover { border-color: var(--primary--color); }
+        .pricing-con .pricing-box .price-icon { width: 86px; height: 86px; display: flex; align-items: center; justify-content: center; border-radius: 100%; background-color: var(--primary--color); margin-bottom: 22px; }
+        .pricing-con .pricing-box .price-amount { font-size: 54px; line-height: 60px; font-weight: 600; color: var(--blue--color); margin-bottom: 22px; }
+        .pricing-con .pricing-box .price-amount span.dollar { font-size: 24px; position: relative; top: -19px; color: var(--blue--color); }
+        .pricing-con .pricing-box .price-amount span.month { font-size: 20px; color: var(--text--color); font-weight: 400; }
+        .pricing-con .pricing-box ul li { font-size: 18px; line-height: 23px; margin-bottom: 10px; padding-left: 28px; color: var(--black--color); }
+        .pricing-con .pricing-box ul li i { position: absolute; left: 0; top: 5px; color: var(--blue--color); }
+
+        /* CTA */
+        .cta-con { background-image: url(https://html.designingmedia.com/roofora/assets/images/cta-bg-img.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; padding-top: 140px; padding-bottom: 140px; }
+        .cta-con::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(29,46,80,0.9); border-radius: 50px; }
+
+        /* PORTFOLIO */
+        .portfolio-con .portfolio-box { position: relative; border-radius: 20px; overflow: hidden; }
+        .portfolio-con .portfolio-box img { transition: all 0.8s; width: 100%; }
+        .portfolio-con .portfolio-box:hover img { transform: scale(1.08); }
+        .portfolio-con .portfolio-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 30px; background: linear-gradient(transparent, rgba(30,46,79,0.9)); }
+        .portfolio-con .portfolio-overlay h4 { color: #fff; font-weight: 700; }
+        .portfolio-con .portfolio-overlay span { color: var(--accent--color); font-size: 13px; font-weight: 700; text-transform: uppercase; }
+        .portfolio-con .portfolio-overlay a { width: 44px; height: 44px; background: rgba(255,255,255,0.2); border-radius: 100%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; transition: all 0.3s; }
+        .portfolio-con .portfolio-overlay a:hover { background: var(--accent--color); }
+
+        /* TESTIMONIALS */
+        .testimonials-con { background-image: url(https://html.designingmedia.com/roofora/assets/images/testimonial-bg-img.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; }
+        .testimonials-con::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(29,46,80,0.9); border-radius: 50px; }
+        .testimonials-con .left-quote { left: 80px; top: 60px; }
+        .testimonials-con .right-quote { right: 80px; bottom: 60px; }
+        .testimonials-con .review-text { font-size: 24px; line-height: 38px; color: #fff; font-style: italic; max-width: 900px; margin: 0 auto 50px; }
+        .testimonials-con .carousel-indicators { position: static; margin: 30px 0 0; gap: 15px; }
+        .testimonials-con .carousel-indicators li { width: auto; height: auto; text-indent: 0; border: none; border-radius: 0; background: none; opacity: 0.5; transition: all 0.3s; display: flex; align-items: center; gap: 12px; padding: 10px 15px; border-radius: 10px; }
+        .testimonials-con .carousel-indicators li.active, 
+        .testimonials-con .carousel-indicators li:hover { opacity: 1; background: rgba(255,255,255,0.1); }
+        .testimonials-con .carousel-indicators li figure { width: 50px; height: 50px; border-radius: 100%; overflow: hidden; }
+        .testimonials-con .carousel-indicators li figure img { width: 100%; height: 100%; object-fit: cover; }
+        .testimonials-con .carousel-indicators li .client-name { color: #fff; font-weight: 700; margin: 0; font-size: 16px; }
+        .testimonials-con .carousel-indicators li span { color: rgba(255,255,255,0.7); font-size: 14px; }
+        .testimonials-con .pagination-outer { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
+        .testimonials-con .pagination-outer a { width: 50px; height: 50px; background: rgba(255,255,255,0.1); border-radius: 100%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 18px; text-decoration: none; transition: all 0.3s; }
+        .testimonials-con .pagination-outer a:hover { background: var(--accent--color); }
+
+        /* FAQ */
+        .faq-con .accordion-card { border-radius: 15px; margin-bottom: 20px; background: #fff; border: 1px solid #e6ebf6; overflow: hidden; }
+        .faq-con .accordion-card:has(.show) { border-color: var(--accent--color); }
+        .faq-con .accordion-button { padding: 23px 75px 23px 36px; font-size: 22px; font-weight: 700; color: var(--primary--color); background: #fff; box-shadow: none; border-radius: 15px; }
+        .faq-con .accordion-button:not(.collapsed) { background: #fff; color: var(--primary--color); box-shadow: none; }
+        .faq-con .accordion-button::after { content: "\f061"; font-family: "Font Awesome 6 Free"; font-weight: 900; background: none; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 100%; color: #fff; background-color: var(--primary--color); position: absolute; right: 22px; }
+        .faq-con .accordion-button:not(.collapsed)::after { content: "\f063"; background-color: var(--accent--color); transform: none; }
+        .faq-con .accordion-button span { color: var(--light--blue--color2); font-weight: 600; margin-right: 10px; }
+        .faq-con .accordion-body { padding: 0 85px 30px 99px; }
+
+        /* NEWSLETTER */
+        .newsletter-con { padding: 80px 0; }
+        .newsletter-con input { font-size: 16px; width: 100%; height: 68px; border-radius: 35px; padding: 12px 35px; border: 2px solid transparent; outline: none; }
+        .newsletter-con input:focus { box-shadow: 0 0 50px rgba(241,158,31,0.15); border-color: var(--accent--color); }
+        .newsletter-con button { width: 68px; height: 68px; border-radius: 100px; border: none; background: var(--accent--color); color: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.6s; }
+        .newsletter-con button:hover { background: #fff; color: #000; }
+
+        /* FOOTER */
+        .footer-con { padding-top: 80px; background-image: url(https://html.designingmedia.com/roofora/assets/images/footer-bg-img.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; }
+        .footer-con .footer-links li a { color: var(--light--blue--color); font-size: 22px; font-weight: 500; text-decoration: none; transition: all 0.6s; }
+        .footer-con .footer-links li a:hover { color: var(--accent--color); }
+        .footer-con .footer-number a { font-size: 56px !important; font-weight: 700; }
+        .footer-con .footer-contact a { color: var(--secondary--color); font-size: 14px; text-decoration: none; transition: all 0.6s; }
+        .footer-con .footer-contact a:hover { color: var(--accent--color); }
+        .footer-con .bottom-links { border-top: 2px solid rgba(255,255,255,0.15); padding: 42px 0; }
+        .footer-con .bottom-links a { color: var(--light--blue--color); font-size: 12px; text-decoration: none; }
+        .footer-con .bottom-links a:hover { color: var(--accent--color); }
+        .footer-con .social-icons a { width: 50px; height: 50px; background: rgba(255,255,255,0.06); border-radius: 100%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; transition: all 0.6s; }
+        .footer-con .social-icons a:hover { background: var(--accent--color); transform: translateY(-4px); }
+
+        /* LOCATION */
+        .location-wrapper .location-box { display: flex; align-items: center; gap: 15px; padding: 18px 25px; border-radius: 60px; margin-bottom: 16px; background: var(--sky--color); transition: all 0.6s; cursor: pointer; }
+        .location-wrapper .location-box.active, 
+        .location-wrapper .location-box:hover { background: var(--accent--color); color: #fff; }
+        .location-wrapper .location-box span { font-size: 18px; font-weight: 600; color: var(--primary--color); }
+        .location-wrapper .location-box.active span,
+        .location-wrapper .location-box:hover span { color: #fff; }
+        .location-wrapper .location-box .icon-box { width: 44px; height: 44px; background: #fff; border-radius: 100%; display: flex; align-items: center; justify-content: center; }
+
+        /* PARTNERS */
+        .partner-box figure { display: flex; align-items: center; justify-content: center; min-height: 80px; }
+
+        /* GALLERY */
+        .gallery-con .gallery-img-con { border-radius: 40px; overflow: hidden; position: relative; margin-bottom: 30px; }
+        .gallery-con .gallery-img-con img { transition: all 0.4s; width: 100%; }
+        .gallery-con .gallery-img-con:hover img { transform: scale(1.1); }
+        .gallery-con .gallery-img-con a::after { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(29,46,80,0.7); border-radius: 40px; display: none; }
+        .gallery-con .gallery-img-con a::before { content: ""; background: url(https://html.designingmedia.com/roofora/assets/images/plus-icon.png) no-repeat center; width: 66px; height: 66px; position: absolute; left: 50%; top: 50%; z-index: 2; display: none; transform: translate(-50%,-50%); }
+        .gallery-con .gallery-img-con:hover a::before,
+        .gallery-con .gallery-img-con:hover a::after { display: block; }
+
+        /* BACK TO TOP */
+        #button { display: inline-flex; align-items: center; justify-content: center; background-color: var(--accent--color); width: 64px; height: 64px; border-radius: 100px; position: fixed; bottom: 60px; right: 80px; opacity: 0; visibility: hidden; z-index: 20; cursor: pointer; transition: all 0.6s; text-decoration: none; color: var(--primary--color); font-size: 20px; animation: spineer 2s infinite; }
+        #button.show { opacity: 1; visibility: visible; }
+        #button:hover { transform: translateY(-5px); }
+        @keyframes spineer {
+            from { box-shadow: 0 0 0 0 rgba(241,158,31,0.4); }
+            to { box-shadow: 0 0 0 35px rgba(241,158,31,0); }
+        }
+
+        /* PRELOADER */
+        .loader-mask { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: #fff; z-index: 99999; display: flex; align-items: center; justify-content: center; }
+        .loader { width: 50px; height: 50px; position: relative; }
+        .loader div { background-color: var(--accent--color); position: absolute; top: 0; left: 0; width: 50px; height: 50px; opacity: 0.5; border-radius: 50%; animation: ballPulseDouble 2s ease-in-out infinite; }
+        .loader div:last-child { animation-delay: -1s; }
+        @keyframes ballPulseDouble {
+            0%, 100% { transform: scale(0); }
+            50% { transform: scale(1); }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1199px) {
+            .text-size-60 { font-size: 44px; line-height: 48px; }
+            .text-size-90 { font-size: 60px; line-height: 66px; }
+            .header-con .navbar-nav { gap: 30px; }
+            .padding-rl { padding-right: 20px; padding-left: 20px; }
+        }
+        @media (max-width: 991px) {
+            .header-con .navbar-nav { background: none; height: auto; padding: 15px; gap: 10px; }
+            .banner-con .banner-floating { display: none; }
+            .padding-top { padding-top: 80px; }
+            .padding-bottom { padding-bottom: 80px; }
+            .footer-con .footer-number a { font-size: 36px !important; }
+        }
+        @media (max-width: 767px) {
+            .text-size-60 { font-size: 34px; line-height: 38px; }
+            .text-size-90 { font-size: 40px; line-height: 44px; }
+            .text-size-120 { font-size: 60px; line-height: 66px; }
+            .padding-rl { padding-right: 12px; padding-left: 12px; }
+            .header-contact { display: none !important; }
+            .footer-con .middle_portion { flex-direction: column; gap: 30px; }
+            .faq-con .accordion-button { padding: 18px 60px 18px 20px; font-size: 18px; }
+            .faq-con .accordion-body { padding: 0 25px 25px 30px; }
+            .about-con .about-quote { left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div class="loader-mask" id="preloader">
+    <div class="loader">
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<!-- BACK TO TOP -->
+<a id="button" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></a>
+
+<div class="padding-rl">
+<div class="home-outer-wrapper">
+
+<!-- ======= HEADER ======= -->
+<header class="header-con">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">
+            <img src="https://html.designingmedia.com/roofora/assets/images/logo.png" alt="Roofora">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Home</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Residential Roofing</a></li>
+                        <li><a class="dropdown-item" href="#">Roof Maintenance</a></li>
+                        <li><a class="dropdown-item" href="#">Commercial Roofing</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown">Services</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item active" href="#">Services</a></li>
+                        <li><a class="dropdown-item" href="#">Single Service</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Pages</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">FAQs</a></li>
+                        <li><a class="dropdown-item" href="#">Pricing</a></li>
+                        <li><a class="dropdown-item" href="#">Contact</a></li>
+                        <li><a class="dropdown-item" href="#">Team</a></li>
+                        <li><a class="dropdown-item" href="#">Gallery</a></li>
+                        <li><a class="dropdown-item" href="#">Testimonials</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Blog</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Blog</a></li>
+                        <li><a class="dropdown-item" href="#">Single Blog</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="header-contact d-flex align-items-center">
+            <div class="last_list">
+                <a class="search" href="#"><img src="https://html.designingmedia.com/roofora/assets/images/header-search.png" alt="search"></a>
+                <a class="cart position-relative" href="#"><img src="https://html.designingmedia.com/roofora/assets/images/header-cart.png" alt="cart"><span>0</span></a>
+                <a class="admin" href="#"><img src="https://html.designingmedia.com/roofora/assets/images/header-admin.png" alt="admin"></a>
+            </div>
+            <ul class="list-unstyled mb-0 d-flex align-items-center">
+                <li class="d-flex align-items-center position-relative">
+                    <figure class="header-phone mb-0">
+                        <img src="https://html.designingmedia.com/roofora/assets/images/call-icon.png" alt="call" class="img-fluid">
+                    </figure>
+                    <a href="tel:+568925896325" class="text-decoration-none">
+                        <span class="number">+5689 2589 6325</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<!-- ======= BANNER ======= -->
+<section class="position-relative banner-con text-white">
+    <div class="position-relative z-1 main-container" style="max-width:1320px;margin:0 auto;padding:0 20px;">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center gap-2 mb-4">
+                    <img src="https://html.designingmedia.com/roofora/assets/images/google-icon.png" alt="google">
+                    <span class="fw-bold fs-5">4.9</span>
+                    <img src="https://html.designingmedia.com/roofora/assets/images/stars.png" alt="stars">
+                    <span>4.9/5 Reviews</span>
+                </div>
+                <h1 class="text-size-120 text-white mb-4">Roofing<br>Solutions for<br>Every Home.</h1>
+                <p class="text-white fs-5 mb-5">Fast leak fixes, small repairs, and honest re-roofs. You'll deal with me<br>personally, from inspection to the final sweep.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="#" class="primary_btn">Get a Quote <span><img src="https://html.designingmedia.com/roofora/assets/images/arrow.png" alt="arrow"></span></a>
+                    <a href="#" class="elementary_btn">Call Me Now <span><img src="https://html.designingmedia.com/roofora/assets/images/arrow.png" alt="arrow"></span></a>
+                </div>
+                <div class="d-flex gap-4 mt-5 pt-4 border-top border-white" style="border-color:rgba(255,255,255,0.2)!important;">
+                    <div><span class="fs-1 fw-bold text-accent counter">500</span><span class="text-accent fw-bold">+</span><p class="text-white-50 mt-1">Jobs Done</p></div>
+                    <div><span class="fs-1 fw-bold text-accent counter">95</span><span class="text-accent fw-bold">+</span><p class="text-white-50 mt-1">Roofing Awards</p></div>
+                    <div><span class="fs-1 fw-bold text-accent counter">100</span><span class="text-accent fw-bold">%</span><p class="text-white-50 mt-1">Client Satisfaction</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="banner-floating">
+            <div class="float-box"><img src="https://html.designingmedia.com/roofora/assets/images/baner-white-icon1.png" alt=""><p>Clean Jobsite<br>Promise</p></div>
+            <div class="float-box"><img src="https://html.designingmedia.com/roofora/assets/images/baner-white-icon2.png" alt=""><p>Same-Week<br>Service</p></div>
+            <div class="float-box"><img src="https://html.designingmedia.com/roofora/assets/images/baner-white-icon3.png" alt=""><p>Fully<br>Insured</p></div>
+        </div>
+    </div>
+    <div class="text-center mt-4 position-relative z-1">
+        <p class="text-white-50 small mb-1">Scroll Down</p>
+        <a href="#about"><img src="https://html.designingmedia.com/roofora/assets/images/arrow-down.png" alt="down"></a>
+    </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ======= ABOUT ======= -->
+<section class="about-con padding-top padding-bottom position-relative" id="about">
+    <div class="main-container" style="max-width:1320px;margin:0 auto;padding:0 20px;">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-5 wow animate__animated animate__fadeInLeft">
+                <div class="position-relative">
+                    <img src="https://html.designingmedia.com/roofora/assets/images/about-img.jpg" alt="about" class="img-fluid br-40 w-100">
+                    <div class="about-quote">
+                        <img src="https://html.designingmedia.com/roofora/assets/images/quote.png" alt="quote" class="mb-2">
+                        <p>"If I wouldn't put it on my own home, I won't put it on yours."</p>
+                        <span class="text-accent fw-bold small">Jake Morales</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 wow animate__animated animate__fadeInRight">
+                <span class="special-text">About</span>
+                <h2 class="text-size-60 mb-4">Proven Roofing<br>Experience You Can<br>See in Every Detail</h2>
+                <p class="mb-4">I'm Jake Morales, a Melbourne roofer with 18+ years on ladders, not behind a desk. Unlike the big companies, I handle your inspection, your quote, and the repair—start to finish.</p>
+                <p class="mb-4">In Texas, the state doesn't issue roofing licenses, but I maintain all necessary city registrations & follow building codes to the letter.</p>
+                <a href="#" class="primary_btn">See My Insurance & References <span><img src="https://html.designingmedia.com/roofora/assets/images/arrow.png" alt="arrow"></span></a>
+                <div class="row g-4 mt-5 pt-4 border-top">
+                    <div class="col-4 user-detail-box">
+                        <span class="counter">500</span><span class="text-accent fw-bold">+</span>
+                        <p>Jobs Done</p>
+                    </div>
+                    <div class="col-4 user-detail-box">
+                        <span class="counter">95</span><span class="text-accent fw-bold">+</span>
+                        <p>Roofing Awards</p>
+                    </div>
+                    <div class="col-4 user-detail-box border-end-0">
+                        <span class="counter">100</span><span class="text-accent fw-bold">%</span>
+                        <p>Client Satisfaction</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= SERVICES ======= -->
+<section class="padding-top padding-bottom position-relative bg-sky">
+    <div class="main-container" style="max-width:1320px;margin:0 auto;padding:0 20px;">
+        <div class="d-flex flex-wrap justify-content-between align-items-end mb-5">
+            <div class="wow animate__animated animate__fadeInLeft">
+                <span class="special-text">Services</span>
+                <h2 class="text-size-60 mb-0">Roofing Services<br>You Can Trust</h2>
+            </div>
+            <div class="wow animate__animated animate__fadeInRight" style="max-width:460px;">
+                <p>At Roofora, we handle every project personally from start to finish. With over 18 years of hands-on experience, I inspect, quote, and repair your roof myself—no middlemen, no confusion.</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 wow animate__animated animate__fadeInUp">
+                <div class="service-box">
+                    <div class="service-img">
+                        <img src="https://html.designingmedia.com/roofora/assets/images/services-img1.jpg" alt="service" class="w-100">
+                        <div class="service-icon"><img src="https://html.designingmedia.com/roofora/assets/images/service-icon1.png" alt="icon"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="text-size-22">Residential Roofing</h3>
+                        <p>Keep your roof in top condition with our expert repair and maintenance services.</p>
+                        <a href="#" class="primary_btn d-inline-flex align-items-center" style="min-width:160px;height:48px;line-height:48px;font-size:14px;padding-right:25px;">Book Now <span style="width:34px;height:34px;"><img src="https://html.designingmedia.com/roofora/assets/images/arrow.png" alt="arrow"></span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
+                <div class="service-box">
+                    <div class="service-img">
+                        <img src="https://html.designingmedia.com/roofora/assets/images/services-img2.jpg" alt="service" class="w-100">
+                        <div class="service-icon"><img src="https://html.designingmedia.com/roofora/assets/images/service-icon2.png" alt="icon"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="text-size-22">Roof Repairs & Maintenance</h3>
+                        <p>Keep your roof in top condition with our expert repair and maintenance services.</p>
+                        <a href="#" class="primary_btn d-inline-flex align-items-center" style="min-width:160px;height:48px;line-height:48px;font-size:14px;padding-right:25px;">Book Now <span style="width:34px;height:34px;"><img src="https://html.designingmedia.com/roofora/assets/images/arrow.png" alt="arrow"></span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">
+                <div class="service-box">
+                    <div class="service-img">
+                        <img src="https://html.designingmedia.com/roofora/assets/images/services-img3.jpg" alt="service" class="w-100">
+                        <div class="service-icon"><img src="https://html.designingmedia.com/roofora/assets/images/service-icon3.png" alt="icon"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="text-size-22">Commercial Roofing</h3>
+                        <p>Keep your roof in top condition with our expert repair and maintenance services.</p>
+                        <a href="#" class="primary_btn d-inline-flex align-items-center" style="min-width:160px;height:48px;line-height:48px;font-size:14px;padding-right:25px;">Book Now <span style="width:34px;height:34px;"><img src="https://html.designingmedia.com/roofora/assets/images/arrow.png" alt="arrow"></span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow animate__animated animate__fadeInUp" data-wow-delay="0.3s">
+                <div class="service-box">
+                    <div class="service-img">
+                        <img src="https://html.designingmedia.com/roofora/assets/images/services-img4.jpg" alt="service" class="w-100">
+                        <div class="service-icon"><img src="https://html.designingmedia.com/roofora/assets/images/service-icon4.png" alt="icon"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="text-size-22">Roof Replacement</h3>
+                        <p>Keep your roof in top condition with our expert repair and maintenance services.</p>
+                        <a href="#" class="primary_btn d-inline-flex align-items-center" style="min-width:160px;height:48px;line-height:48px;font-size:14px;padding-right:25px;">Book Now <span style="width:34px;height:34px;"><img src="https://html.designingmedia.com/roofora/assets/images/arrow.png" alt="arrow"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ======= PRICING ======= -->
+<section class="pricing-con padding-top padding-bottom position-relative bg-light">
+    <div class="main-container" style="max-width:1320px;margin:0 auto;padding:0 20px;">
+        <div class="text-center mb-5">
+            <span class="special-text">Pricing</span>
+            <h2 class="text-size-60">Professional Roofing &<br>Transparent Pricing</h2>
+            <p>Every home is different, but here is where we start. No surprise add-ons.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 wow animate__animated animate__fadeInUp">
+                <div class="pricing-box">
+                    <div class="price-icon"><img src="https://html.designingmedia.com/roofora/assets/images/price-icon1.png" alt="icon"></div>
+                    <h3 class="text-size-28">Leak Diagnosis</h3>
+                    <p>Credited toward your repair if you hire me.</p>
+                    <div class="price-amount"><span class="dollar">$</span>99<span class="month">/mo</span></div>
+                    <ul class="list-unstyled">
+                        <li class="position-relative"><i class="fas fa-check"></i> Professional roof inspection.</li>
+                        <li class="position-relative"><i class="fas fa-check"></i> Identifies leaks, weak spots.</li>
+                        <li class="position-relative"><i class="fas fa-check"></i> Report sent directly to you.</li>
+                    </ul>
+                    <a href="#" class="primary_btn">Book Now <span><img src="https://html.designingmedia.com/roofora/assets/images/arrow.png" alt="arrow"></span></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
+                <div class="pricing-box">
+                    <div class="price-icon"><img src="https://html.designingmedia.com/roofora/assets/images/price-icon2.png" alt="icon"></div>
+                    <h3 class="text-size-28">Standard Repair</h3>
+                    <p>Shingles, pipe boots, or basic flashing fixes.</p>
+                    <div class="price-amount"><span class="dollar">$</span>249<span class="month">/mo</span></div>
+                    <ul class="list-unstyled">
+                        <li class="position-relative"><i class="fas fa-check"></i> Fixes shingles, pipe boots.</li>
+                        <li class="position-relative"><i class="fas fa-check"></i> Quick, durable repairs.</li>
+                        <li class="position-relative"><i class="fas fa-check"></i> Materials & labor included.</li>
+                    </ul>
+                    <a href="#" class="primary_btn">Book Now <span><img src="https://html.designingmedia.com/roofora/assets/images/arrow.png" alt="arrow"></span></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">
+                <div class="pricing-box">
+                    <div class="price-icon"><img src="https://html.designingmedia.com/roofora/assets/images/price-icon3.png" alt="icon"></div>
+                    <h3 class="text-size-28">Chimney Re-flash</h3>
+                    <p>Typical brick chimney counter-flashing.</p>
+                    <div class="price-amount"><span class="dollar">$</span>550<span class="month">/mo</span></div>
+                    <ul class="list-unstyled">
+                        <li class="position-relative"><i class="fas fa-check"></i> Proper installation.</li>
+                        <li class="position-relative"><i class="fas fa-check"></i> Prevents water intrusion.</li>
+                        <li class="position-relative"><i class="fas fa-check"></i> Built to last and withstand.</li>
+                    </ul>
+                    <a href="#" class="primary_btn">Book Now <span><img src="https://html.designingmedia.com/roofora/assets/images/arrow.png" alt="arrow"></span></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow animate__animated animate__fadeInUp" data-wow-delay="0.3s">
+                <div class="pricing-box">
+                    <div class="price-icon"><img src="https://html.designingmedia.com/roofora/assets/images/price-icon4.png" alt="icon"></div>
+                    <h3 class="text-size-28">Emergency Tarp</h3>
+                    <p>Up to 10'x12' coverage to stop active leaks.</p>
+                    <div class="price-amount"><span class="dollar">$</span>189<span class="month">/mo</span></div>
+                    <ul class="list-unstyled">
+                        <li class="position-relative"><i class="fas fa-check"></i> Temporary leak coverage.</li>
+                        <li class="position-relative"><i class="fas fa-check"></i> Immediate protection.</li>
+                        <li class="position-relative"><i class="fas fa-check"></i> Prevents interior damage.</li>
+                    </ul>
+                    <a href="#" class="primary_btn">Book Now <span><img src="https://html.designingmedia.com/roofora/assets/images/arrow.png" alt="arrow"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= CTA ======= -->
+<section class="cta-con position-relative text-center">
+    <img src="https://html.designingmedia.com/roofora/assets/images/cta-vector.png" alt="house" class="position-absolute cta-vector" style="left:40px;bottom:40px;z-index:2;">
+    <div class="position-relative z-1 main-container" style="max-width:1320px;margin:0 auto;padding:0 20px;">
+        <span class="special-text text-white">Quote Request</span>
+        <h2 class="text-size-60 text-white">Planning a Re-Roof?</h2>
+        <p class="text-white">Small re-roofs (garages/porches) start at <span class="text-accent">$385/sq</span> (Materials + Labor).</p>
+        <a href="#" class="secondary_btn">Request Full Quote <span><img src="https://html.designingmedia.com/roofora/assets/images/arrow.png" alt="arrow"></span></a>
+    </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ======= PORTFOLIO ======= -->
+<section class="portfolio-con padding-top padding-bottom position-relative">
+    <div class="main-container" style="max-width:1320px;margin:0 auto;padding:0 20px;">
+        <div class="d-flex flex-wrap justify-content-between align-items-end mb-5">
+            <div class="wow animate__animated animate__fadeInLeft">
+                <span class="special-text">Recent Projects</span>
+                <h2 class="text-size-60 mb-0">Expert Roofing Projects<br>Completed in Dallas</h2>
+            </div>
+            <div class="wow animate__animated animate__fadeInRight" style="max-width:460px;">
+                <p>From minor repairs to full roof replacements, every project we take on in Dallas is handled personally from start to finish our work combines quality materials.</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-5 wow animate__animated animate__fadeInUp">
+                <div class="portfolio-box">
+                    <img src="https://html.designingmedia.com/roofora/assets/images/portfolio-img1.jpg" alt="project">
+                    <div class="portfolio-overlay d-flex align-items-end justify-content-between">
+                        <div><span>Residential Roof</span><h4>Full Roof Replacement</h4></div>
+                        <a href="#"><i class="fas fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
+                <div class="portfolio-box">
+                    <img src="https://html.designingmedia.com/roofora/assets/images/portfolio-img2.jpg" alt="project">
+                    <div class="portfolio-overlay d-flex align-items-end justify-content-between">
+                        <div><span>Leak Fix Emergency</span><h4>Storm Damage Roof Repair</h4></div>
+                        <a href="#"><i class="fas fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">
+                <div class="portfolio-box">
+                    <img src="https://html.designingmedia.com/roofora/assets/images/portfolio-img3.jpg" alt="project">
+                    <div class="portfolio-overlay d-flex align-items-end justify-content-between">
+                        <div><span>Masonry Flashing</span><h4>Brick Chimney Re-flash</h4></div>
+                        <a href="#"><i class="fas fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 wow animate__animated animate__fadeInUp" data-wow-delay="0.3s">
+                <div class="portfolio-box">
+                    <img src="https://html.designingmedia.com/roofora/assets/images/portfolio-img4.jpg" alt="project">
+                    <div class="portfolio-overlay d-flex align-items-end justify-content-between">
+                        <div><span>Premium Materials</span><h4>Shingle Roof Replacement</h4></div>
+                        <a href="#"><i class="fas fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= TESTIMONIALS ======= -->
+<section class="testimonials-con padding-top padding-bottom position-relative text-center">
+    <img src="https://html.designingmedia.com/roofora/assets/images/left-quote.png" alt="quote" class="position-absolute left-quote">
+    <img src="https://html.designingmedia.com/roofora/assets/images/right-quote.png" alt="quote" class="position-absolute right-quote">
+    <div class="position-relative z-1 main-container" style="max-width:1320px;margin:0 auto;padding:0 20px;">
+        <span class="special-text text-white">Client Reviews</span>
+        <h2 class="text-size-60 text-white mb-5">Real Feedback From<br>Real Clients</h2>
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://html.designingmedia.com/roofora/assets/images/rating-stars.png" alt="stars" class="mb-4">
+                    <p class="review-text">"Outstanding roofing service from start to finish. The team was punctual, highly skilled, and ensured everything was done safely and professionally. My roof looks brand new and the quality of work exceeded expectations."</p>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://html.designingmedia.com/roofora/assets/images/rating-stars.png" alt="stars" class="mb-4">
+                    <p class="review-text">"Jake was honest, professional, and hands-on from the first inspection to the final repair. He clearly explained the issue, provided a fair quote, and completed the work exactly as promised."</p>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://html.designingmedia.com/roofora/assets/images/rating-stars.png" alt="stars" class="mb-4">
+                    <p class="review-text">"Highly impressed with their construction expertise. They handled everything from roof repairs to structural improvements with precision. The project was completed on time and within budget."</p>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://html.designingmedia.com/roofora/assets/images/rating-stars.png" alt="stars" class="mb-4">
+                    <p class="review-text">"Reliable and professional roofing contractors. They quickly identified the issue, fixed leaks, and reinforced the structure. I feel confident knowing my home is now protected."</p>
+                </div>
+            </div>
+            <div class="carousel-indicators position-static mt-4">
+                <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active">
+                    <figure><img src="https://html.designingmedia.com/roofora/assets/images/client-img1.jpg" alt="client"></figure>
+                    <div><p class="client-name mb-0">Jennifer Troyer</p><span>Satisfied Customer</span></div>
+                </button>
+                <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1">
+                    <figure><img src="https://html.designingmedia.com/roofora/assets/images/client-img2.jpg" alt="client"></figure>
+                    <div><p class="client-name mb-0">Mark Reynolds</p><span>Homeowner</span></div>
+                </button>
+                <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="2">
+                    <figure><img src="https://html.designingmedia.com/roofora/assets/images/client-img3.jpg" alt="client"></figure>
+                    <div><p class="client-name mb-0">Lucy Smith</p><span>Satisfied Customer</span></div>
+                </button>
+                <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="3">
+                    <figure><img src="https://html.designingmedia.com/roofora/assets/images/client-img4.jpg" alt="client"></figure>
+                    <div><p class="client-name mb-0">John Smith</p><span>Satisfied Client</span></div>
+                </button>
+            </div>
+            <div class="pagination-outer">
+                <a href="#testimonialCarousel" role="button" data-bs-slide="prev"><i class="fas fa-arrow-left"></i></a>
+                <a href="#testimonialCarousel" role="button" data-bs-slide="next"><i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ======= FAQ ======= -->
+<section class="faq-con padding-top padding-bottom position-relative bg-sky">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="special-text">FAQs</span>
+            <h2 class="text-size-60">Common Roofing<br>Questions & Answers</h2>
+            <p>Direct answers from an experienced, hands-on roofing professional.</p>
+        </div>
+        <div class="row justify-content-center wow animate__animated animate__fadeInUp">
+            <div class="col-lg-8">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-card">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                <span>01</span>Do you handle roof inspections and repairs yourself?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body"><p>Yes, our experienced team handles all roof inspections and repairs directly. We carefully assess your roof condition, identify any issues, and provide reliable solutions without outsourcing the work.</p></div>
+                        </div>
+                    </div>
+                    <div class="accordion-card">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                <span>02</span>How much does a roof repair typically cost?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body"><p>Most standard roof repairs start at an affordable rate depending on the issue. After a full inspection, we provide a clear and upfront estimate so you know exactly what to expect—no hidden costs.</p></div>
+                        </div>
+                    </div>
+                    <div class="accordion-card">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                <span>03</span>Do you offer emergency or same-day roofing services?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body"><p>Yes, we provide emergency and same-day services for urgent roofing problems such as leaks, storm damage, or structural concerns to prevent further damage to your property.</p></div>
+                        </div>
+                    </div>
+                    <div class="accordion-card mb-0">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                <span>04</span>Are you fully licensed and properly insured?
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body"><p>Absolutely. We are fully licensed and insured, ensuring all roofing and construction work is completed safely, professionally, and according to industry standards.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ======= BOOK NOW / CTA 2 ======= -->
+<section class="position-relative text-center bg-blue padding-top padding-bottom br-50" style="margin:0 50px;">
+    <img src="https://html.designingmedia.com/roofora/assets/images/mustard-elipse.png" alt="" class="position-absolute" style="left:0;top:50%;transform:translateY(-50%);">
+    <img src="https://html.designingmedia.com/roofora/assets/images/book-now-vector.png" alt="" class="position-absolute" style="right:40px;bottom:40px;z-index:2;">
+    <div class="position-relative z-1">
+        <h2 class="text-size-60 text-white">Start Your Roofing.</h2>
+        <p class="text-white">Fast, reliable roofing service you can trust—personally handled<br>from start to finish.</p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="#" class="secondary_btn">Get a Quote <span><img src="https://html.designingmedia.com/roofora/assets/images/arrow.png" alt="arrow"></span></a>
+            <a href="#" class="elementary_btn">Call Me Now <span><img src="https://html.designingmedia.com/roofora/assets/images/arrow.png" alt="arrow"></span></a>
+        </div>
+    </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ======= NEWSLETTER ======= -->
+<section class="newsletter-con position-relative bg-blue br-50" style="margin:0 50px;">
+    <div class="main-container" style="max-width:1320px;margin:0 auto;padding:0 20px;">
+        <div class="d-flex flex-wrap justify-content-between align-items-center">
+            <div class="wow animate__animated animate__fadeInLeft">
+                <img src="https://html.designingmedia.com/roofora/assets/images/footer-vector.png" alt="newsletter">
+            </div>
+            <div class="wow animate__animated animate__fadeInRight" style="flex:1;max-width:600px;">
+                <h2 class="text-size-60 text-white">Subscribe to Our<br>Newsletter</h2>
+                <form>
+                    <div class="d-flex gap-3">
+                        <input type="email" class="form-control form-control-lg rounded-pill" placeholder="Enter Your Email Address">
+                        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= FOOTER ======= -->
+<footer class="footer-con position-relative" style="margin:0 50px;">
+    <div class="main-container" style="max-width:1320px;margin:0 auto;padding:0 20px;">
+        <div class="d-flex flex-wrap align-items-center justify-content-between py-5">
+            <div>
+                <a href="#"><img src="https://html.designingmedia.com/roofora/assets/images/footer-logo.png" alt="Roofora"></a>
+            </div>
+            <div class="footer-links">
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-3"><a href="mailto:Roofora@gmail.com">Roofora@gmail.com</a></li>
+                    <li class="mb-0 footer-number"><a href="tel:+568925896325">+5689 2589 6325</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <a href="https://maps.app.goo.gl/gJqedixd1Vmn4kN38">121 King Street Melbourne, 3000,<br>Australia</a>
+            </div>
+        </div>
+        <div class="bottom-links d-flex flex-wrap align-items-center justify-content-between">
+            <ul class="list-unstyled mb-0 d-flex flex-wrap gap-3">
+                <li><a href="#">Home</a> <span class="text-light-blue">/</span></li>
+                <li><a href="#">About</a> <span class="text-light-blue">/</span></li>
+                <li><a href="#">Services</a> <span class="text-light-blue">/</span></li>
+                <li><a href="#">Pricing</a> <span class="text-light-blue">/</span></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="social-icons d-flex gap-2">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+            <p class="text-light-blue mb-0 small">Copyright &copy; 2026 Roofora. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<div class="spacer"></div>
+
+</div><!-- home-outer-wrapper -->
+</div><!-- padding-rl -->
+
+<!-- SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.2.0/jquery.magnific-popup.min.js"></script>
+<script>
+    // Preloader
+    $(window).on('load', function() {
+        $('#preloader').fadeOut('slow');
+    });
+
+    // Back to top button
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 300) {
+            $('#button').addClass('show');
+        } else {
+            $('#button').removeClass('show');
+        }
+    });
+
+    // Counter animation
+    function animateCounters() {
+        $('.counter').each(function() {
+            var $this = $(this);
+            var target = parseInt($this.text());
+            $this.text('0');
+            $({ count: 0 }).animate({ count: target }, {
+                duration: 2000,
+                easing: 'swing',
+                step: function() {
+                    $this.text(Math.floor(this.count));
+                },
+                complete: function() {
+                    $this.text(this.count);
+                }
+            });
+        });
+    }
+
+    // Trigger counters on scroll
+    var counterFired = false;
+    $(window).scroll(function() {
+        if (!counterFired && $(window).scrollTop() > 300) {
+            counterFired = true;
+            animateCounters();
+        }
+    });
+
+    // WOW init
+    new WOW({ animateClass: 'animate__animated' }).init();
+
+    // Owl Carousel for partners (if needed)
+    $('.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 30,
+        nav: false,
+        dots: false,
+        autoplay: true,
+        autoplayTimeout: 2000,
+        responsive: {
+            0: { items: 2 },
+            600: { items: 4 },
+            1000: { items: 6 }
+        }
+    });
+</script>
+</body>
+</html>

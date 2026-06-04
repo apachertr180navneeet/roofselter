@@ -11,7 +11,7 @@ class AppointmentController extends Controller
     public function index()
     {
         $appointments = Appointment::latest()->get();
-        return view('backend.appointments.index', compact('appointments'));
+        return view('admin.appointments.index', compact('appointments'));
     }
 
     public function count()

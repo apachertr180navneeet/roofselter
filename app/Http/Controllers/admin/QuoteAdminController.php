@@ -11,7 +11,7 @@ class QuoteAdminController extends Controller
     public function index()
     {
         $quotes = QuoteRequest::latest()->get();
-        return view('backend.quotes.index', compact('quotes'));
+        return view('admin.quotes.index', compact('quotes'));
     }
 
     public function count()

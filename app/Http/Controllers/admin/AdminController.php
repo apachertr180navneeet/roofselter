@@ -32,6 +32,6 @@ class AdminController extends Controller
         $recent_inquiries = Contact::latest()->limit(5)->get();
         $recent_appointments = Appointment::latest()->limit(5)->get();
 
-        return view('backend.index', compact('stats', 'recent_inquiries', 'recent_appointments'));
+        return view('admin.index', compact('stats', 'recent_inquiries', 'recent_appointments'));
     }
 }

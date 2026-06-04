@@ -12,7 +12,7 @@ class BlogCategoryController extends Controller
     //This method will show listing for blog category
     public function index(){
         $blogs_category = BlogCategory::get();
-        return view('backend.blog_system.category.index',compact('blogs_category'));
+        return view('admin.blog_system.category.index',compact('blogs_category'));
     }
 
     //This method will store a record of blog category
@@ -40,7 +40,7 @@ class BlogCategoryController extends Controller
     //This method will show blog categories form for updating a listing
     public function edit($id){
         $edit = BlogCategory::find($id);
-        return view('backend.blog_system.category.edit',compact('edit'));
+        return view('admin.blog_system.category.edit',compact('edit'));
     }
 
     //This method will update a existing listing of blog category

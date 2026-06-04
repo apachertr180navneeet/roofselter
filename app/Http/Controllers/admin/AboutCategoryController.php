@@ -12,7 +12,7 @@ class AboutCategoryController extends Controller
     //This method will show listing for about category
     public function index(){
         $about_category = AboutCategory::get();
-        return view('backend.about_system.category.index',compact('about_category'));
+        return view('admin.about_system.category.index',compact('about_category'));
     }
 
     //This method will store a record of about category
@@ -40,7 +40,7 @@ class AboutCategoryController extends Controller
     //This method will show about categories form for updating a listing
     public function edit($id){
         $edit = AboutCategory::find($id);
-        return view('backend.about_system.category.edit',compact('edit'));
+        return view('admin.about_system.category.edit',compact('edit'));
     }
 
     //This method will update a existing listing of about category

@@ -12,7 +12,7 @@ class ServiceCategoryController extends Controller
     //This method will show Service Category listing
     public function index(){
         $service_category = ServiceCategory::get();
-        return view('backend.service_system.category.index',compact('service_category'));
+        return view('admin.service_system.category.index',compact('service_category'));
     }
 
     //This method will store a record of service category
@@ -40,7 +40,7 @@ class ServiceCategoryController extends Controller
     //This method will show service categories form for updating a listing
     public function edit($id){
         $edit = ServiceCategory::find($id);
-        return view('backend.service_system.category.edit',compact('edit'));
+        return view('admin.service_system.category.edit',compact('edit'));
     }
 
     //This method will update a existing listing of service category

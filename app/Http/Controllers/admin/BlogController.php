@@ -13,12 +13,12 @@ class BlogController extends Controller
 {
     public function index(){
         $blogs = Blog::latest()->get();
-        return view('backend.blog_system.blog.index',compact('blogs'));
+        return view('admin.blog_system.blog.index',compact('blogs'));
     }
 
     public function create(){
         $blog_categories = BlogCategory::where('status',1)->get();
-        return view('backend.blog_system.blog.create',compact('blog_categories'));
+        return view('admin.blog_system.blog.create',compact('blog_categories'));
     }
 
     public function store(Request $request)
@@ -71,7 +71,7 @@ class BlogController extends Controller
     public function edit($id){
         $blog = Blog::with('galleryImages')->find($id);
         $blog_categories = BlogCategory::where('status',1)->get();
-        return view('backend.blog_system.blog.edit',compact('blog','blog_categories'));
+        return view('admin.blog_system.blog.edit',compact('blog','blog_categories'));
     }
 
     public function update(Request $request, $id)

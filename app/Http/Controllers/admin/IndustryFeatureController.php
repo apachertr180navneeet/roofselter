@@ -13,13 +13,13 @@ class IndustryFeatureController extends Controller
     //This method will show listing a Industry features
     public function index(){
         $industry_features = IndustryFeature::where('status',1)->get();
-        return view('backend.industry_system.industry-features.index',compact('industry_features'));
+        return view('admin.industry_system.industry-features.index',compact('industry_features'));
     }
 
     //This method will show listing a industry features
     public function create(){
         $industry_info = Industry::where('status',1)->get();
-        return view('backend.industry_system.industry-features.create',compact('industry_info'));
+        return view('admin.industry_system.industry-features.create',compact('industry_info'));
     }
 
     //This method will store a record of industry features
@@ -49,7 +49,7 @@ class IndustryFeatureController extends Controller
     public function edit($id){
         $industry_features = IndustryFeature::find($id);
         $industry_info = Industry::where('status',1)->get();
-        return view('backend.industry_system.industry-features.edit',compact('industry_features','industry_info'));
+        return view('admin.industry_system.industry-features.edit',compact('industry_features','industry_info'));
     }
 
     //This method will update a existing listing of industry features

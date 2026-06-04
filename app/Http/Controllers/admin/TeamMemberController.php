@@ -12,12 +12,12 @@ class TeamMemberController extends Controller
     //This method will show TeamMembers listing
     public function index(){
         $team_members = TeamMember::get();
-        return view('backend.team_members.index',compact('team_members'));
+        return view('admin.team_members.index',compact('team_members'));
     }
 
     //This method will show TeamMembers form for creating a listing
     public function create(){
-        return view('backend.team_members.create');
+        return view('admin.team_members.create');
     }
 
     //This method will store a record of TeamMembers
@@ -61,7 +61,7 @@ class TeamMemberController extends Controller
     //This method will show TeamMembers form for updating a listing
     public function edit($id){
         $team_members = TeamMember::find($id);
-        return view('backend.team_members.edit',compact('team_members'));
+        return view('admin.team_members.edit',compact('team_members'));
     }
 
     //This method will update a existing listing of TeamMembers

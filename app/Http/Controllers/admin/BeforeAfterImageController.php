@@ -12,7 +12,7 @@ class BeforeAfterImageController extends Controller
     public function index()
     {
         $images = BeforeAfterImage::orderBy('sort_order')->get();
-        return view('backend.before-after.index', compact('images'));
+        return view('admin.before-after.index', compact('images'));
     }
 
     public function store(Request $request)

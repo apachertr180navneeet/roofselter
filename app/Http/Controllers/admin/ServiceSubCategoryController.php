@@ -14,7 +14,7 @@ class ServiceSubCategoryController extends Controller
     public function index(){
         $service_subcategory = ServiceSubcategory::get();
         $service_categories = ServiceCategory::get();
-        return view('backend.service_system.subcategory.index',compact('service_subcategory','service_categories'));
+        return view('admin.service_system.subcategory.index',compact('service_subcategory','service_categories'));
     }
 
     //This method will store a record of service sub category
@@ -44,7 +44,7 @@ class ServiceSubCategoryController extends Controller
     public function edit($id){
         $edit = ServiceSubcategory::find($id);
         $service_categories = ServiceCategory::get();
-        return view('backend.service_system.subcategory.edit',compact('edit','service_categories'));
+        return view('admin.service_system.subcategory.edit',compact('edit','service_categories'));
     }
 
     //This method will update a existing listing of service sub category

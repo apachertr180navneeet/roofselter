@@ -12,13 +12,13 @@ class IndustryController extends Controller
     //This method will show listing for Industry
     public function index(){
         $industries = Industry::latest()->get();
-        return view('backend.industry_system.industry.index',compact('industries'));
+        return view('admin.industry_system.industry.index',compact('industries'));
     }
 
 
     //This method will show form for creating a listing of industry
     public function create(){
-        return view('backend.industry_system.industry.create');
+        return view('admin.industry_system.industry.create');
     }
 
 
@@ -61,7 +61,7 @@ class IndustryController extends Controller
     //This method will show edit form for updating a listing
     public function edit($id){
         $industry = Industry::find($id);
-        return view('backend.industry_system.industry.edit',compact('industry'));
+        return view('admin.industry_system.industry.edit',compact('industry'));
     }
 
     //This method will update a existing listing of industry

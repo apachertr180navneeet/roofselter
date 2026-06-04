@@ -1,0 +1,13 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-CAa_w9FH.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/admin.js": {
+    "file": "assets/admin-zth_UQCF.js",
+    "name": "admin",
+    "src": "resources/js/admin.js",
+    "isEntry": true
+  }
+}

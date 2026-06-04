@@ -12,7 +12,7 @@ class CertificationController extends Controller
     public function index()
     {
         $certifications = Certification::orderBy('sort_order')->get();
-        return view('backend.certifications.index', compact('certifications'));
+        return view('admin.certifications.index', compact('certifications'));
     }
 
     public function store(Request $request)
