@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Single Service | Roofora — Roofing & Construction Services')
+@section('title', ($service->meta_title ? $service->meta_title : $service->title) . ' | Roofora — Roofing & Construction Services')
 
 @section('content')
 <div class="padding-rl float-left w-100">
@@ -8,13 +8,13 @@
         <section class="float-left w-100 position-relative sub-banner-con br-50 main-box">
             <div class="main-container">
                 <div class="sub-banner-inner-con position-relative z-1">
-                    <h1 class="text-white text-size-90">Single Service</h1>
-                    <p class="text-white">Protect your home with expert residential roofing solutions. From minor <br> repairs to full roof replacements, we handle every job personally...</p>
+                    <h1 class="text-white text-size-90">{{ $service->title }}</h1>
+                    <p class="text-white">{{ $service->short_description }}</p>
                     <div class="breadcrumb-con d-inline-block">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('home.services') }}">Services</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Resedential Roofing</li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ $service->title }}</li>
                         </ol>
                     </div>
                 </div>
@@ -27,86 +27,104 @@
     <div class="main-container">
         <div class="single-service-inner-con position-relative wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.05s">
             <figure class="single-vector position-absolute"><img src="{{ asset('assets/images/single-service-vector.png') }}" alt="vector" class="img-fluid mb-0"></figure>
-            <figure class="single-main-img"><img src="{{ asset('assets/images/single-service-img.jpg') }}" alt="single-service-img" class="img-fluid br-40"></figure>
-            <h2 class="text-size-60">Reliable, Expert Residential Roofing</h2>
-            <p>Every home is unique, and your roof deserves expert care. Our team provides inspections, repairs, and replacements with quality craftsmanship, durable materials, and no surprises—ensuring your home stays safe and protected for years.</p>
-            <p class="mb-xl-4 mb-3">Not sure what your roof needs? Call <a href="tel:+568925896325" class="d-inline-block text-accent font-weight-700"> (+5689 2589 6325)</a> —we'll match you with the right service.</p>
-            <h3 class="text-size-30">Shingle Roof Replacement:</h3>
+            @if($service->image)
+            <figure class="single-main-img"><img src="{{ asset('img/'.$service->image) }}" alt="{{ $service->title }}" class="img-fluid br-40"></figure>
+            @endif
+            <h2 class="text-size-60">{{ $service->title }}</h2>
+            @if($service->description)
+            <p>{!! nl2br(e($service->description)) !!}</p>
+            @endif
+            @if($service->subtitle)
+            <p class="mb-xl-4 mb-3">{!! nl2br(e($service->subtitle)) !!}</p>
+            @endif
+            @if($service->subtitle2)
+            <p class="mb-xl-4 mb-3">{!! nl2br(e($service->subtitle2)) !!}</p>
+            @endif
+
+            @if($service->features && $service->features->count() > 0)
+            <h3 class="text-size-30">{{ $service->features_headings ?? 'Features' }}</h3>
+            @if($service->features_short_description)
+            <p>{{ $service->features_short_description }}</p>
+            @endif
             <div class="row">
+                @foreach($service->features->chunk(ceil($service->features->count()/3)) as $chunk)
                 <div class="col-lg-4 col-md-6">
                     <div class="about-listing-con">
                         <ul class="list-unstyled p-0">
-                            <li><i class="fa-solid fa-check"></i>Missing, cracked, or curling shingles</li>
-                            <li><i class="fa-solid fa-check"></i>Water stains or leaks inside your home</li>
+                            @foreach($chunk as $feature)
+                            <li><i class="fa-solid fa-check"></i>{{ $feature->title }}</li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="about-listing-con">
-                        <ul class="list-unstyled p-0">
-                            <li><i class="fa-solid fa-check"></i>Sagging or uneven roof surfaces</li>
-                            <li><i class="fa-solid fa-check"></i>Granules from shingles collecting in gutters</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="about-listing-con">
-                        <ul class="list-unstyled p-0">
-                            <li><i class="fa-solid fa-check"></i>Increased energy bills due to poor insulation</li>
-                            <li><i class="fa-solid fa-check"></i>Roof flashing or vent damage</li>
-                        </ul>
-                    </div>
-                </div>
+                @endforeach
             </div>
-            <h3 class="text-size-30">What Our Residential Roofing Covers:</h3>
+            @endif
+
+            @if($service->benefits && $service->benefits->count() > 0)
+            <h3 class="text-size-30">{{ $service->benefits_headings ?? 'What Our Service Covers' }}</h3>
+            @if($service->benefits_short_description)
+            <p>{{ $service->benefits_short_description }}</p>
+            @endif
             <div class="row">
+                @foreach($service->benefits->chunk(ceil($service->benefits->count()/3)) as $chunk)
                 <div class="col-lg-4 col-md-6">
                     <div class="about-listing-con">
                         <ul class="list-unstyled p-0">
-                            <li><i class="fa-solid fa-check"></i>Comprehensive roof inspections</li>
-                            <li><i class="fa-solid fa-check"></i>Minor repairs, shingle replacements</li>
+                            @foreach($chunk as $benefit)
+                            <li><i class="fa-solid fa-check"></i>{{ $benefit->title }}</li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="about-listing-con">
-                        <ul class="list-unstyled p-0">
-                            <li><i class="fa-solid fa-check"></i>Full roof replacement using quality</li>
-                            <li><i class="fa-solid fa-check"></i>Storm or hail damage repair</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="about-listing-con">
-                        <ul class="list-unstyled p-0">
-                            <li><i class="fa-solid fa-check"></i>Preventive maintenance to extend roof life</li>
-                            <li><i class="fa-solid fa-check"></i>Detailed recommendations and estimates</li>
-                        </ul>
-                    </div>
-                </div>
+                @endforeach
             </div>
-            <p class="text-size-22 font-weight-600 mb-xl-4 mb-3">Schedule Your Residential Roofing Service Today.</p>
+            @endif
+
+            @if($service->essentials && $service->essentials->count() > 0)
+            <h3 class="text-size-30">{{ $service->essentials_headings ?? 'Essentials' }}</h3>
+            @if($service->essentials_short_description)
+            <p>{{ $service->essentials_short_description }}</p>
+            @endif
+            <div class="row">
+                @foreach($service->essentials->chunk(ceil($service->essentials->count()/3)) as $chunk)
+                <div class="col-lg-4 col-md-6">
+                    <div class="about-listing-con">
+                        <ul class="list-unstyled p-0">
+                            @foreach($chunk as $essential)
+                            <li><i class="fa-solid fa-check"></i>{{ $essential->title }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            @endif
+
+            @if($service->subtitle)
+            <p class="text-size-22 font-weight-600 mb-xl-4 mb-3">{{ $service->subtitle }}</p>
+            @endif
             <a href="{{ route('home.contact-us') }}" class="font-weight-bold secondary_btn d-inline-block">
-                Book Service Now <span class=""><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block"></span>
+                Book Service Now <span><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block"></span>
             </a>
         </div>
+
+        @if($service->features && $service->features->count() > 0)
         <div class="row only-images-outer">
+            @foreach($service->features->take(3) as $feature)
             <div class="col-lg-4 col-md-6 d-flex">
                 <div class="only-img w-100">
-                    <figure><img src="{{ asset('assets/images/single-srvice-img1.jpg') }}" alt="single service"></figure>
+                    @if($feature->icon)
+                    <figure><img src="{{ asset('img/'.$feature->icon) }}" alt="{{ $feature->title }}"></figure>
+                    @else
+                    <figure><img src="{{ asset('assets/images/single-srvice-img1.jpg') }}" alt="service"></figure>
+                    @endif
+                    <p class="text-center mt-2">{{ $feature->title }}</p>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 d-flex">
-                <div class="only-img w-100">
-                    <figure><img src="{{ asset('assets/images/single-srvice-img2.jpg') }}" alt="single service"></figure>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 d-flex">
-                <div class="only-img w-100">
-                    <figure><img src="{{ asset('assets/images/single-srvice-img3.jpg') }}" alt="single service"></figure>
-                </div>
-            </div>
+            @endforeach
         </div>
+        @endif
     </div>
 </section>
 
@@ -149,6 +167,7 @@
     </section>
 </div>
 
+@if($service->faqs && $service->faqs->count() > 0)
 <div class="padding-rl float-left w-100">
     <section class="float-left w-100 faq-con position-relative padding-top padding-bottom main-box faq-con2">
         <div class="main-container wow fadeInDown" data-wow-duration="2s" data-wow-delay="0.3s">
@@ -162,106 +181,29 @@
                     <div class="accordian-inner">
                         <div id="single_faq_accordion">
                             <div class="row">
+                                @foreach($service->faqs->chunk(ceil($service->faqs->count()/2)) as $chunkIndex => $chunk)
                                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mx-auto">
-                                    <div class="accordion-card">
-                                        <div class="card-header" id="singleHeadingOne">
-                                            <a href="#" class="btn btn-link collapsed" data-toggle="collapse" data-target="#singleCollapseOne" aria-expanded="false" aria-controls="singleCollapseOne">
-                                                <h3 class="text-size-26">How do I know if my roof needs repair?</h3>
+                                    @foreach($chunk as $faqIndex => $faq)
+                                    @php
+                                        $globalIndex = $chunkIndex * $chunk->count() + $faqIndex;
+                                        $collapseId = 'singleCollapse' . $globalIndex;
+                                        $headingId = 'singleHeading' . $globalIndex;
+                                    @endphp
+                                    <div class="accordion-card @if($loop->last) mb-0 @endif">
+                                        <div class="card-header" id="{{ $headingId }}">
+                                            <a href="#" class="btn btn-link collapsed" data-toggle="collapse" data-target="#{{ $collapseId }}" aria-expanded="false" aria-controls="{{ $collapseId }}">
+                                                <h3 class="text-size-26">{{ $faq->question }}</h3>
                                             </a>
                                         </div>
-                                        <div id="singleCollapseOne" class="collapse" aria-labelledby="singleHeadingOne" data-parent="#single_faq_accordion" role="region">
+                                        <div id="{{ $collapseId }}" class="collapse" aria-labelledby="{{ $headingId }}" data-parent="#single_faq_accordion" role="region">
                                             <div class="card-body">
-                                                <p class="text-left mb-0">Signs like leaks, missing shingles, or visible damage indicate your roof may need repair.</p>
+                                                <p class="text-left mb-0">{{ $faq->answer }}</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="accordion-card">
-                                        <div class="card-header" id="singleHeadingTwo">
-                                            <a href="#" class="btn btn-link collapsed" data-toggle="collapse" data-target="#singleCollapseTwo" aria-expanded="false" aria-controls="singleCollapseTwo">
-                                                <h3 class="text-size-26">Do you offer roof inspections before starting?</h3>
-                                            </a>
-                                        </div>
-                                        <div id="singleCollapseTwo" class="collapse" aria-labelledby="singleHeadingTwo" data-parent="#single_faq_accordion" role="region">
-                                            <div class="card-body">
-                                                <p class="text-left mb-0">Yes, we provide thorough roof inspections to assess the condition before starting any work.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-card">
-                                        <div class="card-header" id="singleHeadingThree">
-                                            <a href="#" class="btn btn-link collapsed" data-toggle="collapse" data-target="#singleCollapseThree" aria-expanded="false" aria-controls="singleCollapseThree">
-                                                <h3 class="text-size-26">Is your residential roofing work insured?</h3>
-                                            </a>
-                                        </div>
-                                        <div id="singleCollapseThree" class="collapse" aria-labelledby="singleHeadingThree" data-parent="#single_faq_accordion" role="region">
-                                            <div class="card-body">
-                                                <p class="text-left mb-0">Yes, all our residential roofing services are fully licensed and insured for your safety.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-card mb-0">
-                                        <div class="card-header" id="singleHeadingFour">
-                                            <a href="#" class="btn btn-link collapsed" data-toggle="collapse" data-target="#singleCollapseFour" aria-expanded="false" aria-controls="singleCollapseFour">
-                                                <h3 class="text-size-26">Will roofing work disrupt my daily routine?</h3>
-                                            </a>
-                                        </div>
-                                        <div id="singleCollapseFour" class="collapse" aria-labelledby="singleHeadingFour" data-parent="#single_faq_accordion" role="region">
-                                            <div class="card-body">
-                                                <p class="text-left mb-0">We work efficiently to minimize disruption and keep your daily routine as smooth as possible.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mx-auto">
-                                    <div class="accordion-card">
-                                        <div class="card-header" id="singleHeading1">
-                                            <a href="#" class="btn btn-link collapsed" data-toggle="collapse" data-target="#singleCollapse1" aria-expanded="false" aria-controls="singleCollapse1">
-                                                <h3 class="text-size-26">How long does a roofing project take?</h3>
-                                            </a>
-                                        </div>
-                                        <div id="singleCollapse1" class="collapse" aria-labelledby="singleHeading1" data-parent="#single_faq_accordion" role="region">
-                                            <div class="card-body">
-                                                <p class="text-left mb-0">Most roofing projects are completed within a few days, depending on size and complexity.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-card">
-                                        <div class="card-header" id="singleHeading2">
-                                            <a href="#" class="btn btn-link collapsed" data-toggle="collapse" data-target="#singleCollapse2" aria-expanded="false" aria-controls="singleCollapse2">
-                                                <h3 class="text-size-26">What roofing materials do you work with?</h3>
-                                            </a>
-                                        </div>
-                                        <div id="singleCollapse2" class="collapse" aria-labelledby="singleHeading2" data-parent="#single_faq_accordion" role="region">
-                                            <div class="card-body">
-                                                <p class="text-left mb-0">We work with shingles, metal, tiles, and other high-quality roofing materials.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-card">
-                                        <div class="card-header" id="singleHeading3">
-                                            <a href="#" class="btn btn-link collapsed" data-toggle="collapse" data-target="#singleCollapse3" aria-expanded="false" aria-controls="singleCollapse3">
-                                                <h3 class="text-size-26">Can you help with storm or hail damage claims?</h3>
-                                            </a>
-                                        </div>
-                                        <div id="singleCollapse3" class="collapse" aria-labelledby="singleHeading3" data-parent="#single_faq_accordion" role="region">
-                                            <div class="card-body">
-                                                <p class="text-left mb-0">Yes, we assist with inspections and documentation for storm and hail damage claims.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-card mb-0">
-                                        <div class="card-header" id="singleHeading4">
-                                            <a href="#" class="btn btn-link collapsed" data-toggle="collapse" data-target="#singleCollapse4" aria-expanded="false" aria-controls="singleCollapse4">
-                                                <h3 class="text-size-26">How often should I schedule roof maintenance?</h3>
-                                            </a>
-                                        </div>
-                                        <div id="singleCollapse4" class="collapse" aria-labelledby="singleHeading4" data-parent="#single_faq_accordion" role="region">
-                                            <div class="card-body">
-                                                <p class="text-left mb-0">It's recommended to schedule roof maintenance at least once a year or after major storms.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -270,43 +212,72 @@
         </div>
     </section>
 </div>
-<div class="spacer"></div>
+@endif
 
-<div class="container-fluid p-0">
-    <div class="padding-rl float-left w-100">
-        <section class="float-left w-100 position-relative book-now-con main-box br-50 bg-lemon">
+@if($relatedServices && $relatedServices->count() > 0)
+<div class="padding-rl float-left w-100">
+    <section class="float-left w-100 padding-top partners-con padding-bottom position-relative main-box br-50 bg-sky">
+        <div class="main-container">
+            <div class="heading-title-con text-center">
+                <span class="special-text d-block">Related Services</span>
+                <h2 class="text-size-60">More Services</h2>
+                <p>Explore our other professional roofing services.</p>
+            </div>
             <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="heading-title-con mb-0">
-                        <span class="special-text d-block wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.05s">Book Now</span>
-                        <h2 class="text-size-120 text-blue wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.05s">Start Your Roofing.</h2>
-                        <p class="text-blue wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.05s">Fast, reliable roofing service you can trust—personally handled <br> from start to finish.</p>
-                        <a href="{{ route('home.contact-us') }}" class="font-weight-bold secondary_btn d-inline-block wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.05s">
-                            Get a Quote <span class=""><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block"></span>
-                        </a>
-                        <a href="{{ route('home.contact-us') }}" class="font-weight-bold elementary_btn d-inline-block wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.05s">
-                            Call Me Now <span class=""><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block"></span>
-                        </a>
+                @foreach($relatedServices as $related)
+                <div class="col-lg-3 col-md-6 d-flex">
+                    <div class="main-service-box w-100 position-relative">
+                        <div class="position-relative">
+                            <figure><img src="{{ asset($related->image ? 'img/'.$related->image : 'assets/images/main-services-img1.jpg') }}" alt="{{ $related->title }}" class="img-fluid"></figure>
+                        </div>
+                        <div class="inner-service">
+                            <h3 class="text-size-26 font-weight-700">{{ $related->title }}</h3>
+                            @if($related->short_description)
+                            <p>{{ Str::limit($related->short_description, 80) }}</p>
+                            @endif
+                            <a href="{{ route('home.service-detail', $related->slug) }}" class="d-inline-block read-more-link">Read More</a>
+                        </div>
                     </div>
                 </div>
-                <div class="book-now-img">
-                    <figure><img src="{{ asset('assets/images/book-now-vector.png') }}" alt="book now house"></figure>
-                    <figure><img src="{{ asset('assets/images/mustard-elipse.png') }}" alt="elipse shape" class="img-fluid position-absolute elipse"></figure>
+                @endforeach
+            </div>
+        </div>
+    </section>
+</div>
+@endif
+
+<div class="padding-rl float-left w-100">
+    <section class="float-left w-100 position-relative book-now-con main-box br-50 bg-lemon">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="heading-title-con mb-0">
+                    <span class="special-text d-block">Book Now</span>
+                    <h2 class="text-size-120 text-blue">Start Your Roofing.</h2>
+                    <p class="text-blue">Fast, reliable roofing service you can trust—personally handled from start to finish.</p>
+                    <a href="{{ route('home.contact-us') }}" class="font-weight-bold secondary_btn d-inline-block">
+                        Get a Quote <span><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block"></span>
+                    </a>
+                    <a href="{{ route('home.contact-us') }}" class="font-weight-bold elementary_btn d-inline-block">
+                        Call Me Now <span><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block"></span>
+                    </a>
                 </div>
             </div>
-        </section>
-    </div>
+            <div class="book-now-img">
+                <figure><img src="{{ asset('assets/images/book-now-vector.png') }}" alt="book now house"></figure>
+                <figure><img src="{{ asset('assets/images/mustard-elipse.png') }}" alt="elipse shape" class="img-fluid position-absolute elipse"></figure>
+            </div>
+        </div>
+    </section>
 </div>
-<div class="spacer"></div>
 
 <div class="padding-rl float-left overflow-hidden w-100">
     <section class="float-left w-100 newsletter-con position-relative main-box br-50 bg-blue">
         <div class="main-container">
             <div class="d-flex justify-content-between">
-                <div class="newsletter-img-con wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.05s">
+                <div class="newsletter-img-con">
                     <figure><img src="{{ asset('assets/images/footer-vector.png') }}" alt=""></figure>
                 </div>
-                <div class="newsletter-content-con wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.05s">
+                <div class="newsletter-content-con">
                     <h2 class="text-white text-size-60">Subscribe to Our <br> Newsletter</h2>
                     <form action="javascript:;">
                         <div class="form-group position-relative mb-0">

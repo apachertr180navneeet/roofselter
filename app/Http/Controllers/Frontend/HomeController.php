@@ -26,12 +26,13 @@ class HomeController extends Controller
         $testimonials = Testimonial::where('status',1)->get();
         $team_members = TeamMember::where('status',1)->get();
         $industries = Industry::where('status',1)->get();
-        $projects = Blog::where('status', 1)->get();
+        $projects = Blog::where('status', 1)->latest()->limit(4)->get();
         $faqs = Faq::where('status',1)->get();
+        $galleryImages = Gallery::where('status', 1)->orderBy('sort_order')->limit(6)->get();
 
         return view('frontend.index', compact(
             'sliders','services','abouts','testimonials','team_members',
-            'industries','projects','faqs'
+            'industries','projects','faqs','galleryImages'
         ));
     }
 
@@ -40,7 +41,8 @@ class HomeController extends Controller
         $abouts = About::where('status', 1)->get();
         $team_members = TeamMember::where('status', 1)->get();
         $testimonials = Testimonial::where('status', 1)->get();
-        return view('frontend.about', compact('abouts', 'team_members', 'testimonials'));
+        $faqs = Faq::where('status', 1)->get();
+        return view('frontend.about', compact('abouts', 'team_members', 'testimonials', 'faqs'));
     }
 
     public function contact()

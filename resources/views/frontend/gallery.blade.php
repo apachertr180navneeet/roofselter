@@ -32,194 +32,63 @@
         </div>
         <div class="tabs-box tabs-options wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.05s">
             <ul class="nav nav-tabs">
-                <li><a class="active" data-toggle="tab" href="#all">All</a></li>
-                <li><a data-toggle="tab" href="#Residential">Residential</a></li>
-                <li><a data-toggle="tab" href="#Corporate">Corporate</a></li>
-                <li><a data-toggle="tab" href="#Commercial">Commercial</a></li>
-                <li><a data-toggle="tab" href="#Installations">Installations</a></li>
+                <li><a class="active" data-toggle="tab" href="#tabAll">All</a></li>
+                @foreach($projects as $project)
+                <li><a data-toggle="tab" href="#tab{{ $project->id }}">{{ $project->title }}</a></li>
+                @endforeach
             </ul>
             <div class="tab-content">
-                <div id="all" class="tab-pane fade in active show">
-                    <div class="gallery-inner-con">
-                        <div class="image-outer-con">
-                            <div class="col-lg-12 p-0">
+                <div id="tabAll" class="tab-pane fade in active show">
+                    <div class="row">
+                        @forelse($galleryImages as $image)
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="gallery-img-con">
+                                <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('img/'.$image->image) }}">
+                                    <img src="{{ asset('img/'.$image->image) }}" alt="{{ $image->label ?? 'gallery image' }}" class="img-fluid br-40">
+                                </a>
+                                @if($image->label)
+                                <p class="mt-2">{{ $image->label }}</p>
+                                @endif
+                            </div>
+                        </div>
+                        @empty
+                        <div class="col-12">
+                            @foreach($projectImages->take(6) as $idx => $pImage)
+                            <div class="col-lg-4 col-md-6 mb-4 d-inline-block">
                                 <div class="gallery-img-con">
-                                    <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img1.jpg') }}">
-                                        <img src="{{ asset('assets/images/gallery-img1.jpg') }}" alt="gallery image" class="img-fluid">
+                                    <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('img/'.$pImage->image) }}">
+                                        <img src="{{ asset('img/'.$pImage->image) }}" alt="{{ $pImage->label ?? 'project image' }}" class="img-fluid br-40">
                                     </a>
+                                    @if($pImage->label)
+                                    <p class="mt-2">{{ $pImage->label }}</p>
+                                    @endif
                                 </div>
                             </div>
-                            <div class="col-lg-12 p-0">
-                                <div class="gallery-img-con mb-xl-0 mb-lg-0 mb-md-0">
-                                    <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img2.jpg') }}">
-                                        <img src="{{ asset('assets/images/gallery-img2.jpg') }}" alt="gallery image" class="img-fluid">
-                                    </a>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
-                        <div class="image-outer-con">
-                            <div class="gallery-img-con mb-xl-0 mb-lg-0 mb-md-0">
-                                <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img3.jpg') }}">
-                                    <img src="{{ asset('assets/images/gallery-img3.jpg') }}" alt="gallery image" class="img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="image-outer-con">
-                            <div class="col-lg-12 p-0">
-                                <div class="gallery-img-con">
-                                    <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img4.jpg') }}">
-                                        <img src="{{ asset('assets/images/gallery-img4.jpg') }}" alt="gallery image" class="img-fluid">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 p-0">
-                                <div class="gallery-img-con mb-0">
-                                    <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img5.jpg') }}">
-                                        <img src="{{ asset('assets/images/gallery-img5.jpg') }}" alt="gallery image" class="img-fluid">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gallery-bottom-con">
-                        <div class="image-outer-con">
-                            <div class="gallery-img-con mb-xl-0 mb-lg-0 mb-md-0">
-                                <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img6.jpg') }}">
-                                    <img src="{{ asset('assets/images/gallery-img6.jpg') }}" alt="gallery image" class="img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="image-outer-con">
-                            <div class="gallery-img-con mb-0">
-                                <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img7.jpg') }}">
-                                    <img src="{{ asset('assets/images/gallery-img7.jpg') }}" alt="gallery image" class="img-fluid">
-                                </a>
-                            </div>
-                        </div>
+                        @endforelse
                     </div>
                 </div>
-                <div id="Residential" class="tab-pane fade">
-                    <div class="gallery-bottom-con">
-                        <div class="image-outer-con">
-                            <div class="gallery-img-con mb-xl-0 mb-lg-0 mb-md-0">
-                                <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img6.jpg') }}">
-                                    <img src="{{ asset('assets/images/gallery-img6.jpg') }}" alt="gallery image" class="img-fluid">
+                @foreach($projects as $project)
+                <div id="tab{{ $project->id }}" class="tab-pane fade">
+                    <div class="row">
+                        @forelse($project->galleryImages as $pImage)
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="gallery-img-con">
+                                <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('img/'.$pImage->image) }}">
+                                    <img src="{{ asset('img/'.$pImage->image) }}" alt="{{ $pImage->label ?? $project->title }}" class="img-fluid br-40">
                                 </a>
+                                @if($pImage->label)
+                                <p class="mt-2">{{ $pImage->label }}</p>
+                                @endif
                             </div>
                         </div>
-                        <div class="image-outer-con">
-                            <div class="gallery-img-con mb-0">
-                                <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img7.jpg') }}">
-                                    <img src="{{ asset('assets/images/gallery-img7.jpg') }}" alt="gallery image" class="img-fluid">
-                                </a>
-                            </div>
-                        </div>
+                        @empty
+                        <div class="col-12"><p>No images for this project.</p></div>
+                        @endforelse
                     </div>
                 </div>
-                <div id="Corporate" class="tab-pane fade">
-                    <div class="gallery-inner-con">
-                        <div class="image-outer-con">
-                            <div class="col-lg-12 p-0">
-                                <div class="gallery-img-con">
-                                    <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img1.jpg') }}">
-                                        <img src="{{ asset('assets/images/gallery-img1.jpg') }}" alt="gallery image" class="img-fluid">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 p-0">
-                                <div class="gallery-img-con mb-xl-0 mb-lg-0 mb-md-0">
-                                    <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img2.jpg') }}">
-                                        <img src="{{ asset('assets/images/gallery-img2.jpg') }}" alt="gallery image" class="img-fluid">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="image-outer-con">
-                            <div class="gallery-img-con mb-xl-0 mb-lg-0 mb-md-0">
-                                <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img3.jpg') }}">
-                                    <img src="{{ asset('assets/images/gallery-img3.jpg') }}" alt="gallery image" class="img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="image-outer-con">
-                            <div class="col-lg-12 p-0">
-                                <div class="gallery-img-con">
-                                    <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img4.jpg') }}">
-                                        <img src="{{ asset('assets/images/gallery-img4.jpg') }}" alt="gallery image" class="img-fluid">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 p-0">
-                                <div class="gallery-img-con mb-0">
-                                    <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img5.jpg') }}">
-                                        <img src="{{ asset('assets/images/gallery-img5.jpg') }}" alt="gallery image" class="img-fluid">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="Commercial" class="tab-pane fade">
-                    <div class="gallery-bottom-con">
-                        <div class="image-outer-con">
-                            <div class="gallery-img-con mb-xl-0 mb-lg-0 mb-md-0">
-                                <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img6.jpg') }}">
-                                    <img src="{{ asset('assets/images/gallery-img6.jpg') }}" alt="gallery image" class="img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="image-outer-con">
-                            <div class="gallery-img-con mb-0">
-                                <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img7.jpg') }}">
-                                    <img src="{{ asset('assets/images/gallery-img7.jpg') }}" alt="gallery image" class="img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="Installations" class="tab-pane fade">
-                    <div class="gallery-inner-con">
-                        <div class="image-outer-con">
-                            <div class="col-lg-12 p-0">
-                                <div class="gallery-img-con">
-                                    <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img1.jpg') }}">
-                                        <img src="{{ asset('assets/images/gallery-img1.jpg') }}" alt="gallery image" class="img-fluid">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 p-0">
-                                <div class="gallery-img-con mb-xl-0 mb-lg-0 mb-md-0">
-                                    <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img2.jpg') }}">
-                                        <img src="{{ asset('assets/images/gallery-img2.jpg') }}" alt="gallery image" class="img-fluid">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="image-outer-con">
-                            <div class="gallery-img-con mb-xl-0 mb-lg-0 mb-md-0">
-                                <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img3.jpg') }}">
-                                    <img src="{{ asset('assets/images/gallery-img3.jpg') }}" alt="gallery image" class="img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="image-outer-con">
-                            <div class="col-lg-12 p-0">
-                                <div class="gallery-img-con">
-                                    <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img4.jpg') }}">
-                                        <img src="{{ asset('assets/images/gallery-img4.jpg') }}" alt="gallery image" class="img-fluid">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 p-0">
-                                <div class="gallery-img-con mb-0">
-                                    <a href="#" class="zoom" data-toggle="modal" data-target="#lightbox" data-image="{{ asset('assets/images/gallery-img5.jpg') }}">
-                                        <img src="{{ asset('assets/images/gallery-img5.jpg') }}" alt="gallery image" class="img-fluid">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -230,7 +99,7 @@
         <div class="modal-content">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <div class="modal-body">
-                <img id="popupImage" src="{{ asset('assets/images/gallery-img7.jpg') }}" alt="gallery image">
+                <img id="popupImage" src="" alt="gallery image">
             </div>
         </div>
     </div>

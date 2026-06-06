@@ -5,7 +5,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <figure class="mb-0">
-                            <img src="{{ asset('assets/images/logo.png') }}" alt="logo-icon">
+                            <img src="{{ asset(get_setting('site_logo') ? 'img/'.get_setting('site_logo') : 'assets/images/logo.png') }}" alt="logo-icon" style="width:160px;">
                         </figure>
                     </a>
                     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
@@ -46,8 +46,8 @@
                                         class="img-fluid d-inline-block">
                                 </figure>
                                 <div>
-                                    <a href="tel:+568925896325" class="text-decoration-none cell-no">
-                                        <span class="number d-inline-block urbanist-font">+5689 2589 6325</span>
+                                    <a href="tel:{{ get_setting('contact_phone') ?: '+5689 2589 6325' }}" class="text-decoration-none cell-no">
+                                        <span class="number d-inline-block urbanist-font">{{ get_setting('contact_phone') ?: '+5689 2589 6325' }}</span>
                                     </a>
                                 </div>
                             </li>

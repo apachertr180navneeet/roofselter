@@ -37,8 +37,9 @@
                         </figure>
                         <div class="info-text">
                             <h3 class="text-size-22 font-weight-700">Call us at:</h3>
-                            <a href="tel:+01234567899">+012 (345) 678 99</a>
-                            <a href="tel:+1234567847858">+12345678 478 58</a>
+                            <a href="tel:{{ get_setting('contact_phone', '+01234567899') }}">{{ get_setting('contact_phone', '+012 (345) 678 99') }}</a>
+                            @php $phone2 = get_setting('contact_phone_2'); @endphp
+                            @if($phone2)<a href="tel:{{ $phone2 }}">{{ $phone2 }}</a>@endif
                         </div>
                     </div>
                     <div class="info-card">
@@ -47,8 +48,9 @@
                         </figure>
                         <div class="info-text">
                             <h3 class="text-size-22 font-weight-700">Email us at:</h3>
-                            <a href="mailto:support@roofora.com">support@roofora.com</a>
-                            <a href="mailto:roofora@gmail.com">roofora@gmail.com</a>
+                            <a href="mailto:{{ get_setting('contact_email', 'support@roofora.com') }}">{{ get_setting('contact_email', 'support@roofora.com') }}</a>
+                            @php $email2 = get_setting('contact_email_2'); @endphp
+                            @if($email2)<a href="mailto:{{ $email2 }}">{{ $email2 }}</a>@endif
                         </div>
                     </div>
                     <div class="info-card mb-0">
@@ -57,7 +59,7 @@
                         </figure>
                         <div class="info-text">
                             <h3 class="text-size-22 font-weight-700">Our Location:</h3>
-                            <a href="https://maps.app.goo.gl/gehuAyDZ9d5vrZXw9">121 King Street, Melbourne<br>Victoria 3000 Australia</a>
+                            <a href="https://maps.app.goo.gl/gehuAyDZ9d5vrZXw9">{!! nl2br(e(get_setting('contact_address', "121 King Street, Melbourne\nVictoria 3000 Australia"))) !!}</a>
                         </div>
                     </div>
                 </div>

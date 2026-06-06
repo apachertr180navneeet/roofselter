@@ -8,8 +8,8 @@
         <section class="float-left w-100 position-relative sub-banner-con br-50 main-box">
             <div class="main-container">
                 <div class="sub-banner-inner-con position-relative z-1">
-                    <h1 class="text-white text-size-90">Services</h1>
-                    <p class="text-white">More than labor we deliver reliable services. Roofora provides expert <br> solutions for fast-paced commercial and industrial projects.</p>
+                    <h1 class="text-white text-size-90">{{ get_setting('services_page_title', 'Services') }}</h1>
+                    <p class="text-white">{{ get_setting('services_page_description', 'More than labor we deliver reliable services. Roofora provides expert solutions for fast-paced commercial and industrial projects.') }}</p>
                     <div class="breadcrumb-con d-inline-block">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
@@ -32,102 +32,31 @@
                 <p class="wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.05s">Every service we offer starts with a clear plan transparent, reliable.</p>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 d-flex wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.05s">
+                @forelse($services as $key => $serviceItem)
+                @php
+                    $animations = ['fadeInLeft', 'fadeInUp', 'fadeInRight'];
+                    $anim = $animations[$key % 3];
+                @endphp
+                <div class="col-lg-4 col-md-6 d-flex wow {{ $anim }}" data-wow-duration="2s" data-wow-delay="0.05s">
                     <div class="main-service-box w-100 position-relative">
                         <div class="position-relative">
-                            <figure class="main-service-icon position-absolute"><img src="{{ asset('assets/images/main-service-icon1.png') }}" alt="services icon" class="img-fluid"></figure>
-                            <figure><img src="{{ asset('assets/images/main-services-img1.jpg') }}" alt="services image" class="img-fluid"></figure>
+                            <figure><img src="{{ asset($serviceItem->image ? 'img/'.$serviceItem->image : 'assets/images/main-services-img'.(($key % 6) + 1).'.jpg') }}" alt="{{ $serviceItem->title }}" class="img-fluid"></figure>
                         </div>
                         <div class="inner-service">
-                            <h3 class="text-size-26 font-weight-700">Resedential Roofing</h3>
-                            <p>Protect your home with expert residential roofing solutions. From minor repairs to full roof replacements, we handle every job personally...</p>
+                            <h3 class="text-size-26 font-weight-700">{{ $serviceItem->title }}</h3>
+                            <p>{{ $serviceItem->short_description ? Str::limit($serviceItem->short_description, 120) : '' }}</p>
                             <a href="{{ route('home.contact-us') }}" class="font-weight-bold primary_btn d-inline-block">
-                                Book Now <span class=""><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block"></span>
+                                Book Now <span><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block"></span>
                             </a>
-                            <a href="{{ route('home.services') }}" class="d-inline-block read-more-link">Read More</a>
+                            <a href="{{ route('home.service-detail', $serviceItem->slug) }}" class="d-inline-block read-more-link">Read More</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 d-flex wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.05s">
-                    <div class="main-service-box w-100 position-relative">
-                        <div class="position-relative">
-                            <figure class="main-service-icon position-absolute"><img src="{{ asset('assets/images/main-service-icon2.png') }}" alt="services icon" class="img-fluid"></figure>
-                            <figure><img src="{{ asset('assets/images/main-services-img2.jpg') }}" alt="services image" class="img-fluid"></figure>
-                        </div>
-                        <div class="inner-service">
-                            <h3 class="text-size-26 font-weight-700">Repairs & Maintenance</h3>
-                            <p>Protect your home with expert residential roofing solutions. From minor repairs to full roof replacements, we handle every job personally...</p>
-                            <a href="{{ route('home.contact-us') }}" class="font-weight-bold primary_btn d-inline-block">
-                                Book Now <span class=""><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block"></span>
-                            </a>
-                            <a href="{{ route('home.services') }}" class="d-inline-block read-more-link">Read More</a>
-                        </div>
-                    </div>
+                @empty
+                <div class="col-12 text-center">
+                    <p>No services available at the moment.</p>
                 </div>
-                <div class="col-lg-4 col-md-6 d-flex wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.05s">
-                    <div class="main-service-box w-100 position-relative">
-                        <div class="position-relative">
-                            <figure class="main-service-icon position-absolute"><img src="{{ asset('assets/images/main-service-icon3.png') }}" alt="services icon" class="img-fluid"></figure>
-                            <figure><img src="{{ asset('assets/images/main-services-img3.jpg') }}" alt="services image" class="img-fluid"></figure>
-                        </div>
-                        <div class="inner-service">
-                            <h3 class="text-size-26 font-weight-700">Commercial Roofing</h3>
-                            <p>Durable commercial roof replacement solutions designed for reliability, efficiency, and long-term performance on any project.</p>
-                            <a href="{{ route('home.contact-us') }}" class="font-weight-bold primary_btn d-inline-block">
-                                Book Now <span class=""><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block"></span>
-                            </a>
-                            <a href="{{ route('home.services') }}" class="d-inline-block read-more-link">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 d-flex wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.05s">
-                    <div class="main-service-box w-100 position-relative">
-                        <div class="position-relative">
-                            <figure class="main-service-icon position-absolute"><img src="{{ asset('assets/images/main-service-icon4.png') }}" alt="services icon" class="img-fluid"></figure>
-                            <figure><img src="{{ asset('assets/images/main-services-img4.jpg') }}" alt="services image" class="img-fluid"></figure>
-                        </div>
-                        <div class="inner-service">
-                            <h3 class="text-size-26 font-weight-700">Roof Replacement</h3>
-                            <p>Expert roof replacement services using high-quality materials and skilled craftsmanship to ensure your commercial or residential roof.</p>
-                            <a href="{{ route('home.contact-us') }}" class="font-weight-bold primary_btn d-inline-block">
-                                Book Now <span class=""><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block"></span>
-                            </a>
-                            <a href="{{ route('home.services') }}" class="d-inline-block read-more-link">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 d-flex wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.05s">
-                    <div class="main-service-box w-100 position-relative">
-                        <div class="position-relative">
-                            <figure class="main-service-icon position-absolute"><img src="{{ asset('assets/images/main-service-icon5.png') }}" alt="services icon" class="img-fluid"></figure>
-                            <figure><img src="{{ asset('assets/images/main-services-img5.jpg') }}" alt="services image" class="img-fluid"></figure>
-                        </div>
-                        <div class="inner-service">
-                            <h3 class="text-size-26 font-weight-700">Storm Damage Repair</h3>
-                            <p>Rapid, expert repairs for roofs damaged by storms, hail, or leaks, quickly preventing further structural damage and fully restoring safety.</p>
-                            <a href="{{ route('home.contact-us') }}" class="font-weight-bold primary_btn d-inline-block">
-                                Book Now <span class=""><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block"></span>
-                            </a>
-                            <a href="{{ route('home.services') }}" class="d-inline-block read-more-link">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 d-flex wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.05s">
-                    <div class="main-service-box w-100 position-relative">
-                        <div class="position-relative">
-                            <figure class="main-service-icon position-absolute"><img src="{{ asset('assets/images/main-service-icon6.png') }}" alt="services icon" class="img-fluid"></figure>
-                            <figure><img src="{{ asset('assets/images/main-services-img6.jpg') }}" alt="services image" class="img-fluid"></figure>
-                        </div>
-                        <div class="inner-service">
-                            <h3 class="text-size-26 font-weight-700">Drainage Solutions</h3>
-                            <p>Complete gutter installation and maintenance to ensure proper water flow and protect your roof, foundation, and landscaping.</p>
-                            <a href="{{ route('home.contact-us') }}" class="font-weight-bold primary_btn d-inline-block">
-                                Book Now <span class=""><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block"></span>
-                            </a>
-                            <a href="{{ route('home.services') }}" class="d-inline-block read-more-link">Read More</a>
-                        </div>
-                    </div>
-                </div>
+                @endforelse
             </div>
         </div>
     </section>

@@ -25,6 +25,8 @@
 </div>
 <div class="spacer"></div>
 
+@php $about = $abouts->first(); @endphp
+
 <section class="float-left w-100 position-relative about-con padding-top padding-bottom main-box about-con2"
     id="about">
     <div class="main-container">
@@ -33,52 +35,35 @@
                 <div class="about-content-con position-relative p-0">
                     <div class="heading-title-con">
                         <span class="special-text d-block">About</span>
-                        <h2 class="text-size-60">
-                            Built for High-
-                            Velocity Projects</h2>
-                        <p>We operate with the speed, structure, and accountability required
-                            for demanding commercial and industrial environments. Our teams
-                            are trained to mobilize quickly, coordinate seamlessly with project
-                            stakeholders, & execute scopes without disrupting schedules.</p>
+                        <h2 class="text-size-60">{{ $about->title ?? 'Built for High-Velocity Projects' }}</h2>
+                        <p>{{ $about->description ?? 'We operate with the speed, structure, and accountability required for demanding commercial and industrial environments.' }}</p>
                     </div>
-                    <figure class=""><img src="{{ asset('assets/images/about-img3.jpg') }}" alt="about image"
-                            class="img-fluid br-40">
-                    </figure>
+                    <figure><img src="{{ asset($about && $about->image ? 'img/'.$about->image : 'assets/images/about-img3.jpg') }}" alt="about image" class="img-fluid br-40"></figure>
                 </div>
             </div>
             <div class="col-lg-7 col-md-12 wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.05s">
                 <div class="about-img-con position-relative about2-img-con">
                     <div class="position-relative">
-                        <figure class=""><img src="{{ asset('assets/images/about-img4.jpg') }}" alt="about image"
-                                class="img-fluid br-40">
-                        </figure>
-                        <figure class="about2-logo"><img src="{{ asset('assets/images/about-logo2.png') }}" alt="about image"
-                                class="img-fluid">
-                        </figure>
+                        <figure><img src="{{ asset($about && $about->image2 ? 'img/'.$about->image2 : 'assets/images/about-img4.jpg') }}" alt="about image" class="img-fluid br-40"></figure>
+                        <figure class="about2-logo"><img src="{{ asset('assets/images/about-logo2.png') }}" alt="about image" class="img-fluid"></figure>
                     </div>
-                    <p class="mb-0">From preconstruction through closeout, we focus on efficiency, safety, and
-                        consistent performance—so your project keeps moving forward without
-                        compromise.</p>
+                    <p class="mb-0">{{ $about->description2 ?? 'From preconstruction through closeout, we focus on efficiency, safety, and consistent performance.' }}</p>
                     <div class="users-details-con">
                         <div class="user-detrail-box pl-0">
-                            <span class="d-inline-block counter">500</span><span
-                                class="d-inline-block alphabet">+</span>
-                            <p class="mb-0 text-black">Jobs Done</p>
+                            <span class="d-inline-block counter">{{ $about->counter1_number ?? '500' }}</span><span class="d-inline-block alphabet">+</span>
+                            <p class="mb-0 text-black">{{ $about->counter1_label ?? 'Jobs Done' }}</p>
                         </div>
                         <div class="user-detrail-box">
-                            <span class="d-inline-block counter">95</span><span
-                                class="d-inline-block alphabet">+</span>
-                            <p class="mb-0 text-black">Roofing Awards</p>
+                            <span class="d-inline-block counter">{{ $about->counter2_number ?? '95' }}</span><span class="d-inline-block alphabet">+</span>
+                            <p class="mb-0 text-black">{{ $about->counter2_label ?? 'Roofing Awards' }}</p>
                         </div>
                         <div class="user-detrail-box">
-                            <span class="d-inline-block counter">100</span><span
-                                class="d-inline-block alphabet">%</span>
-                            <p class="mb-0 text-black">Client Satisfaction</p>
+                            <span class="d-inline-block counter">{{ $about->counter3_number ?? '100' }}</span><span class="d-inline-block alphabet">%</span>
+                            <p class="mb-0 text-black">{{ $about->counter3_label ?? 'Client Satisfaction' }}</p>
                         </div>
                         <div class="user-detrail-box border-right-0">
-                            <span class="d-inline-block counter">240</span><span
-                                class="d-inline-block alphabet">+</span>
-                            <p class="mb-0 text-black">Site Installers</p>
+                            <span class="d-inline-block counter">{{ $about->counter4_number ?? '240' }}</span><span class="d-inline-block alphabet">+</span>
+                            <p class="mb-0 text-black">{{ $about->counter4_label ?? 'Site Installers' }}</p>
                         </div>
                     </div>
                 </div>
@@ -126,83 +111,26 @@
                 <p>Every project starts with the right people clear roles, shared standards, and no surprises.</p>
             </div>
             <div class="row all_row">
-                <div class="col-lg-3 col-md-6 all_column wow fadeInUp" data-wow-duration="2s"
-                    data-wow-delay="0.05s">
+                @forelse($team_members as $key => $member)
+                @php $delays = ['0.05s', '0.5s', '0.6s', '0.7s']; @endphp
+                <div class="col-lg-3 col-md-6 all_column wow fadeInUp" data-wow-duration="2s" data-wow-delay="{{ $delays[$key % 4] }}">
                     <div class="team-box text-center position-relative all_boxes">
-                        <figure><img src="{{ asset('assets/images/team-person1.jpg') }}" alt="team" class="img-fluid">
-                        </figure>
-                        <h3 class="text-size-22">Aria Bennett </h3>
-                        <span class="designation text-color d-block"> Lead Project Manager</span>
+                        <figure><img src="{{ asset($member->image ? 'img/'.$member->image : 'assets/images/team-person'.(($key % 4) + 1).'.jpg') }}" alt="{{ $member->name }}" class="img-fluid"></figure>
+                        <h3 class="text-size-22">{{ $member->name }}</h3>
+                        <span class="designation text-color d-block">{{ $member->designation }}</span>
                         <ul class="list-unstyled p-0 mb-0">
-                            <li class="d-inline-block"><a href="https://www.facebook.com/login/" class="ml-0"><i
-                                        class="fa-brands fa-facebook-f"></i></a>
-                            </li>
-                            <li class="d-inline-block"><a href="https://www.instagram.com/"><i
-                                        class="fa-brands fa-instagram"></i></a>
-                            </li>
-                            <li class="d-inline-block"><a href="https://www.linkedin.com/"><i
-                                        class="fa-brands fa-linkedin"></i></a>
-                            </li>
+                            @if($member->facebook_url)<li class="d-inline-block"><a href="{{ $member->facebook_url }}" class="ml-0" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a></li>@endif
+                            @if($member->instagram_url)<li class="d-inline-block"><a href="{{ $member->instagram_url }}" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a></li>@endif
+                            @if($member->linkedin_url)<li class="d-inline-block"><a href="{{ $member->linkedin_url }}" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a></li>@endif
+                            @if($member->twitter_url)<li class="d-inline-block"><a href="{{ $member->twitter_url }}" target="_blank" rel="noopener"><i class="fa-brands fa-twitter"></i></a></li>@endif
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 all_column wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.5s">
-                    <div class="team-box text-center position-relative all_boxes">
-                        <figure><img src="{{ asset('assets/images/team-person2.jpg') }}" alt="team" class="img-fluid">
-                        </figure>
-                        <h3 class="text-size-22">Marcus Langford </h3>
-                        <span class="designation text-color d-block">Roofing Supervisor</span>
-                        <ul class="list-unstyled p-0 mb-0">
-                            <li class="d-inline-block"><a href="https://www.facebook.com/login/" class="ml-0"><i
-                                        class="fa-brands fa-facebook-f"></i></a>
-                            </li>
-                            <li class="d-inline-block"><a href="https://www.instagram.com/"><i
-                                        class="fa-brands fa-instagram"></i></a>
-                            </li>
-                            <li class="d-inline-block"><a href="https://www.linkedin.com/"><i
-                                        class="fa-brands fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
+                @empty
+                <div class="col-12 text-center">
+                    <p>No team members available at the moment.</p>
                 </div>
-                <div class="col-lg-3 col-md-6 all_column wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.6s">
-                    <div class="team-box text-center position-relative all_boxes">
-                        <figure><img src="{{ asset('assets/images/team-person3.jpg') }}" alt="team" class="img-fluid">
-                        </figure>
-                        <h3 class="text-size-22">Sofia Chen</h3>
-                        <span class="designation text-color d-block">Compliance Manager</span>
-                        <ul class="list-unstyled p-0 mb-0">
-                            <li class="d-inline-block"><a href="https://www.facebook.com/login/" class="ml-0"><i
-                                        class="fa-brands fa-facebook-f"></i></a>
-                            </li>
-                            <li class="d-inline-block"><a href="https://www.instagram.com/"><i
-                                        class="fa-brands fa-instagram"></i></a>
-                            </li>
-                            <li class="d-inline-block"><a href="https://www.linkedin.com/"><i
-                                        class="fa-brands fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 all_column wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.7s">
-                    <div class="team-box text-center position-relative all_boxes">
-                        <figure><img src="{{ asset('assets/images/team-person4.jpg') }}" alt="team" class="img-fluid">
-                        </figure>
-                        <h3 class="text-size-22">Daniel Reyes</h3>
-                        <span class="designation text-color d-block">Relations Coordinator</span>
-                        <ul class="list-unstyled p-0 mb-0">
-                            <li class="d-inline-block"><a href="https://www.facebook.com/login/" class="ml-0"><i
-                                        class="fa-brands fa-facebook-f"></i></a>
-                            </li>
-                            <li class="d-inline-block"><a href="https://www.instagram.com/"><i
-                                        class="fa-brands fa-instagram"></i></a>
-                            </li>
-                            <li class="d-inline-block"><a href="https://www.linkedin.com/"><i
-                                        class="fa-brands fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                @endforelse
             </div>
         </div>
     </section>
@@ -229,76 +157,48 @@
             <div class="client-review-slider-inner-con wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
                 <div id="about_testimonial_slider" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item">
+                        @forelse($testimonials as $key => $testimonial)
+                        <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
                             <div class="client-review-box">
                                 <figure class="rating-stars">
                                     <img src="{{ asset('assets/images/rating-stars.png') }}" alt="rating-stars">
                                 </figure>
-                                <p class="review-text">"Outstanding roofing service from start to finish. The team was punctual, highly skilled, and ensured everything was done safely and professionally. My roof looks brand new and the quality of work exceeded expectations."</p>
+                                <p class="review-text">{!! $testimonial->message !!}</p>
                             </div>
                         </div>
+                        @empty
                         <div class="carousel-item active">
                             <div class="client-review-box">
                                 <figure class="rating-stars">
                                     <img src="{{ asset('assets/images/rating-stars.png') }}" alt="rating-stars">
                                 </figure>
-                                <p class="review-text">"Jake was honest, professional, and hands-on from the first inspection to the final repair. He clearly explained the issue, provided a fair quote, and completed the work exactly as promised."</p>
+                                <p class="review-text">"Outstanding roofing service from start to finish."</p>
                             </div>
                         </div>
-                        <div class="carousel-item">
-                            <div class="client-review-box">
-                                <figure class="rating-stars">
-                                    <img src="{{ asset('assets/images/rating-stars.png') }}" alt="rating-stars">
-                                </figure>
-                                <p class="review-text">"Highly impressed with their construction expertise. They handled everything from roof repairs to structural improvements with precision. The project was completed on time and within budget."</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="client-review-box">
-                                <figure class="rating-stars">
-                                    <img src="{{ asset('assets/images/rating-stars.png') }}" alt="rating-stars">
-                                </figure>
-                                <p class="review-text">"Reliable and professional roofing contractors. They quickly identified the issue, fixed leaks, and reinforced the structure. I feel confident knowing my home is now protected."</p>
-                            </div>
-                        </div>
+                        @endforelse
                     </div>
                     <ul class="carousel-indicators">
-                        <li data-target="#about_testimonial_slider" data-slide-to="0">
+                        @forelse($testimonials as $key => $testimonial)
+                        <li data-target="#about_testimonial_slider" data-slide-to="{{ $key }}" class="{{ $key === 1 ? 'active' : '' }}">
+                            <figure class="mb-0">
+                                <img src="{{ asset($testimonial->image ? 'img/'.$testimonial->image : 'assets/images/client-img'.(($key % 4) + 1).'.jpg') }}" alt="{{ $testimonial->name }}" class="img-fluid">
+                            </figure>
+                            <div class="name_wrapper">
+                                <p class="client-name">{{ $testimonial->name }}</p>
+                                <span class="d-block">{{ $testimonial->designation ?? 'Satisfied Customer' }}</span>
+                            </div>
+                        </li>
+                        @empty
+                        <li data-target="#about_testimonial_slider" data-slide-to="0" class="active">
                             <figure class="mb-0">
                                 <img src="{{ asset('assets/images/client-img1.jpg') }}" alt="client" class="img-fluid">
                             </figure>
                             <div class="name_wrapper">
-                                <p class="client-name">Jennifer Troyer</p>
+                                <p class="client-name">Client</p>
                                 <span class="d-block">Satisfied Customer</span>
                             </div>
                         </li>
-                        <li data-target="#about_testimonial_slider" data-slide-to="1" class="active">
-                            <figure class="mb-0">
-                                <img src="{{ asset('assets/images/client-img2.jpg') }}" alt="client" class="img-fluid">
-                            </figure>
-                            <div class="name_wrapper">
-                                <p class="client-name">Mark Reynolds</p>
-                                <span class="d-block">Homeowner</span>
-                            </div>
-                        </li>
-                        <li data-target="#about_testimonial_slider" data-slide-to="2">
-                            <figure class="mb-0">
-                                <img src="{{ asset('assets/images/client-img3.jpg') }}" alt="client" class="img-fluid">
-                            </figure>
-                            <div class="name_wrapper">
-                                <p class="client-name">Lucy Smith</p>
-                                <span class="d-block">Satisfied Customer</span>
-                            </div>
-                        </li>
-                        <li data-target="#about_testimonial_slider" data-slide-to="3">
-                            <figure class="mb-0">
-                                <img src="{{ asset('assets/images/client-img4.jpg') }}" alt="client" class="img-fluid">
-                            </figure>
-                            <div class="name_wrapper">
-                                <p class="client-name">John Smith</p>
-                                <span class="d-block">Satisfied Client</span>
-                            </div>
-                        </li>
+                        @endforelse
                     </ul>
                     <div class="pagination-outer">
                         <a class="carousel-control-prev" href="#about_testimonial_slider" role="button" data-slide="prev">
@@ -329,54 +229,34 @@
                         <div id="about_faq_accordion">
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mx-auto">
-                                    <div class="accordion-card">
-                                        <div class="card-header" id="aboutHeadingOne">
-                                            <a href="#" class="btn btn-link collapsed" data-toggle="collapse" data-target="#aboutCollapseOne" aria-expanded="false" aria-controls="aboutCollapseOne">
-                                                <h3 class="text-size-26"><span class="d-inline-block sora-font text-light-blue font-weight-600">01</span>Do you handle roof inspections and repairs yourself?</h3>
+                                    @forelse($faqs as $key => $faq)
+                                    @php $isSecond = ($key === 1); @endphp
+                                    <div class="accordion-card @if($loop->last) mb-0 @endif">
+                                        <div class="card-header" id="aboutHeading{{ $key }}">
+                                            <a href="#" class="btn btn-link {{ $isSecond ? '' : 'collapsed' }}" data-toggle="collapse" data-target="#aboutCollapse{{ $key }}" aria-expanded="{{ $isSecond ? 'true' : 'false' }}" aria-controls="aboutCollapse{{ $key }}">
+                                                <h3 class="text-size-26"><span class="d-inline-block sora-font text-light-blue font-weight-600">{{ str_pad($key + 1, 2, '0', STR_PAD_LEFT) }}</span>{{ $faq->question }}</h3>
                                             </a>
                                         </div>
-                                        <div id="aboutCollapseOne" class="collapse" aria-labelledby="aboutHeadingOne" data-parent="#about_faq_accordion" role="region">
+                                        <div id="aboutCollapse{{ $key }}" class="collapse {{ $isSecond ? 'show' : '' }}" aria-labelledby="aboutHeading{{ $key }}" data-parent="#about_faq_accordion" role="region">
                                             <div class="card-body">
-                                                <p class="text-left mb-0">Yes, our experienced team handles all roof inspections and repairs directly. We carefully assess your roof condition, identify any issues, and provide reliable solutions without outsourcing the work.</p>
+                                                <p class="text-left mb-0">{{ $faq->answer }}</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="accordion-card">
-                                        <div class="card-header" id="aboutHeadingTwo">
-                                            <a href="#" class="btn btn-link collapsed" data-toggle="collapse" data-target="#aboutCollapseTwo" aria-expanded="false" aria-controls="aboutCollapseTwo">
-                                                <h3 class="text-size-26"><span class="d-inline-block sora-font text-light-blue font-weight-600">02</span>How much does a roof repair typically cost?</h3>
-                                            </a>
-                                        </div>
-                                        <div id="aboutCollapseTwo" class="show collapse" aria-labelledby="aboutHeadingTwo" data-parent="#about_faq_accordion" role="region">
-                                            <div class="card-body">
-                                                <p class="text-left mb-0">Most standard roof repairs start at an affordable rate depending on the issue. After a full inspection, we provide a clear and upfront estimate so you know exactly what to expect—no hidden costs.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-card">
-                                        <div class="card-header" id="aboutHeadingThree">
-                                            <a href="#" class="btn btn-link collapsed" data-toggle="collapse" data-target="#aboutCollapseThree" aria-expanded="false" aria-controls="aboutCollapseThree">
-                                                <h3 class="text-size-26"><span class="d-inline-block sora-font text-light-blue font-weight-600">03</span>Do you offer emergency or same-day roofing services?</h3>
-                                            </a>
-                                        </div>
-                                        <div id="aboutCollapseThree" class="collapse" aria-labelledby="aboutHeadingThree" data-parent="#about_faq_accordion" role="region">
-                                            <div class="card-body">
-                                                <p class="text-left mb-0">Yes, we provide emergency and same-day services for urgent roofing problems such as leaks, storm damage, or structural concerns to prevent further damage to your property.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @empty
                                     <div class="accordion-card mb-0">
-                                        <div class="card-header" id="aboutHeadingFour">
-                                            <a href="#" class="btn btn-link collapsed" data-toggle="collapse" data-target="#aboutCollapseFour" aria-expanded="false" aria-controls="aboutCollapseFour">
-                                                <h3 class="text-size-26"><span class="d-inline-block sora-font text-light-blue font-weight-600">04</span>Are you fully licensed and properly insured?</h3>
+                                        <div class="card-header" id="aboutHeadingEmpty">
+                                            <a href="#" class="btn btn-link collapsed" data-toggle="collapse" data-target="#aboutCollapseEmpty">
+                                                <h3 class="text-size-26">No FAQs available</h3>
                                             </a>
                                         </div>
-                                        <div id="aboutCollapseFour" class="collapse" aria-labelledby="aboutHeadingFour" data-parent="#about_faq_accordion" role="region">
+                                        <div id="aboutCollapseEmpty" class="collapse" data-parent="#about_faq_accordion">
                                             <div class="card-body">
-                                                <p class="text-left mb-0">Absolutely. We are fully licensed and insured, ensuring all roofing and construction work is completed safely, professionally, and according to industry standards.</p>
+                                                <p class="text-left mb-0">Check back later for frequently asked questions.</p>
                                             </div>
                                         </div>
                                     </div>
+                                    @endforelse
                                 </div>
                             </div>
                         </div>

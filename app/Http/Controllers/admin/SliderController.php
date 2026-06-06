@@ -15,60 +15,56 @@ class SliderController extends Controller
         return view('admin.slider.slider',compact('sliders'));
     }
 
-    // This method store data in database 
-    public function store(Request $request){
+    public function create(){
+        return view('admin.slider.create');
+    }
 
-        $validator = Validator::make($request->all(),[
-            // 'title' => 'required',
-            // 'short_desc' => 'required',
-            // 'banner' => 'required|image'
-        ]);
+    public function edit($id){
+        $slider = Slider::findOrFail($id);
+        return view('admin.slider.edit', compact('slider'));
+    }
+
+    public function store(Request $request){
+        $validator = Validator::make($request->all(),[]);
 
         if($validator->passes()){
-            $create = Slider::create();
-            $create->title = $request->title;
-            $create->short_desc = $request->short_desc;
+            $slider = Slider::create();
+            $slider->title = $request->title;
+            $slider->short_desc = $request->short_desc;
 
-            if ($request->has('add_remove_image') && $request->add_remove_image == 1) {
-                $create->banner = null;
-            } elseif ($request->hasFile('banner')) {
+            if ($request->hasFile('banner')) {
                 $filename = time().'.'.$request->banner->extension();
                 $request->banner->move(public_path('img'), $filename);
-                $create->banner = $filename;
-            }   
+                $slider->banner = $filename;
+            }
 
-            $create->save();
+            $slider->save();
 
-            return redirect()->route('admin.slider')->with('success','Slider Data Added Successfully');
+            return redirect()->route('admin.slider')->with('success','Slider Added Successfully');
         }else{
             return redirect()->back()->withErrors($validator)->withInput();
         }
     }
 
-    // This method store data in database 
-    public function update(Request $request){
-
-        $validator = Validator::make($request->all(),[
-            
-        ]);
+    public function update(Request $request, $id){
+        $validator = Validator::make($request->all(),[]);
 
         if($validator->passes()){
-            $update = Slider::find($request->id);
-            $update->title = $request->title;
-            $update->short_desc = $request->short_desc;
+            $slider = Slider::findOrFail($id);
+            $slider->title = $request->title;
+            $slider->short_desc = $request->short_desc;
 
             if ($request->has('remove_image') && $request->remove_image == 1) {
-                $update->banner = null;
+                $slider->banner = null;
             } elseif ($request->hasFile('banner')) {
                 $filename = time().'.'.$request->banner->extension();
                 $request->banner->move(public_path('img'), $filename);
-                $update->banner = $filename;
+                $slider->banner = $filename;
             }
-   
 
-            $update->save();
+            $slider->save();
 
-            return redirect()->route('admin.slider')->with('success','Slider Data Updated Successfully');
+            return redirect()->route('admin.slider')->with('success','Slider Updated Successfully');
         }else{
             return redirect()->back()->withErrors($validator)->withInput();
         }

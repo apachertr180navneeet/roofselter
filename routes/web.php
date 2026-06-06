@@ -125,8 +125,10 @@ Route::group(['prefix' => 'admin'], function() {
 
         // Admin Slider
         Route::get('slider',[SliderController::class,'index'])->name('admin.slider');
-        Route::post('slider-add',[SliderController::class,'store'])->name('admin.slider-store');
-        Route::post('slider-edit',[SliderController::class,'update'])->name('admin.slider-update');
+        Route::get('slider/create',[SliderController::class,'create'])->name('admin.slider-create');
+        Route::get('slider/{id}/edit',[SliderController::class,'edit'])->name('admin.slider-edit');
+        Route::post('slider/store',[SliderController::class,'store'])->name('admin.slider-store');
+        Route::post('slider/{id}/update',[SliderController::class,'update'])->name('admin.slider-update');
         Route::get('slider-destroy/{id}',[SliderController::class,'destroy'])->name('admin.slider-destroy');
         Route::post('slider/toggle-status', [SliderController::class, 'slider_toggleStatus'])->name('admin.slider-status');
 

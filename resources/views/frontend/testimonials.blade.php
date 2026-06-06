@@ -45,7 +45,7 @@
                                 <figure class="rating-stars">
                                     <img src="{{ asset('assets/images/rating-stars.png') }}" alt="rating-stars">
                                 </figure>
-                                <p class="review-text">"{{ $testimonial->message }}"</p>
+                                <p class="review-text">{!! $testimonial->message !!}</p>
                             </div>
                         </div>
                         @empty
