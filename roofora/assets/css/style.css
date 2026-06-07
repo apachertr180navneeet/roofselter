@@ -21,14 +21,14 @@ Project:  Roofora
 12. Footer  /.footer-con
 */
 /*------------------------------------------------------------------
-# [Color Codes]
+# [Color Codes] — Matched to Ganesh Roof Restoration Sydney Logo
 
-#   --primary--color: #1e2e4f;
+#   --primary--color: #1B2A4A;   (Dark Navy Blue from logo)
 #   --secondary--color: #ffffff;
-#   --accent--color: #f19e1f;
-#   --text--color: #616a7e;
+#   --accent--color: #F47920;    (Vibrant Orange from logo)
+#   --text--color: #5A6478;
 #   --black--color: #000000;
-#   --sky--color: #f4f8ff;
+#   --sky--color: #F2F6FC;
 
 */
 /*------------------------------------------------------------------
@@ -53,23 +53,23 @@ h6 {
 }
 
 :root {
-    --primary--color: #1e2e4f;
+    --primary--color: #1B2A4A;
     --secondary--color: #ffffff;
-    --accent--color: #f19e1f;
-    --text--color: #616a7e;
+    --accent--color: #F47920;
+    --text--color: #5A6478;
     --black--color: #000000;
-    --blue--color: #1d2e50;
-    --blue--color2: #293a5b;
-    --sky--color: #f4f8ff;
-    --lemon--color: #fff4e3;
+    --blue--color: #1B2A4A;
+    --blue--color2: #243656;
+    --sky--color: #F2F6FC;
+    --lemon--color: #FFF0E0;
     --green--color: #3bad20;
-    --yellow--color: #e09017;
-    --lemon--color2: #fff9ef;
-    --border--color: #cfd8e8;
-    --border--color2: #e6ebf6;
-    --light--blue--color: #b7c1d5;
-    --light--blue--color2: #b8c2d8;
-    --light--blue--color3: #afbcd6;
+    --yellow--color: #D96A10;
+    --lemon--color2: #FFF5EC;
+    --border--color: #C8D2E4;
+    --border--color2: #DCE3F0;
+    --light--blue--color: #A8B4CC;
+    --light--blue--color2: #A8B4CC;
+    --light--blue--color3: #9BABC6;
 }
 
 figure {
@@ -875,7 +875,7 @@ body {
 
 @-webkit-keyframes spineer {
     from {
-        box-shadow: 0 0 0 0 rgb(241 158 31 / 40%)
+        box-shadow: 0 0 0 0 rgb(244 121 32 / 40%)
     }
 
     to {
@@ -885,7 +885,7 @@ body {
 
 @keyframes spineer {
     from {
-        box-shadow: 0 0 0 0 rgb(241 158 31 / 40%)
+        box-shadow: 0 0 0 0 rgb(244 121 32 / 40%)
     }
 
     to {
@@ -1155,7 +1155,7 @@ body {
 }
 
 .newsletter-con input:focus {
-    box-shadow: 0px 0px 50px rgb(241 158 31 / 15%);
+    box-shadow: 0px 0px 50px rgb(244 121 32 / 15%);
     border: 2px solid var(--accent--color);
 }
 
@@ -1405,7 +1405,7 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgb(29 46 80 / 90%);
+    background-color: rgb(27 42 74 / 90%);
     border-radius: 50px;
 }
 
@@ -2123,6 +2123,12 @@ button.close:hover {
 
 .newsletter-con h2 {
     margin-bottom: 38px;
+}
+
+.newsletter-img-con img {
+    width: 400px;
+    max-width: 100%;
+    height: auto;
 }
 
 /* BOOK NOW CON */
@@ -4166,7 +4172,7 @@ a.read-more-link:hover {
 .bid-box.last-bid {
     border-color: var(--accent--color);
     padding: 30px 31px;
-    box-shadow: 2px 1px 29px rgb(241 158 31 / 8%);
+    box-shadow: 2px 1px 29px rgb(244 121 32 / 8%);
 }
 
 .bid-box.last-bid figure {
@@ -4333,7 +4339,7 @@ a.read-more-link:hover {
 
 .upload-wrapper .drop-area.active {
     border-color: var(--accent--color);
-    background: rgba(245, 166, 35, 0.1);
+    background: rgba(244, 121, 32, 0.1);
 }
 
 .upload-wrapper .contact-btn {
