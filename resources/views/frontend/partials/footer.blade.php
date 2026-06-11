@@ -11,7 +11,7 @@
                 <div class="links">
                     <ul class="list-unstyled mb-0">
                         <li class="text">
-                            <a href="mailto:{{ get_setting('contact_email', 'Roofora@gmail.com') }}" class="text-decoration-none">{{ get_setting('contact_email', 'Roofora@gmail.com') }}</a>
+                            <a href="mailto:{{ get_setting('contact_email', 'RoofShelter@gmail.com') }}" class="text-decoration-none">{{ get_setting('contact_email', 'RoofShelter@gmail.com') }}</a>
                         </li>
                         <li class="text footer-number mb-0">
                             <a href="tel:{{ get_setting('contact_phone', '+568925896325') }}" class="text-decoration-none">{{ get_setting('contact_phone', '+5689 2589 6325') }}</a>
@@ -31,7 +31,6 @@
                     <li><a href="{{ url('/') }}" class="text-decoration-none">Home</a></li>
                     <li><a href="{{ route('home.about-us') }}" class="text-decoration-none">About</a></li>
                     <li><a href="{{ route('home.services') }}" class="text-decoration-none">Services</a></li>
-                    <li><a href="{{ route('home.pricing') }}" class="text-decoration-none">Pricing</a></li>
                     <li><a href="{{ route('home.contact-us') }}" class="text-decoration-none">Contact</a></li>
                 </ul>
                 <ul class="list-unstyled mb-0 social-icons">
@@ -48,7 +47,7 @@
                     <li><a href="{{ $ln }}" class="text-decoration-none" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin social-networks" aria-hidden="true"></i></a></li>
                     @endif
                 </ul>
-                <p class="mb-0">{{ get_setting('footer_copyright_text', 'Copyright &copy; '.date('Y').' Roofora. All Rights Reserved.') }}</p>
+                <p class="mb-0">{{ get_setting('footer_copyright_text', '© '.date('Y').' ganeshroof restoration Sydney. All Rights Reserved.') }}</p>
             </div>
         </div>
     </div>
