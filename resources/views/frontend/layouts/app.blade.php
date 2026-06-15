@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>@yield('title', 'Roofora — Roofing & Construction Services')</title>
+    <title>@yield('title', get_setting('site_meta_title', 'Home') . ' | ' . get_setting('website_name', 'RoofShelter'))</title>
+    <meta name="description" content="@yield('meta_description', get_setting('site_meta_description', 'Roofora — Roofing & Construction Services'))">
+    <meta name="keywords" content="@yield('meta_keywords', get_setting('site_meta_keywords', 'roofing, construction, sydney'))">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <meta charset="utf-8">
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/images/favicon/apple-icon-57x57.png') }}">

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', (get_setting('website_name') ?: 'RoofShelter')) | ADMIN PANEL</title>
+    <meta name="description" content="@yield('meta_description', get_setting('site_meta_description', 'Administration Panel'))">
+    <meta name="keywords" content="@yield('meta_keywords', get_setting('site_meta_keywords', ''))">
     <link rel="icon" href="{{ asset(get_setting('site_logo') ? 'img/'.get_setting('site_logo') : 'panel-assets/icon.png') }}" type="image/x-icon" />
 
     @vite(['resources/css/app.css', 'resources/js/admin.js'])

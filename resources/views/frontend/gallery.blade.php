@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Gallery | Roofora — Roofing & Construction Services')
+@section('title', get_setting('cms_gallery_meta_title', 'Gallery') . ' | ' . get_setting('website_name', 'RoofShelter'))
 
 @section('content')
 <div class="padding-rl float-left w-100">

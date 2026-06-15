@@ -25,6 +25,15 @@
 
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Google Maps Embed URL</label></div>
                             <div class="md:col-span-3"><textarea name="google_maps_embed" class="admin-textarea" rows="3">{{ get_setting('google_maps_embed') }}</textarea></div>
+
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Site Meta Title</label></div>
+                            <div class="md:col-span-3"><input type="text" name="site_meta_title" class="admin-input" value="{{ get_setting('site_meta_title') }}"></div>
+
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Site Meta Description</label></div>
+                            <div class="md:col-span-3"><textarea name="site_meta_description" class="admin-textarea" rows="3">{{ get_setting('site_meta_description') }}</textarea></div>
+
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Site Meta Keywords</label></div>
+                            <div class="md:col-span-3"><input type="text" name="site_meta_keywords" class="admin-input" placeholder="keyword1, keyword2, keyword3" value="{{ get_setting('site_meta_keywords') }}"></div>
                         </div>
                     </div>
                     <div class="settings-panel hidden" id="contact" role="tabpanel">

@@ -19,6 +19,9 @@ class SettingController extends Controller
         $fields = [
             'website_name',
             'site_motto',
+            'site_meta_title',
+            'site_meta_description',
+            'site_meta_keywords',
             'site_logo',
             'system_logo_white',
             'system_logo_black',
