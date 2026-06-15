@@ -1,6 +1,7 @@
 <?php
 
 
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminDashboardController;
@@ -284,4 +285,10 @@ Route::group(['prefix' => 'admin'], function() {
         // Admin Icon
         Route::post('/icons/add', [IconController::class, 'add'])->name('icons.add');
     });
+});
+
+// Run migrations from server (access via browser)
+Route::get('/run-migrations', function () {
+    Artisan::call('migrate', ['--force' => true]);
+    return '<pre>' . Artisan::output() . '</pre>';
 });

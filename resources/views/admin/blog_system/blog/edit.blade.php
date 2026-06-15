@@ -4,12 +4,9 @@
 <div class="space-y-6">
     <div class="max-w-4xl mx-auto">
         <div class="admin-card">
-            <div class="admin-card-header">
-                <h3 class="text-base font-semibold text-gray-900">Update Project Post</h3>
-            </div>
+            <div class="admin-card-header"><h3 class="text-base font-semibold text-gray-900">Update Project Post</h3></div>
             <form action="{{route('admin.blog-update',$blog->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="id" value="{{ $blog->id }}">
                 <div class="admin-card-body">
                     <ul class="nav nav-tabs" id="projectTabs" role="tablist">
                         <li class="nav-item"><a class="nav-link active" id="details-tab" data-bs-toggle="tab" href="#details">Details</a></li>
@@ -27,17 +24,9 @@
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
                                 <div class="md:col-span-1"><label class="font-medium text-gray-700">Slug <span class="text-danger">*</span></label></div>
-                                <div class="md:col-span-3"><input type="text" class="admin-input" name="slug" id="slug" value="{{$blog->slug}}"></div>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
-                                <div class="md:col-span-1"><label class="font-medium text-gray-700">Category</label></div>
                                 <div class="md:col-span-3">
-                                    <select name="category_id" class="admin-select select2" style="width: 100%;">
-                                        <option value="">-- Select Category --</option>
-                                        @foreach($blog_categories as $category)
-                                            <option value="{{ $category->id }}" {{ $blog->category_id == $category->id ? 'selected' : '' }}>{{ $category->category_name }}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" class="admin-input" name="slug" id="slug" value="{{$blog->slug}}">
+                                    <p class="text-xs text-gray-500 mt-1">Auto-generated from title. Edit if needed.</p>
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
@@ -74,19 +63,19 @@
                         </div>
                         <div class="tab-pane fade" id="gallery">
                             @if($blog->galleryImages->count() > 0)
-                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-3">
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-3">
                                 @foreach($blog->galleryImages as $img)
-                                <div class="mb-3" id="gallery-img-{{ $img->id }}">
-                                    <div class="admin-card">
-                                        <img src="{{ asset('img/'.$img->image) }}" class="w-full" style="height:150px;object-fit:cover;" alt="">
-                                        <div class="p-2 text-center">
+                                <div id="gallery-img-{{ $img->id }}">
+                                    <div class="admin-card relative group">
+                                        <img src="{{ asset('img/'.$img->image) }}" class="w-full rounded" style="height:150px;object-fit:cover;" alt="">
+                                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center rounded">
                                             <button type="button" class="admin-btn-danger admin-btn-sm delete-gallery-image" data-id="{{ $img->id }}"><i class="fa fa-trash"></i></button>
                                         </div>
                                     </div>
                                 </div>
                                 @endforeach
                             </div>
-                            <hr>
+                            <hr class="mb-3">
                             @endif
                             <div class="grid grid-cols-1 gap-4">
                                 <div>
@@ -111,7 +100,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="px-6 py-4 border-t border-gray-100 text-center">
+                <div class="px-6 py-4 border-t border-gray-100 text-center flex gap-2 justify-center">
                     <button class="admin-btn-success" type="submit">Update</button>
                     <a href="{{route('admin.blog')}}" class="admin-btn-danger">Cancel</a>
                 </div>
@@ -119,7 +108,6 @@
         </div>
     </div>
 </div>
-
 @endsection
 @section('script')
 <script>
@@ -129,7 +117,7 @@
     $(document).on('click', '.delete-gallery-image', function() {
         if (!confirm('Delete this image?')) return;
         var id = $(this).data('id');
-        var url = '{{ route("admin.blog.destroy-gallery", "") }}' + '/' + id;
+        var url = '{{ route("admin.blog.destroy-gallery", "__id__") }}'.replace('__id__', id);
         $.get(url, function() {
             $('#gallery-img-' + id).fadeOut();
         });
