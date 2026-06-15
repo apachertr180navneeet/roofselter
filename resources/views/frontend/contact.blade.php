@@ -114,8 +114,9 @@
                     if ($mapVal && preg_match('/src="([^"]+)"/', $mapVal, $m)) {
                         $mapVal = $m[1];
                     }
+                    $defaultMap = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.724065759603!2d144.95450157673454!3d-37.81993173439205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d52754eaecb%3A0x2433bdca35db435a!2s21%20King%20St%2C%20Melbourne%20VIC%203000%2C%20Australia!5e0!3m2!1sen!2s!4v1763556889816!5m2!1sen!2s';
                 @endphp
-                <iframe src="{{ $mapVal ?: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.724065759603!2d144.95450157673454!3d-37.81993173439205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d52754eaecb%3A0x2433bdca35db435a!2s21%20King%20St%2C%20Melbourne%20VIC%203000%2C%20Australia!5e0!3m2!1sen!2s!4v1763556889816!5m2!1sen!2s') }}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="{{ $mapVal ?: $defaultMap }}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </div>
