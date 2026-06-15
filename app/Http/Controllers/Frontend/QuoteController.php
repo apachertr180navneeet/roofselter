@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\QuoteRequest;
 use App\Traits\SpamProtection;
+use App\Mail\QuoteAdminMail;
+use App\Mail\QuoteUserMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 
@@ -35,7 +38,14 @@ class QuoteController extends Controller
             ], 422);
         }
 
-        QuoteRequest::create($validator->validated());
+        $quote = QuoteRequest::create($validator->validated());
+
+        $adminEmail = config('mail.from.address') ?? 'Contact@ganeshroofrestorationsydney.com.au';
+        Mail::to($adminEmail)->send(new QuoteAdminMail($quote));
+
+        if (!empty($quote->email)) {
+            Mail::to($quote->email)->send(new QuoteUserMail($quote));
+        }
 
         return response()->json([
             'status' => 'success',

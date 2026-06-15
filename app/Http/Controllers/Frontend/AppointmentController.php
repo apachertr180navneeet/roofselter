@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Appointment;
 use App\Traits\SpamProtection;
+use App\Mail\AppointmentAdminMail;
+use App\Mail\AppointmentUserMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 
@@ -36,7 +39,14 @@ class AppointmentController extends Controller
             ], 422);
         }
 
-        Appointment::create($validator->validated());
+        $appointment = Appointment::create($validator->validated());
+
+        $adminEmail = config('mail.from.address') ?? 'Contact@ganeshroofrestorationsydney.com.au';
+        Mail::to($adminEmail)->send(new AppointmentAdminMail($appointment));
+
+        if (!empty($appointment->email)) {
+            Mail::to($appointment->email)->send(new AppointmentUserMail($appointment));
+        }
 
         return response()->json([
             'status' => 'success',
