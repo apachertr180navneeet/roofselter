@@ -47,6 +47,12 @@
                             <div class="md:col-span-3"><textarea name="cms_services_meta_desc" class="admin-textarea" rows="3">{{ get_setting('cms_services_meta_desc') }}</textarea></div>
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Keywords</label></div>
                             <div class="md:col-span-3"><input type="text" name="cms_services_meta_keywords" class="admin-input" placeholder="keyword1, keyword2" value="{{ get_setting('cms_services_meta_keywords') }}"></div>
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Regions Subtitle</label></div>
+                            <div class="md:col-span-3"><input type="text" name="cms_services_regions_subtitle" class="admin-input" value="{{ get_setting('cms_services_regions_subtitle', 'Service Locations') }}"></div>
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Regions Heading</label></div>
+                            <div class="md:col-span-3"><input type="text" name="cms_services_regions_heading" class="admin-input" value="{{ get_setting('cms_services_regions_heading', 'Service Regions Across the Phoenix Area') }}"></div>
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Regions Description</label></div>
+                            <div class="md:col-span-3"><textarea name="cms_services_regions_description" class="admin-textarea" rows="2">{{ get_setting('cms_services_regions_description', 'Full mobilization available across the Phoenix Metropolitan Area.') }}</textarea></div>
                         </div>
                     </div>
                     <div class="cms-panel hidden" id="gallery" role="tabpanel">
@@ -79,6 +85,12 @@
                             <div class="md:col-span-3"><textarea name="cms_testimonials_meta_desc" class="admin-textarea" rows="3">{{ get_setting('cms_testimonials_meta_desc') }}</textarea></div>
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Meta Keywords</label></div>
                             <div class="md:col-span-3"><input type="text" name="cms_testimonials_meta_keywords" class="admin-input" placeholder="keyword1, keyword2" value="{{ get_setting('cms_testimonials_meta_keywords') }}"></div>
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Regions Subtitle</label></div>
+                            <div class="md:col-span-3"><input type="text" name="cms_testimonials_regions_subtitle" class="admin-input" value="{{ get_setting('cms_testimonials_regions_subtitle', 'Service Locations') }}"></div>
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Regions Heading</label></div>
+                            <div class="md:col-span-3"><input type="text" name="cms_testimonials_regions_heading" class="admin-input" value="{{ get_setting('cms_testimonials_regions_heading', 'Service Regions Across the Phoenix Area') }}"></div>
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Regions Description</label></div>
+                            <div class="md:col-span-3"><textarea name="cms_testimonials_regions_description" class="admin-textarea" rows="2">{{ get_setting('cms_testimonials_regions_description', 'Full mobilization available across the Phoenix Metropolitan Area.') }}</textarea></div>
                         </div>
                     </div>
                     <div class="cms-panel hidden" id="contact" role="tabpanel">

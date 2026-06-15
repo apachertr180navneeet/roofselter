@@ -85,8 +85,10 @@ class SettingController extends Controller
         $fields = [
             'cms_home_title', 'cms_home_heading', 'cms_home_meta_desc', 'cms_home_meta_title', 'cms_home_meta_keywords',
             'cms_services_title', 'cms_services_heading', 'cms_services_description', 'cms_services_meta_desc', 'cms_services_meta_title', 'cms_services_meta_keywords',
+            'cms_services_regions_subtitle', 'cms_services_regions_heading', 'cms_services_regions_description',
             'cms_gallery_title', 'cms_gallery_heading', 'cms_gallery_description', 'cms_gallery_meta_desc', 'cms_gallery_meta_title', 'cms_gallery_meta_keywords',
             'cms_testimonials_title', 'cms_testimonials_heading', 'cms_testimonials_description', 'cms_testimonials_meta_desc', 'cms_testimonials_meta_title', 'cms_testimonials_meta_keywords',
+            'cms_testimonials_regions_subtitle', 'cms_testimonials_regions_heading', 'cms_testimonials_regions_description',
             'cms_contact_title', 'cms_contact_heading', 'cms_contact_description', 'cms_contact_meta_desc', 'cms_contact_meta_title', 'cms_contact_meta_keywords',
             'cms_faq_title', 'cms_faq_heading', 'cms_faq_description', 'cms_faq_meta_desc', 'cms_faq_meta_title', 'cms_faq_meta_keywords',
         ];

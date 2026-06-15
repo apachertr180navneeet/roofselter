@@ -121,8 +121,8 @@
                 </div>
             </div>
             <div class="cards-wrapper wow fadeInUp mb-0" data-wow-duration="2s" data-wow-delay="0.2s">
-                @forelse($services as $service)
-                <div class="custom-card">
+                @forelse($services as $index => $service)
+                <div class="custom-card @if($index >= 4) service-extra @endif">
                     <img src="{{ asset($service->image ? 'img/'.$service->image : 'assets/images/services-img1.jpg') }}" alt="{{ $service->title }}" class="img-fluid">
                     <div class="overlay">
                         <h3>{{ $service->title }}</h3>
@@ -141,6 +141,15 @@
                 </div>
                 @endforelse
             </div>
+            @if($services->count() > 4)
+            <div class="text-center mt-4">
+                <button id="showMoreServices" class="secondary_btn text-decoration-none d-inline-block border-0" style="cursor:pointer;">Show More <span><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block"></span></button>
+            </div>
+            @else
+            <div class="text-center mt-4">
+                <a href="{{ route('home.services') }}" class="secondary_btn text-decoration-none d-inline-block">View All Services <span><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block"></span></a>
+            </div>
+            @endif
         </div>
     </section>
 </div>
@@ -428,3 +437,25 @@
     </section>
 </div>
 @endsection
+
+@push('styles')
+<style>
+    .service-extra { display: none; }
+    .service-extra.show { display: block; }
+</style>
+@endpush
+
+@push('scripts')
+<script>
+    $(function() {
+        var $btn = $('#showMoreServices');
+        if ($btn.length) {
+            $btn.on('click', function() {
+                $('.service-extra').toggleClass('show');
+                var expanded = $('.service-extra.show').length > 0;
+                $btn.html(expanded ? 'Show Less <span><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block" style="transform:rotate(180deg)"></span>' : 'Show More <span><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block"></span>');
+            });
+        }
+    });
+</script>
+@endpush

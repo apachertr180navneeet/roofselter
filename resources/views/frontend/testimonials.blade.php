@@ -170,62 +170,29 @@
 <section class="float-left w-100 service-location-con position-relative padding-top padding-bottom main-box">
     <div class="main-container">
         <div class="heading-title-con text-center">
-            <span class="special-text d-block wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.05s">Service Locations</span>
-            <h2 class="text-size-60 wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.05s">Service Regions Across <br> the Phoenix Area</h2>
-            <p>Full mobilization available across the Phoenix Metropolitan Area.</p>
+            <span class="special-text d-block wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.05s">{{ get_setting('cms_testimonials_regions_subtitle', 'Service Locations') }}</span>
+            <h2 class="text-size-60 wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.05s">{!! nl2br(e(get_setting('cms_testimonials_regions_heading', 'Service Regions Across the Phoenix Area'))) !!}</h2>
+            <p>{{ get_setting('cms_testimonials_regions_description', 'Full mobilization available across the Phoenix Metropolitan Area.') }}</p>
         </div>
         <div class="row">
             <div class="col-lg-5 col-md-5">
-                <div class="location-wrapper">
-                    <div class="location-box">
-                        <figure class="icon-box">
-                            <img src="{{ asset('assets/images/map-icon.png') }}" alt="marker" class="img-fluid">
-                        </figure>
-                        <span>Mesa</span>
-                    </div>
-                    <div class="location-box">
-                        <figure class="icon-box">
-                            <img src="{{ asset('assets/images/map-icon.png') }}" alt="marker" class="img-fluid">
-                        </figure>
-                        <span>Scottsdale</span>
-                    </div>
-                    <div class="location-box active">
-                        <figure class="icon-box">
-                            <img src="{{ asset('assets/images/map-icon.png') }}" alt="marker" class="img-fluid">
-                        </figure>
-                        <span>Phoenix</span>
-                    </div>
-                    <div class="location-box">
-                        <figure class="icon-box">
-                            <img src="{{ asset('assets/images/map-icon.png') }}" alt="marker" class="img-fluid">
-                        </figure>
-                        <span>Buckeye</span>
-                    </div>
-                    <div class="location-box">
-                        <figure class="icon-box">
-                            <img src="{{ asset('assets/images/map-icon.png') }}" alt="marker" class="img-fluid">
-                        </figure>
-                        <span>Peoria</span>
-                    </div>
-                    <div class="location-box">
-                        <figure class="icon-box">
-                            <img src="{{ asset('assets/images/map-icon.png') }}" alt="marker" class="img-fluid">
-                        </figure>
-                        <span>Glendale</span>
-                    </div>
-                    <div class="location-box">
-                        <figure class="icon-box">
-                            <img src="{{ asset('assets/images/map-icon.png') }}" alt="marker" class="img-fluid">
-                        </figure>
-                        <span>Goodyear</span>
-                    </div>
-                    <div class="location-box">
-                        <figure class="icon-box">
-                            <img src="{{ asset('assets/images/map-icon.png') }}" alt="marker" class="img-fluid">
-                        </figure>
-                        <span>Gilbert</span>
-                    </div>
-                </div>
+                        <div class="location-wrapper">
+                            @forelse($locations as $loc)
+                            <div class="location-box{{ $loop->first ? ' active' : '' }}">
+                                <figure class="icon-box">
+                                    <img src="{{ asset('assets/images/map-icon.png') }}" alt="marker" class="img-fluid">
+                                </figure>
+                                <span>{{ $loc->name }}</span>
+                            </div>
+                            @empty
+                            <div class="location-box active">
+                                <figure class="icon-box">
+                                    <img src="{{ asset('assets/images/map-icon.png') }}" alt="marker" class="img-fluid">
+                                </figure>
+                                <span>Phoenix</span>
+                            </div>
+                            @endforelse
+                        </div>
             </div>
             <div class="col-lg-7 col-md-7">
                 <div class="map-container position-relative z-1">

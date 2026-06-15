@@ -15,6 +15,7 @@ use App\Models\Testimonial;
 use App\Models\Faq;
 use App\Models\Gallery;
 use App\Models\ProjectImage;
+use App\Models\ServiceLocation;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -117,7 +118,8 @@ class HomeController extends Controller
             ->latest()
             ->get();
         $categories = $services->pluck('category.title')->filter()->unique();
-        return view('frontend.services', compact('services', 'categories'));
+        $locations = ServiceLocation::where('is_active', 1)->orderBy('sort_order')->get();
+        return view('frontend.services', compact('services', 'categories', 'locations'));
     }
 
     public function team()
@@ -129,6 +131,7 @@ class HomeController extends Controller
     public function testimonials()
     {
         $testimonials = Testimonial::where('status', 1)->get();
-        return view('frontend.testimonials', compact('testimonials'));
+        $locations = ServiceLocation::where('is_active', 1)->orderBy('sort_order')->get();
+        return view('frontend.testimonials', compact('testimonials', 'locations'));
     }
 }

@@ -17,6 +17,7 @@ use App\Http\Controllers\admin\IndustryServiceController;
 use App\Http\Controllers\admin\ServiceBenefitController;
 use App\Http\Controllers\admin\ServiceCategoryController;
 use App\Http\Controllers\admin\ServiceController;
+use App\Http\Controllers\admin\ServiceLocationController;
 use App\Http\Controllers\admin\ServiceEssentialController;
 use App\Http\Controllers\admin\ServiceFaqController;
 use App\Http\Controllers\admin\ServiceFeatureController;
@@ -188,6 +189,14 @@ Route::group(['prefix' => 'admin'], function() {
         Route::post('service-essentials/{id}/update',[ServiceEssentialController::class,'update'])->name('admin.service-essentials-update');
         Route::get('service-essentials/{id}/destroy',[ServiceEssentialController::class,'destroy'])->name('admin.service-essentials-destroy');
         Route::post('service-essentials/toggle-status', [ServiceEssentialController::class, 'serviceEssentials_toggleStatus'])->name('admin.service-essentials-status');
+
+        // Admin Service Locations
+        Route::get('service-locations', [ServiceLocationController::class, 'index'])->name('admin.service-locations');
+        Route::post('service-locations/store', [ServiceLocationController::class, 'store'])->name('admin.service-locations-store');
+        Route::get('service-locations/{id}/edit', [ServiceLocationController::class, 'edit'])->name('admin.service-locations-edit');
+        Route::post('service-locations/{id}/update', [ServiceLocationController::class, 'update'])->name('admin.service-locations-update');
+        Route::get('service-locations/{id}/destroy', [ServiceLocationController::class, 'destroy'])->name('admin.service-locations-destroy');
+        Route::post('service-locations/toggle-status', [ServiceLocationController::class, 'toggleStatus'])->name('admin.service-locations-status');
 
         // Admin About
         Route::get('about', [AboutController::class, 'index'])->name('admin.about');

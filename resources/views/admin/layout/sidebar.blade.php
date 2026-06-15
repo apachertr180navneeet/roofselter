@@ -28,6 +28,10 @@
             <i class="fas fa-info-circle w-5 text-center nav-icon"></i>
             <span class="nav-text">About</span>
         </a>
+        <a href="{{route('admin.service-locations')}}" class="nav-item{{ request()->routeIs('admin.service-locations*') ? ' active' : '' }}">
+            <i class="fas fa-map-marker-alt w-5 text-center nav-icon"></i>
+            <span class="nav-text">Service Locations</span>
+        </a>
         <a href="{{route('admin.service')}}" class="nav-item{{ request()->routeIs('admin.service*') && !request()->routeIs('admin.service-*') ? ' active' : '' }}">
             <i class="fas fa-cogs w-5 text-center nav-icon"></i>
             <span class="nav-text">Services</span>
