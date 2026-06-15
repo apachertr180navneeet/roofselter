@@ -109,7 +109,13 @@
     <div class="float-left w-100 position-relative contact-map-con main-box text-center">
         <div class="container-fluid">
             <div class="position-relative wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.05s">
-                <iframe src="{{ get_setting('google_maps_embed', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.724065759603!2d144.95450157673454!3d-37.81993173439205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d52754eaecb%3A0x2433bdca35db435a!2s21%20King%20St%2C%20Melbourne%20VIC%203000%2C%20Australia!5e0!3m2!1sen!2s!4v1763556889816!5m2!1sen!2s') }}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                @php
+                    $mapVal = get_setting('google_maps_embed');
+                    if ($mapVal && preg_match('/src="([^"]+)"/', $mapVal, $m)) {
+                        $mapVal = $m[1];
+                    }
+                @endphp
+                <iframe src="{{ $mapVal ?: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.724065759603!2d144.95450157673454!3d-37.81993173439205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d52754eaecb%3A0x2433bdca35db435a!2s21%20King%20St%2C%20Melbourne%20VIC%203000%2C%20Australia!5e0!3m2!1sen!2s!4v1763556889816!5m2!1sen!2s') }}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </div>

@@ -23,8 +23,11 @@
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Site Motto</label></div>
                             <div class="md:col-span-3"><input type="text" name="site_motto" class="admin-input" value="{{ get_setting('site_motto') }}"></div>
 
-                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Google Maps Embed URL</label></div>
-                            <div class="md:col-span-3"><textarea name="google_maps_embed" class="admin-textarea" rows="3">{{ get_setting('google_maps_embed') }}</textarea></div>
+                            <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Google Maps Embed</label></div>
+                            <div class="md:col-span-3">
+                                <textarea name="google_maps_embed" class="admin-textarea" rows="3">{{ get_setting('google_maps_embed') }}</textarea>
+                                <p class="text-xs text-gray-500 mt-1">Paste the full iframe code or just the embed URL from Google Maps.</p>
+                            </div>
 
                             <div class="md:col-span-1"><label class="block text-sm font-medium text-gray-700">Site Meta Title</label></div>
                             <div class="md:col-span-3"><input type="text" name="site_meta_title" class="admin-input" value="{{ get_setting('site_meta_title') }}"></div>

@@ -65,9 +65,16 @@ class SettingController extends Controller
                     ['value' =>  $filename]
                 );
             } elseif ($request->filled($field)) {
+                $value = $request->$field;
+                if ($field === 'google_maps_embed' && str_contains($value, '<iframe')) {
+                    preg_match('/src="([^"]+)"/', $value, $matches);
+                    if (isset($matches[1])) {
+                        $value = $matches[1];
+                    }
+                }
                 Setting::updateOrCreate(
                     ['key' => $field],
-                    ['value' => $request->$field]
+                    ['value' => $value]
                 );
             }
         }
