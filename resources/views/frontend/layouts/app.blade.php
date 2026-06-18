@@ -43,6 +43,61 @@
     @yield('content')
     @include('frontend.partials.footer')
     <div class="spacer"></div>
+
+    <a href="tel:+610406530642" class="call-btn-float">
+        <div class="call-btn-icon">
+            <svg viewBox="0 0 24 24" fill="white">
+                <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.357 11.357 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"></path>
+            </svg>
+        </div>
+        <div class="call-btn-text">Call Us</div>
+    </a>
+
+    <style>
+        .call-btn-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #1e2e4f;
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            transition: all 0.3s;
+        }
+        .call-btn-float:hover {
+            background: #f19e1f;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+        }
+        .call-btn-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .call-btn-text {
+            white-space: nowrap;
+        }
+        @media (max-width: 767px) {
+            .call-btn-float {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 18px;
+                font-size: 14px;
+            }
+        }
+    </style>
     <div class="loader-mask">
         <div class="loader">
             <div></div>

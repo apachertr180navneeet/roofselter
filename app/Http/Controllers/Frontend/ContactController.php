@@ -8,6 +8,7 @@ use App\Mail\ContactAdminMail;
 use App\Mail\ContactUserMail;
 use App\Traits\SpamProtection;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 
 class ContactController extends Controller

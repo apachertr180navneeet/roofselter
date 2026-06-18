@@ -37,7 +37,7 @@
                         </figure>
                         <div class="info-text">
                             <h3 class="text-size-22 font-weight-700">Call us at:</h3>
-                            <a href="tel:{{ get_setting('contact_phone', '+01234567899') }}">{{ get_setting('contact_phone', '+012 (345) 678 99') }}</a>
+                            <a href="tel:{{ get_setting('contact_phone', '0406530642') }}">{{ get_setting('contact_phone', '0406530642') }}</a>
                             @php $phone2 = get_setting('contact_phone_2'); @endphp
                             @if($phone2)<a href="tel:{{ $phone2 }}">{{ $phone2 }}</a>@endif
                         </div>

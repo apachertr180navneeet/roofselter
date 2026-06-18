@@ -14,7 +14,7 @@
                             <a href="mailto:{{ get_setting('contact_email', 'RoofShelter@gmail.com') }}" class="text-decoration-none">{{ get_setting('contact_email', 'RoofShelter@gmail.com') }}</a>
                         </li>
                         <li class="text footer-number mb-0">
-                            <a href="tel:{{ get_setting('contact_phone', '+568925896325') }}" class="text-decoration-none">{{ get_setting('contact_phone', '+5689 2589 6325') }}</a>
+                            <a href="tel:{{ get_setting('contact_phone', '0406530642') }}" class="text-decoration-none">{{ get_setting('contact_phone', '0406530642') }}</a>
                         </li>
                     </ul>
                 </div>

@@ -46,8 +46,8 @@
                                         class="img-fluid d-inline-block">
                                 </figure>
                                 <div>
-                                    <a href="tel:{{ get_setting('contact_phone') ?: '+5689 2589 6325' }}" class="text-decoration-none cell-no">
-                                        <span class="number d-inline-block urbanist-font">{{ get_setting('contact_phone') ?: '+5689 2589 6325' }}</span>
+                                    <a href="tel:{{ get_setting('contact_phone') ?: '0406530642' }}" class="text-decoration-none cell-no">
+                                        <span class="number d-inline-block urbanist-font">{{ get_setting('contact_phone') ?: '0406530642' }}</span>
                                     </a>
                                 </div>
                             </li>
