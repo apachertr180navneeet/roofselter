@@ -32,7 +32,7 @@
                             </div>
                             <h1 class="text-size-120">{{ $slide ? $slide->title : "Roofing <br> Solutions for <br> Every Home." }}</h1>
                             <p class="text-white">{{ $slide ? $slide->short_desc : 'Fast leak fixes, small repairs, and honest re-roofs. You\'ll deal with me personally, from inspection to the final sweep.' }}</p>
-                            <a href="{{ route('home.contact-us') }}" class="font-weight-bold secondary_btn d-inline-block">
+                            <a href="javascript:;" data-toggle="modal" data-target="#contactModal" class="font-weight-bold secondary_btn d-inline-block">
                                 Get a Quote <span class=""><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block"></span>
                             </a>
                             <a href="{{ route('home.contact-us') }}" class="font-weight-bold elementary_btn d-inline-block">
@@ -397,7 +397,7 @@
                         <span class="special-text d-block wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.05s">Book Now</span>
                         <h2 class="text-size-120 text-blue wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.05s">Start Your Roofing.</h2>
                         <p class="text-blue wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.05s">Fast, reliable roofing service you can trust—personally handled <br> from start to finish.</p>
-                        <a href="{{ route('home.contact-us') }}" class="font-weight-bold secondary_btn d-inline-block wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.05s">
+                        <a href="javascript:;" data-toggle="modal" data-target="#contactModal" class="font-weight-bold secondary_btn d-inline-block wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.05s">
                             Get a Quote <span class=""><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block"></span>
                         </a>
                         <a href="{{ route('home.contact-us') }}" class="font-weight-bold elementary_btn d-inline-block wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.05s">
@@ -412,6 +412,69 @@
             </div>
         </section>
     </div>
+</div>
+
+<div class="spacer"></div>
+
+<div class="padding-rl float-left w-100">
+    <section class="float-left w-100 position-relative padding-top padding-bottom main-box">
+        <div class="container">
+            <div class="heading-title-con text-center wow fadeInDown" data-wow-duration="1.5s" data-wow-delay="0.1s">
+                <span class="special-text d-block">Contact Us</span>
+                <h2 class="text-size-60">Get In Touch With Us</h2>
+                <p>Have a question or need a quote? Fill out the form and we'll get back to you promptly.</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.2s">
+                    <div class="home-contact-box">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Full Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="username" placeholder="Kevin Doe" required form="homeQuoteForm">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" name="email" placeholder="kevindoe@gmail.com" form="homeQuoteForm">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Phone <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="phone" placeholder="(214) 555 013258" required form="homeQuoteForm">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>What do you need?</label>
+                                    <select class="form-control" name="service_required" form="homeQuoteForm">
+                                        <option value="">Select a service</option>
+                                        <option value="Delivery Quote">Delivery Quote</option>
+                                        <option value="Roofing">Roofing</option>
+                                        <option value="Repair">Repair</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Project Details</label>
+                                    <textarea class="form-control" name="message" placeholder="Tell us the jobsite city, roof squares..." rows="4" form="homeQuoteForm"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <form id="homeQuoteForm" action="{{ route('contact.store') }}" method="POST" class="d-none">@csrf</form>
+                        <button type="submit" class="home-contact-btn" form="homeQuoteForm">
+                            Submit Request
+                        </button>
+                        <div id="home_form_result"></div>
+                        <p class="home-contact-footer-text">By submitting, you agree to be contacted about inventory and pricing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 
 <div class="spacer"></div>
@@ -436,12 +499,238 @@
         </div>
     </section>
 </div>
+<div id="contactModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Request a Quote</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="modalQuoteForm" action="{{ route('contact.store') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label>Full Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="username" placeholder="Kevin Doe" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" class="form-control" name="email" placeholder="kevindoe@gmail.com">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Phone <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="phone" placeholder="(214) 555 013258" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>What do you need?</label>
+                        <select class="form-control" name="service_required">
+                            <option value="">Select a service</option>
+                            <option value="Delivery Quote">Delivery Quote</option>
+                            <option value="Roofing">Roofing</option>
+                            <option value="Repair">Repair</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Project Details</label>
+                        <textarea class="form-control" name="message" placeholder="Tell us the jobsite city, roof squares..." rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn-modal">Submit Request</button>
+                </form>
+                <div id="modal_form_result"></div>
+                <p class="modal-footer-text">By submitting, you agree to be contacted about inventory and pricing.</p>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('styles')
 <style>
     .service-extra { display: none; }
     .service-extra.show { display: block; }
+
+    .home-contact-box {
+        background: var(--secondary--color);
+        border-radius: 30px;
+        padding: 40px;
+        box-shadow: 0 5px 40px rgba(0,0,0,0.06);
+        border: 1px solid #eee;
+    }
+    .home-contact-box .form-group label {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--primary--color);
+        margin-bottom: 6px;
+    }
+    .home-contact-box .form-control {
+        border-radius: 30px;
+        height: 54px;
+        padding: 0 24px;
+        border: 1px solid #e0e0e0;
+        font-size: 14px;
+        transition: all 0.3s;
+        margin-bottom: 6px;
+    }
+    .home-contact-box .form-control:focus {
+        border-color: var(--accent--color);
+        box-shadow: 0 0 0 3px rgba(244,121,32,0.1);
+    }
+    .home-contact-box textarea.form-control {
+        height: 110px;
+        padding: 16px 24px;
+        border-radius: 16px;
+        resize: none;
+    }
+    .home-contact-box select.form-control {
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 20px center;
+        padding-right: 40px;
+    }
+    .home-contact-btn {
+        background: var(--primary--color);
+        color: var(--secondary--color);
+        border-radius: 30px;
+        height: 54px;
+        font-size: 16px;
+        width: 100%;
+        border: none;
+        font-weight: 600;
+        transition: all 0.3s;
+        cursor: pointer;
+        margin-top: 5px;
+    }
+    .home-contact-btn:hover {
+        background: var(--accent--color);
+        color: var(--secondary--color);
+    }
+    .home-contact-footer-text {
+        font-size: 12px;
+        color: #aaa;
+        margin: 15px 0 0;
+        text-align: center;
+    }
+    .home-contact-box .alert {
+        border-radius: 12px;
+        margin-top: 12px;
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+    @media (max-width: 768px) {
+        .home-contact-box {
+            padding: 25px 20px;
+        }
+    }
+
+    #contactModal .modal-content {
+        border-radius: 24px;
+        border: none;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        overflow: hidden;
+    }
+    #contactModal .modal-header {
+        background: var(--primary--color);
+        color: var(--secondary--color);
+        border-bottom: 3px solid var(--accent--color);
+        padding: 20px 30px;
+        align-items: center;
+    }
+    #contactModal .modal-header .modal-title {
+        font-size: 22px;
+        font-weight: 700;
+    }
+    #contactModal .modal-header .close {
+        color: var(--secondary--color);
+        font-size: 32px;
+        font-weight: 300;
+        opacity: 0.7;
+        text-shadow: none;
+        position: relative;
+        top: -2px;
+    }
+    #contactModal .modal-header .close:hover {
+        opacity: 1;
+    }
+    #contactModal .modal-body {
+        padding: 30px;
+    }
+    #contactModal .form-group label {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--primary--color);
+        margin-bottom: 6px;
+    }
+    #contactModal .form-control {
+        border-radius: 30px;
+        height: 54px;
+        padding: 0 24px;
+        border: 1px solid #e0e0e0;
+        font-size: 14px;
+        transition: all 0.3s;
+    }
+    #contactModal .form-control:focus {
+        border-color: var(--accent--color);
+        box-shadow: 0 0 0 3px rgba(244,121,32,0.12);
+    }
+    #contactModal textarea.form-control {
+        height: 110px;
+        padding: 16px 24px;
+        border-radius: 16px;
+        resize: none;
+    }
+    #contactModal select.form-control {
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 20px center;
+        padding-right: 40px;
+    }
+    #contactModal .submit-btn-modal {
+        background: var(--primary--color);
+        color: var(--secondary--color);
+        border-radius: 30px;
+        height: 54px;
+        font-size: 16px;
+        width: 100%;
+        border: none;
+        font-weight: 600;
+        transition: all 0.3s;
+        cursor: pointer;
+    }
+    #contactModal .submit-btn-modal:hover {
+        background: var(--accent--color);
+        color: var(--secondary--color);
+    }
+    #contactModal .modal-footer-text {
+        font-size: 12px;
+        color: #aaa;
+        margin: 15px 0 0;
+        text-align: center;
+    }
+    #contactModal .alert {
+        border-radius: 12px;
+        margin-top: 12px;
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+    @media (max-width: 576px) {
+        #contactModal .modal-body {
+            padding: 20px;
+        }
+        #contactModal .modal-header {
+            padding: 15px 20px;
+        }
+        #contactModal .modal-header .modal-title {
+            font-size: 18px;
+        }
+    }
 </style>
 @endpush
 
@@ -456,6 +745,45 @@
                 $btn.html(expanded ? 'Show Less <span><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block" style="transform:rotate(180deg)"></span>' : 'Show More <span><img src="{{ asset('assets/images/arrow.png') }}" alt="arrow icon" class="img-fluid d-inline-block"></span>');
             });
         }
+
+        function handleFormSubmit(formId, resultId) {
+            $(formId).on('submit', function(e) {
+                e.preventDefault();
+                var form = $(this);
+                var url = form.attr('action');
+                var data = form.serialize();
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: data,
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            $(resultId).html('<span class="form-success alert alert-success d-block">' + response.message + '</span>');
+                            form[0].reset();
+                        }
+                        $(resultId).show();
+                    },
+                    error: function(xhr) {
+                        var errors = xhr.responseJSON;
+                        var msg = '';
+                        if (errors && errors.errors) {
+                            $.each(errors.errors, function(key, val) {
+                                msg += val[0] + '<br>';
+                            });
+                        } else if (errors && errors.message) {
+                            msg = errors.message;
+                        } else {
+                            msg = 'Something went wrong. Please try again.';
+                        }
+                        $(resultId).html('<span class="form-error alert alert-danger d-block">' + msg + '</span>');
+                        $(resultId).show();
+                    }
+                });
+            });
+        }
+        handleFormSubmit('#homeQuoteForm', '#home_form_result');
+        handleFormSubmit('#modalQuoteForm', '#modal_form_result');
     });
 </script>
 @endpush
